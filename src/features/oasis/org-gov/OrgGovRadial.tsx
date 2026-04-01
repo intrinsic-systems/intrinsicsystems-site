@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
 import ReactECharts from "echarts-for-react";
-import type { EChartsType } from "echarts/core";
 
 import { buildOrgGovSunburstOption, toSunburstData } from "./orgGovSunburst";
 import type { DomainNode, ScoreMode } from "./orgGovTypes";
@@ -77,7 +76,7 @@ export function OrgGovRadial({
           opts={{ renderer: "canvas" }}
           notMerge
           lazyUpdate
-          onChartReady={(chart: EChartsType) => {
+          onChartReady={(chart: any) => {
             chart.resize();
           }}
           onEvents={{

@@ -356,7 +356,7 @@ function centreMetricValue(mode: ScoreMode, score: ScoreSet): string {
     case "target":
       return formatScore(score.target);
     case "variance":
-      return formatScore(Math.max(score.target ?? 0 - (score.current ?? 0), 0));
+      return formatScore(Math.max((score.target ?? 0) - (score.current ?? 0), 0));
     default:
       return formatScore(score.current);
   }
@@ -367,7 +367,7 @@ export function buildOrgGovSunburstOption(
   mode: ScoreMode,
   includeQuestions = false,
   selectedElementId?: string
-): EChartsOption {
+): any {
   const displayData = applySelectionState(data, selectedElementId);
 
   const selectedNode = selectedElementId
@@ -431,11 +431,6 @@ export function buildOrgGovSunburstOption(
               text: centerTitle,
               fill: "#f8fafc",
               font: "600 11px Inter, system-ui, sans-serif",
-              lineHeight: 14,
-              textAlign: "center",
-              textVerticalAlign: "middle",
-              width: 92,
-              overflow: "break",
             },
             x: -46,
             y: -16,
@@ -445,11 +440,10 @@ export function buildOrgGovSunburstOption(
             style: {
               text: `${centreMetricLabel(mode)} ${centreMetricValue(
                 mode,
-                activeNode?.score ?? {}
+                activeNode?.score ?? { current: 0, benchmark: 0, target: 0 }
               )}`,
               fill: "#dbeafe",
               font: "600 9px Inter, system-ui, sans-serif",
-              textAlign: "center",
             },
             x: -34,
             y: 12,
@@ -460,7 +454,6 @@ export function buildOrgGovSunburstOption(
               text: `Gap ${gap}`,
               fill: "#cbd5e1",
               font: "9px Inter, system-ui, sans-serif",
-              textAlign: "center",
             },
             x: -15,
             y: 24,
@@ -556,5 +549,5 @@ export function buildOrgGovSunburstOption(
         ],
       },
     ],
-  };
+  } as any;
 }

@@ -1,47 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { SiteTopNav } from "../components/SiteTopNav";
-
-type AccessFormState = {
-  name: string;
-  organisation: string;
-  email: string;
-  interest: string;
-};
-
-const INITIAL_STATE: AccessFormState = {
-  name: "",
-  organisation: "",
-  email: "",
-  interest: "",
-};
 
 export function CoreAccessPage() {
   const navigate = useNavigate();
-  const [form, setForm] = useState<AccessFormState>(INITIAL_STATE);
-  const [submitted, setSubmitted] = useState(false);
+  const location = useLocation();
 
-  function updateField<K extends keyof AccessFormState>(
-    key: K,
-    value: AccessFormState[K]
-  ) {
-    setForm((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  }
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    console.log("OASIS CORE access request", {
-      ...form,
-      submittedAt: new Date().toISOString(),
-    });
-
-    setSubmitted(true);
-    setForm(INITIAL_STATE);
-  }
+  const submitted = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get("submitted") === "true";
+  }, [location.search]);
 
   return (
     <div className="o-suite-shell">
@@ -83,7 +51,23 @@ export function CoreAccessPage() {
                     information, and performance alignment.
                   </div>
 
-                  <form onSubmit={handleSubmit}>
+                  <form
+                    action="https://formsubmit.co/hello@intrinsicsystems.com.au"
+                    method="POST"
+                  >
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="OASIS CORE Pilot Request"
+                    />
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
+                    <input
+                      type="hidden"
+                      name="_next"
+                      value="https://www.intrinsicsystems.com.au/core/access?submitted=true"
+                    />
+
                     <div
                       style={{
                         display: "grid",
@@ -94,33 +78,29 @@ export function CoreAccessPage() {
                     >
                       <Field
                         label="Your name"
+                        name="name"
                         required
-                        value={form.name}
-                        onChange={(value) => updateField("name", value)}
                         placeholder="Enter your name"
                       />
 
                       <Field
                         label="Organisation"
+                        name="organisation"
                         required
-                        value={form.organisation}
-                        onChange={(value) => updateField("organisation", value)}
                         placeholder="Enter organisation name"
                       />
 
                       <Field
                         label="Work email"
+                        name="email"
                         required
                         type="email"
-                        value={form.email}
-                        onChange={(value) => updateField("email", value)}
                         placeholder="name@organisation.com"
                       />
 
                       <Field
                         label="Primary interest"
-                        value={form.interest}
-                        onChange={(value) => updateField("interest", value)}
+                        name="interest"
                         placeholder="Pilot, assessment, partnership, etc."
                       />
                     </div>
@@ -157,15 +137,15 @@ export function CoreAccessPage() {
                     className="o-text-body"
                     style={{ marginBottom: 18, maxWidth: 640 }}
                   >
-                    Thank you. We have recorded your interest in OASIS CORE™
-                    pilot access and will review the request shortly.
+                    Thank you. Your request for OASIS CORE™ pilot access has
+                    been submitted and will be reviewed shortly.
                   </div>
 
                   <div className="o-action-row">
                     <button
                       className="o-btn o-btn--primary"
                       type="button"
-                      onClick={() => setSubmitted(false)}
+                      onClick={() => navigate("/core/access")}
                     >
                       Submit another request
                     </button>
@@ -190,15 +170,13 @@ export function CoreAccessPage() {
 
 function Field({
   label,
-  value,
-  onChange,
+  name,
   placeholder,
   type = "text",
   required = false,
 }: {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  name: string;
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
   required?: boolean;
@@ -220,9 +198,8 @@ function Field({
 
       <input
         type={type}
-        value={value}
+        name={name}
         required={required}
-        onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
         style={{
           width: "100%",
