@@ -27,8 +27,16 @@ const EXECUTIVE_VIEW_PREVIEW_RESULTS = {
   ],
 };
 
+function isLocalPreviewHost(): boolean {
+  if (typeof window === "undefined") return false;
+
+  const host = window.location.hostname;
+  return host === "localhost" || host === "127.0.0.1";
+}
+
 export function OasisSuitePage() {
   const navigate = useNavigate();
+  const showExecutivePreview = isLocalPreviewHost();
 
   return (
     <div className="o-suite-shell">
@@ -200,16 +208,32 @@ export function OasisSuitePage() {
             </div>
 
             <div className="o-page-subtitle" style={{ marginBottom: 22 }}>
-              A preview of how OASIS CORE transforms hierarchical assessment logic into
-              interactive, and evidence-aware, enterprise capability intelligence.
+              A preview of how OASIS CORE transforms structured assessment into
+              interactive, evidence-aware enterprise capability intelligence.
             </div>
 
-            <div className="o-card o-card-pad" style={{ padding: 20 }}>
-              <OrgGovExecutiveView
-                embedded
-                results={EXECUTIVE_VIEW_PREVIEW_RESULTS}
-              />
-            </div>
+            {showExecutivePreview ? (
+              <div className="o-card o-card-pad" style={{ padding: 20 }}>
+                <OrgGovExecutiveView
+                  embedded
+                  results={EXECUTIVE_VIEW_PREVIEW_RESULTS}
+                />
+              </div>
+            ) : (
+              <div className="o-card o-card-pad" style={{ padding: 24 }}>
+                <div className="o-text-body" style={{ marginBottom: 14 }}>
+                  The OASIS Executive View presents enterprise capability as a
+                  structured, hierarchical model — translating assessment data into
+                  a clear, inspectable enterprise profile.
+                </div>
+                <div className="o-text-body" style={{ marginBottom: 0 }}>
+                  Leaders can identify where capability is constrained, understand
+                  the drivers of performance, and prioritise uplift with greater
+                  precision — moving beyond static maturity scores to evidence-aware
+                  decision-making.
+                </div>
+              </div>
+            )}
           </section>
         </div>
       </div>
