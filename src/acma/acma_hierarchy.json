@@ -1,0 +1,1028 @@
+{
+  "version": "1.0.0",
+  "meta": {
+    "id": "acma-core-hierarchy",
+    "title": "OASIS Core \u2014 ACMA Hierarchy",
+    "description": "Sector/Area/Activity/Question hierarchy from Questions + Planning Analysis Rev6.",
+    "maturity_scale": [
+      {
+        "value": 1,
+        "label": "Innocent",
+        "summary": "The organisation has not recognised the need for this requirement and/or there is no evidence of commitment to put it in place.",
+        "score": 0.0
+      },
+      {
+        "value": 2,
+        "label": "Aware",
+        "summary": "The organisation has identified the need for this requirement, and there is evidence of intent to progress it.",
+        "score": 0.05
+      },
+      {
+        "value": 3,
+        "label": "Developing",
+        "summary": "The organisation has identified the means of systematically and consistently achieving the requirements, and can demonstrate that these are being progressed with credible and resourced plans in place.",
+        "score": 0.35
+      },
+      {
+        "value": 4,
+        "label": "Competent",
+        "summary": "The organisation can demonstrate that it systematically and consistently achieves relevant requirements set out in ISO 55001.",
+        "score": 0.7
+      },
+      {
+        "value": 5,
+        "label": "Optimising",
+        "summary": "The organisation can demonstrate that it is systematically and consistently optimising its Asset Management practice, in line with the organisation\u2019s objectives and operating context.",
+        "score": 0.9
+      },
+      {
+        "value": 6,
+        "label": "Excellent",
+        "summary": "The organisation can demonstrate that it employs the leading practices, and achieves maximum value from the management of its assets, in line with the organisation\u2019s objectives and operating context.",
+        "score": 1.0
+      }
+    ]
+  },
+  "sectors": [
+    {
+      "code": "1",
+      "name": "Governance",
+      "areas": [
+        {
+          "code": "1.1",
+          "name": "Leadership",
+          "activities": [
+            {
+              "code": "1.1.1",
+              "name": "Asset Management Vision + Goals",
+              "questions": [
+                {
+                  "code": "1.1.1.1",
+                  "uid": "1",
+                  "text": "The organisation has a Vision and Strategy that includes the management of Assets?"
+                },
+                {
+                  "code": "1.1.1.2",
+                  "uid": "2",
+                  "text": "The organisation's asset management Vision and Strategy provides adequate information for asset management Objectives and Plans to be prepared?"
+                },
+                {
+                  "code": "1.1.1.3",
+                  "uid": "3",
+                  "text": "The organisation has an established Risk Management Process to identify and control risks associated with all of its assets and services?"
+                },
+                {
+                  "code": "1.1.1.4",
+                  "uid": "4",
+                  "text": "The organisation has an established process that reviews and updates the Vision?"
+                }
+              ]
+            },
+            {
+              "code": "1.1.2",
+              "name": "Asset Management Policy",
+              "questions": [
+                {
+                  "code": "1.1.2.5",
+                  "uid": "5",
+                  "text": "The organisation has an asset management Policy that is consistent with its Vision and Strategy?"
+                },
+                {
+                  "code": "1.1.2.6",
+                  "uid": "6",
+                  "text": "The organisation has communicated the asset management Policy to all internal and external stakeholders?"
+                },
+                {
+                  "code": "1.1.2.7",
+                  "uid": "7",
+                  "text": "The organisation's asset management Policy is regularly reviewed?"
+                }
+              ]
+            },
+            {
+              "code": "1.1.3",
+              "name": "Asset Management Leadership",
+              "questions": [
+                {
+                  "code": "1.1.3.8",
+                  "uid": "8",
+                  "text": "The organisation has an established organisational structure with clearly defined roles, responsibilities and authorities for effective asset management?"
+                },
+                {
+                  "code": "1.1.3.9",
+                  "uid": "9",
+                  "text": "The organisation has an established Senior Management Forum for the preparation of asset management Plans and assessment management Practices?"
+                },
+                {
+                  "code": "1.1.3.10",
+                  "uid": "10",
+                  "text": "The organisation's asset management Strategic Initiatives and Direction is regularly reviewed by Senior Leadership?"
+                }
+              ]
+            },
+            {
+              "code": "1.1.4",
+              "name": "Strategic Asset Management Plans",
+              "questions": [
+                {
+                  "code": "1.1.4.11",
+                  "uid": "11",
+                  "text": "The organisation has an asset management Strategy that is consistent with its asset management Vision, Policy and Plan?"
+                },
+                {
+                  "code": "1.1.4.12",
+                  "uid": "12",
+                  "text": "The organisation has identified Critical Assets for its operation and developed a Strategic Asset Management Plan for them?"
+                },
+                {
+                  "code": "1.1.4.13",
+                  "uid": "13",
+                  "text": "The organisation has a prioritised asset management Improvement Plan?"
+                },
+                {
+                  "code": "1.1.4.14",
+                  "uid": "14",
+                  "text": "The organisation's strategic asset management Plan is regularly reviewed, updated and reported to Senior Management?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "1.2",
+          "name": "Strategy + Objectives",
+          "activities": [
+            {
+              "code": "1.2.5",
+              "name": "Asset Management Communication Strategy",
+              "questions": [
+                {
+                  "code": "1.2.5.15",
+                  "uid": "15",
+                  "text": "The organisation has an asset management Communication Plan to effectively communicate asset management information to (internal and external) stakeholders?"
+                },
+                {
+                  "code": "1.2.5.16",
+                  "uid": "16",
+                  "text": "The organisation has documented significant services for which Levels of Service are subject to stakeholder consultation and agreement?"
+                },
+                {
+                  "code": "1.2.5.17",
+                  "uid": "17",
+                  "text": "The organisation has an asset management (internal and external) Stakeholder Register which is regularly reviewed and updated?"
+                },
+                {
+                  "code": "1.2.5.18",
+                  "uid": "18",
+                  "text": "The organisation has an asset management Communication Plan to manage stakeholder engagement?"
+                },
+                {
+                  "code": "1.2.5.19",
+                  "uid": "19",
+                  "text": "The organisation has an established Stakeholder Feedback Process to collate and respond to all queries, concerns and comments?"
+                },
+                {
+                  "code": "1.2.5.20",
+                  "uid": "20",
+                  "text": "The organisation's Communication Plan is regularly reviewed and updated?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.6",
+              "name": "Performance Framework + Levels of Service",
+              "questions": [
+                {
+                  "code": "1.2.6.21",
+                  "uid": "21",
+                  "text": "The organisation has established Levels of Service for significant assets?"
+                },
+                {
+                  "code": "1.2.6.22",
+                  "uid": "22",
+                  "text": "The organisation has a Procedure for reviewing, monitoring and reporting on the asset's Level of Service?"
+                },
+                {
+                  "code": "1.2.6.23",
+                  "uid": "23",
+                  "text": "The organisation regularly conducts Gap Analysis on all aspects of service delivery ?"
+                },
+                {
+                  "code": "1.2.6.24",
+                  "uid": "24",
+                  "text": "The organisation's Performance and Levels of Service are regularly reviewed and reported to Management?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.7",
+              "name": "Interface with Planning Process",
+              "questions": [
+                {
+                  "code": "1.2.7.25",
+                  "uid": "25",
+                  "text": "The Organisation has a documented procedure for Asset Planning to interface with Master Planning"
+                },
+                {
+                  "code": "1.2.7.26",
+                  "uid": "26",
+                  "text": "The organisation has a documented Procedure for future planning and/or growth?"
+                },
+                {
+                  "code": "1.2.7.27",
+                  "uid": "27",
+                  "text": "The organisation has utilised future growth in the asset acquisition and planning process?"
+                },
+                {
+                  "code": "1.2.7.28",
+                  "uid": "28",
+                  "text": "The organisation has incorporated asset management requirements in future planning process?"
+                },
+                {
+                  "code": "1.2.7.29",
+                  "uid": "29",
+                  "text": "The organisation has a process where the Interface Plan (with Master Planning) is regularly reviewed and reported to Management?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.8",
+              "name": "Stakeholder Engagement Strategy",
+              "questions": [
+                {
+                  "code": "1.2.8.30",
+                  "uid": "30",
+                  "text": "The organisation has undertaken stakeholder consultation to establish Level of Service options for significant assets?"
+                },
+                {
+                  "code": "1.2.8.31",
+                  "uid": "31",
+                  "text": "The organisation has communciated the asset management Strategy and Plan to relevant (internal and external) stakeholders?"
+                },
+                {
+                  "code": "1.2.8.32",
+                  "uid": "32",
+                  "text": "The organisation uses stakeholder consultation to drive continuous improvement in its services?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.9",
+              "name": "Technical Standards + Legislation",
+              "questions": [
+                {
+                  "code": "1.2.9.33",
+                  "uid": "33",
+                  "text": "The organisation has reviewed and included relevant Technical Standards, Specifications and Legislation in the Asset Management Plan?"
+                },
+                {
+                  "code": "1.2.9.34",
+                  "uid": "34",
+                  "text": "The organisation has a review process to assess changes to technical standards, specification and legislation and its potential impact on the Asset Management Plan?"
+                },
+                {
+                  "code": "1.2.9.35",
+                  "uid": "35",
+                  "text": "The organisation undertakes regular reviews of the Asset Management Plan to ensure compliance with relevant technical standards, specifications and legislation?"
+                },
+                {
+                  "code": "1.2.9.36",
+                  "uid": "36",
+                  "text": "The organisation's Asset Management Plan compliance is regularly reviewed by Senior Leadership?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.10",
+              "name": "Asset Management Strategy + Objectives",
+              "questions": [
+                {
+                  "code": "1.2.10.37",
+                  "uid": "37",
+                  "text": "The organisation has established technical measures to record condition requirements of different asset types?"
+                },
+                {
+                  "code": "1.2.10.38",
+                  "uid": "38",
+                  "text": "The organisation has made a future projection of technical targets and methods of measurement?"
+                },
+                {
+                  "code": "1.2.10.39",
+                  "uid": "39",
+                  "text": "The organisation has developed and applied a consistent growth (demand) for asset management?"
+                },
+                {
+                  "code": "1.2.10.40",
+                  "uid": "40",
+                  "text": "The organisation has undertaken a sensitivity analysis of asset (capital works) programme and demand changes?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.11",
+              "name": "Operations + Maintenance Decision Making",
+              "questions": [
+                {
+                  "code": "1.2.11.41",
+                  "uid": "41",
+                  "text": "The organisation has developed asset lifecycle models and future works programmes including an assessment of the remaining useful lives of assets?"
+                },
+                {
+                  "code": "1.2.11.42",
+                  "uid": "42",
+                  "text": "The organisation has a Procedure for evaluating maintenance options against cost and benefit variables (including social, economic, environmental and cultural factors)?"
+                },
+                {
+                  "code": "1.2.11.43",
+                  "uid": "43",
+                  "text": "The organisation uses predictive models in the development of long-term works programme (4 years or greater)?"
+                },
+                {
+                  "code": "1.2.11.44",
+                  "uid": "44",
+                  "text": "The organisation's Operations and Mainenance Decision Making Process is regularly reviewed by Senior Leadership?"
+                }
+              ]
+            },
+            {
+              "code": "1.2.12",
+              "name": "Management Review, Audit + Assurance",
+              "questions": [
+                {
+                  "code": "1.2.12.45",
+                  "uid": "45",
+                  "text": "The organisation regularly reviews performance measures to ensure they are consistent with the asset management Strategy?"
+                },
+                {
+                  "code": "1.2.12.46",
+                  "uid": "46",
+                  "text": "The organisation's Asset Management System is regularly reviewed by Senior Management?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "2",
+      "name": "Effectiveness",
+      "areas": [
+        {
+          "code": "2.3",
+          "name": "Organization + Risk",
+          "activities": [
+            {
+              "code": "2.3.13",
+              "name": "Roles + Responsibilities for AM Implementation",
+              "questions": [
+                {
+                  "code": "2.3.13.47",
+                  "uid": "47",
+                  "text": "The organisation has recognised asset management as a core business function?"
+                },
+                {
+                  "code": "2.3.13.48",
+                  "uid": "48",
+                  "text": "The organisation has documented and communicated asset management roles, responsibilities and accountabilities to relevant staff?"
+                },
+                {
+                  "code": "2.3.13.49",
+                  "uid": "49",
+                  "text": "The organisation has an established process that reviews and updates the organisational structure and roles and responsibilities?"
+                }
+              ]
+            },
+            {
+              "code": "2.3.14",
+              "name": "Asset Management Resourcing Strategy",
+              "questions": [
+                {
+                  "code": "2.3.14.50",
+                  "uid": "50",
+                  "text": "The organisation recognises that resourcing the Asset Management Plan is a core activity?"
+                },
+                {
+                  "code": "2.3.14.51",
+                  "uid": "51",
+                  "text": "The organisation has a documented resourcing strategy in accordance with the Asset Management Plan?"
+                },
+                {
+                  "code": "2.3.14.52",
+                  "uid": "52",
+                  "text": "The organisation has an established process that reviews and updates the Resourcing Strategy?"
+                }
+              ]
+            },
+            {
+              "code": "2.3.15",
+              "name": "Organisational Structure + Culture",
+              "questions": [
+                {
+                  "code": "2.3.15.53",
+                  "uid": "53",
+                  "text": "The organisation has undertaken risk assessment for all assets and incorporated the outcome into the organisation's risk management strategy?"
+                },
+                {
+                  "code": "2.3.15.54",
+                  "uid": "54",
+                  "text": "The organisation has an established process that reviews the Organisational Structure and Culture?"
+                }
+              ]
+            },
+            {
+              "code": "2.3.16",
+              "name": "Competence Management",
+              "questions": [
+                {
+                  "code": "2.3.16.55",
+                  "uid": "55",
+                  "text": "The organisation has a Procedure for reviewing, monitoring and reporting on the Level of Service as measured by asset performance?"
+                },
+                {
+                  "code": "2.3.16.56",
+                  "uid": "56",
+                  "text": "The organisation has a Procedure for connecting staff performance to asset performance under their responsibility?"
+                },
+                {
+                  "code": "2.3.16.57",
+                  "uid": "57",
+                  "text": "The organisation has an established process that reviews the competence of the staff and the organisation?"
+                }
+              ]
+            },
+            {
+              "code": "2.3.17",
+              "name": "Risk Assessment + Management",
+              "questions": [
+                {
+                  "code": "2.3.17.58",
+                  "uid": "58",
+                  "text": "The organisation has undertaken risk assessment on all asset groups and implemented relevant changes for continuous improvement?"
+                },
+                {
+                  "code": "2.3.17.59",
+                  "uid": "59",
+                  "text": "The organisation has incorporated the outcomes of the risk assessment and control measures into the Asset Management Plan?"
+                },
+                {
+                  "code": "2.3.17.60",
+                  "uid": "60",
+                  "text": "The organisation's Risk Management Process and Register is regularly reviewed and updated by staff and Senior Management?"
+                }
+              ]
+            },
+            {
+              "code": "2.3.18",
+              "name": "Contingency Planning + Resilience Analysis",
+              "questions": [
+                {
+                  "code": "2.3.18.61",
+                  "uid": "61",
+                  "text": "The organisation has developed a Contingency Plan as part of the Asset Management Plan?"
+                },
+                {
+                  "code": "2.3.18.62",
+                  "uid": "62",
+                  "text": "The organisation has incorporated response time and required resources into the Contingency Plan?"
+                },
+                {
+                  "code": "2.3.18.63",
+                  "uid": "63",
+                  "text": "The organisation'scontingency planning process is regularly reviewed by Senior Management?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "2.4",
+          "name": "Asset Inventory + Condition",
+          "activities": [
+            {
+              "code": "2.4.19",
+              "name": "Asset Information Strategy",
+              "questions": [
+                {
+                  "code": "2.4.19.64",
+                  "uid": "64",
+                  "text": "The organisation has a clear understanding of the data required to manage the performance of assets?"
+                },
+                {
+                  "code": "2.4.19.65",
+                  "uid": "65",
+                  "text": "The organisation has a central database of all work undertaken on each asset, including locations of the work when linear asset is involved?"
+                },
+                {
+                  "code": "2.4.19.66",
+                  "uid": "66",
+                  "text": "The organisation has provided staff with easy access to all information (including asset inventry, usage, condition and performance)?"
+                },
+                {
+                  "code": "2.4.19.67",
+                  "uid": "67",
+                  "text": "Where separate asset management information systems exist, the organisation is capable of providing consistent asset information across all departments?"
+                },
+                {
+                  "code": "2.4.19.68",
+                  "uid": "68",
+                  "text": "The organisation has a Asset Information Strategy which is implemented and regularly reviewed?"
+                }
+              ]
+            },
+            {
+              "code": "2.4.20",
+              "name": "Data Standards + System Requirements",
+              "questions": [
+                {
+                  "code": "2.4.20.69",
+                  "uid": "69",
+                  "text": "The Organsation has a Data Strategy to direct the management of asset information?"
+                },
+                {
+                  "code": "2.4.20.70",
+                  "uid": "70",
+                  "text": "The organisation has data standards to manage existing and new asset data and to guide data development?"
+                },
+                {
+                  "code": "2.4.20.71",
+                  "uid": "71",
+                  "text": "The organisation has an established asset management system, with a defined scope for its data management system?"
+                },
+                {
+                  "code": "2.4.20.72",
+                  "uid": "72",
+                  "text": "The organsation has identified the data system requirements and implemented a solution?"
+                }
+              ]
+            },
+            {
+              "code": "2.4.21",
+              "name": "Inventory Data Collection + Condition Assessment",
+              "questions": [
+                {
+                  "code": "2.4.21.73",
+                  "uid": "73",
+                  "text": "The organisation has a complete (electronic) asset inventory for all asset types?"
+                },
+                {
+                  "code": "2.4.21.74",
+                  "uid": "74",
+                  "text": "The organisation collects asset condition data for all assets?"
+                },
+                {
+                  "code": "2.4.21.75",
+                  "uid": "75",
+                  "text": "The organisation has informed the asset managers on the validity and confidence of the asset data?"
+                },
+                {
+                  "code": "2.4.21.76",
+                  "uid": "76",
+                  "text": "The organisation's Inventory Data Collection and Condition Assessment Process is regularly reviewed by Senior Management?"
+                }
+              ]
+            },
+            {
+              "code": "2.4.22",
+              "name": "Condition Assessment Standards",
+              "questions": [
+                {
+                  "code": "2.4.22.77",
+                  "uid": "77",
+                  "text": "The organisation has developed Condition Measurement Standards and included them in the Asset Management Plans?"
+                },
+                {
+                  "code": "2.4.22.78",
+                  "uid": "78",
+                  "text": "The organisation has implemented statistical methods for asset condition assessment?"
+                },
+                {
+                  "code": "2.4.22.79",
+                  "uid": "79",
+                  "text": "The organisation undertakes regular reviews of the asset condition standards, assessment procedures and measurements?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "2.5",
+          "name": "Asset Finance",
+          "activities": [
+            {
+              "code": "2.5.23",
+              "name": "Optimisation + Lifecycle Cost Evaluation",
+              "questions": [
+                {
+                  "code": "2.5.23.80",
+                  "uid": "80",
+                  "text": "The organisation has statistical data on the overall condition of the assets?"
+                },
+                {
+                  "code": "2.5.23.81",
+                  "uid": "81",
+                  "text": "The organisation interrogates and analyses activity history when developing future works programme?"
+                },
+                {
+                  "code": "2.5.23.82",
+                  "uid": "82",
+                  "text": "The organisation uses costed scenarios to develop (or amend) asset management policies, standards or programmes?"
+                },
+                {
+                  "code": "2.5.23.83",
+                  "uid": "83",
+                  "text": "The organisation ensures that work optimisation considers criticality of the asset elements in the performance of the whole asset?"
+                }
+              ]
+            },
+            {
+              "code": "2.5.24",
+              "name": "Financial Planning + Budgeting Processes",
+              "questions": [
+                {
+                  "code": "2.5.24.84",
+                  "uid": "84",
+                  "text": "The organisation undertakes financial planning for asset management (including allowance for overhead, staff, external fees and future works)?"
+                },
+                {
+                  "code": "2.5.24.85",
+                  "uid": "85",
+                  "text": "The organisation has prepared a detailed (project level) financial plan for the first three years?"
+                },
+                {
+                  "code": "2.5.24.86",
+                  "uid": "86",
+                  "text": "The organisation's financial plan includes projected (future) maintance costs associated with all asset types?"
+                },
+                {
+                  "code": "2.5.24.87",
+                  "uid": "87",
+                  "text": "The organisation regularly reviews financial requirements including accrued costs, commitments and future budgets?"
+                }
+              ]
+            },
+            {
+              "code": "2.5.25",
+              "name": "Long Term Financial Plans",
+              "questions": [
+                {
+                  "code": "2.5.25.88",
+                  "uid": "88",
+                  "text": "The organisation's financial plan includes projected (future) operational costs associated with all asset types?"
+                },
+                {
+                  "code": "2.5.25.89",
+                  "uid": "89",
+                  "text": "The organisation has prepared a summary (activity level) financial plan for four to ten years?"
+                },
+                {
+                  "code": "2.5.25.90",
+                  "uid": "90",
+                  "text": "The organisation's financial plan includes projected (future) capital (renewal) costs associated with all asset types?"
+                },
+                {
+                  "code": "2.5.25.91",
+                  "uid": "91",
+                  "text": "The organisation's long term financial plans are reviewed annually and updated?"
+                }
+              ]
+            },
+            {
+              "code": "2.5.26",
+              "name": "Lifecycle Cost Assessment Processes",
+              "questions": [
+                {
+                  "code": "2.5.26.92",
+                  "uid": "92",
+                  "text": "The organisation undertakes an assessment of the remaining useful lives of assets when developing lifecycle models?"
+                },
+                {
+                  "code": "2.5.26.93",
+                  "uid": "93",
+                  "text": "The organisation interrogates and analyses activity history when assessing asset lifecycle costs?"
+                },
+                {
+                  "code": "2.5.26.94",
+                  "uid": "94",
+                  "text": "The organisation has a procedure for evaluating the asset lifecycle costs?"
+                },
+                {
+                  "code": "2.5.26.95",
+                  "uid": "95",
+                  "text": "The organisation has prepared lifecycle plans for all asset types?"
+                },
+                {
+                  "code": "2.5.26.96",
+                  "uid": "96",
+                  "text": "The organisation uses whole life cost graphs when developing asset lifecycle plans?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "3",
+      "name": "Efficiency",
+      "areas": [
+        {
+          "code": "3.6",
+          "name": "Lifecycle Strategy",
+          "activities": [
+            {
+              "code": "3.6.27",
+              "name": "Demand Analysis",
+              "questions": [
+                {
+                  "code": "3.6.27.97",
+                  "uid": "97",
+                  "text": "The organisation uses (demand based) predictive models in developing long term programmes?"
+                }
+              ]
+            },
+            {
+              "code": "3.6.29",
+              "name": "Asset Creation & Acquisition",
+              "questions": [
+                {
+                  "code": "3.6.29.98",
+                  "uid": "99",
+                  "text": "The organisation ensures that asset creation considers criticality of the asset to the operation of the organisation?"
+                },
+                {
+                  "code": "3.6.29.99",
+                  "uid": "100",
+                  "text": "The organisation has a procedure for assessing asset creation options against cost and benefit variables (including social, economic, environmental and cultural factors)?"
+                },
+                {
+                  "code": "3.6.29.100",
+                  "uid": "101",
+                  "text": "The organisation regularly undertakes Gap Analysis of service delivery to identify missing assets?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "3.7",
+          "name": "Lifecycle Delivery",
+          "activities": [
+            {
+              "code": "3.7.31",
+              "name": "Preventative Maintenance Strategies",
+              "questions": [
+                {
+                  "code": "3.7.31.101",
+                  "uid": "102",
+                  "text": "The organisation undertakes an assessment of the remaining useful lives of assets when developing preventative maintenance strategies?"
+                },
+                {
+                  "code": "3.7.31.102",
+                  "uid": "103",
+                  "text": "The organisation uses predictive models for the development of preventative maintenance programmes?"
+                },
+                {
+                  "code": "3.7.31.103",
+                  "uid": "104",
+                  "text": "The organisation has a review process to determine if preventative maintenance is appropriately implemented in the asset management plans?"
+                }
+              ]
+            },
+            {
+              "code": "3.7.32",
+              "name": "Asset Reliability & Performance",
+              "questions": [
+                {
+                  "code": "3.7.32.104",
+                  "uid": "105",
+                  "text": "The organisation uses inventory and performance information in the evaluation of asset performance?"
+                },
+                {
+                  "code": "3.7.32.105",
+                  "uid": "106",
+                  "text": "The organisation undertakes an assessment of asset performance when developing lifecycle models and future works programme?"
+                }
+              ]
+            },
+            {
+              "code": "3.7.33",
+              "name": "Asset Modelling + Deterioration Analysis",
+              "questions": [
+                {
+                  "code": "3.7.33.106",
+                  "uid": "107",
+                  "text": "The organisation regularly updates lifecycle plans by comparing asset lifecycle plans with asset modelling?"
+                }
+              ]
+            },
+            {
+              "code": "3.7.34",
+              "name": "Asset Management Plans",
+              "questions": [
+                {
+                  "code": "3.7.34.107",
+                  "uid": "108",
+                  "text": "The organisation maintains an Asset Management Plan with clearly defined asset management Strategy and Objectives across the asset lifecycle (creation, acquistion, utilisation, maintenance, enhancement and disposal)?"
+                },
+                {
+                  "code": "3.7.34.108",
+                  "uid": "109",
+                  "text": "The organisation's Asset Management Plan indicates the degree of confidence of data reliability of asset performance?"
+                },
+                {
+                  "code": "3.7.34.109",
+                  "uid": "110",
+                  "text": "The organisation's Asset Management Plan includes detailed performance targets for the first three years?"
+                },
+                {
+                  "code": "3.7.34.110",
+                  "uid": "111",
+                  "text": "The organisation's Asset Management Plan includes (outline) performance targets for the next seven years?"
+                },
+                {
+                  "code": "3.7.34.111",
+                  "uid": "112",
+                  "text": "The organisation's Asset Management Plan includes gap analysis of current service capability and required service capability to meet future demand and target service levels?"
+                }
+              ]
+            },
+            {
+              "code": "3.7.35",
+              "name": "Works Planning + Prioritisation Processes",
+              "questions": [
+                {
+                  "code": "3.7.35.112",
+                  "uid": "113",
+                  "text": "The organisation maintains a future works programme based on a minimum three year forecast of all planned projects?"
+                },
+                {
+                  "code": "3.7.35.113",
+                  "uid": "114",
+                  "text": "The organisation prepares and distributes future works programme that covers cross asset programming issues?"
+                }
+              ]
+            },
+            {
+              "code": "3.7.36",
+              "name": "Standard Operating Procedures (SOP)",
+              "questions": [
+                {
+                  "code": "3.7.36.114",
+                  "uid": "115",
+                  "text": "The organisation has a set of standardised procedures for asset management?"
+                },
+                {
+                  "code": "3.7.36.115",
+                  "uid": "116",
+                  "text": "The organisation uses standardised procedures to reduce risk and enable confidence in outcomes?"
+                },
+                {
+                  "code": "3.7.36.116",
+                  "uid": "117",
+                  "text": "The organisation provides (electronic) access to standardised procedures for all staff?"
+                },
+                {
+                  "code": "3.7.36.117",
+                  "uid": "118",
+                  "text": "The organisation's Standard Operating Procedures are regularly reviewed and updated?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": "3.8",
+          "name": "Lifecycle Operations",
+          "activities": [
+            {
+              "code": "3.8.40",
+              "name": "Maintenance Delivery",
+              "questions": [
+                {
+                  "code": "3.8.40.118",
+                  "uid": "119",
+                  "text": "The organisation ensures maintenance costs are reported against individual assets?"
+                },
+                {
+                  "code": "3.8.40.119",
+                  "uid": "120",
+                  "text": "The organisation's central database inputs maintenance and cost records as part of normal work processes?"
+                },
+                {
+                  "code": "3.8.40.120",
+                  "uid": "121",
+                  "text": "The organisation regularly conducts Gap Analysis on all aspects of Maintenance service delivery ?"
+                }
+              ]
+            },
+            {
+              "code": "3.8.46",
+              "name": "Resource Management",
+              "questions": [
+                {
+                  "code": "3.8.46.121",
+                  "uid": "123",
+                  "text": "The organisation's detailed resourcing plan is prepared a year in advance?"
+                },
+                {
+                  "code": "3.8.46.122",
+                  "uid": "124",
+                  "text": "The organisation's resource allocation and plan is reviewed annually and the resource costs included in the financial plan?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "4",
+      "name": "Tools",
+      "areas": [
+        {
+          "code": "4.9",
+          "name": "Asset Management Enablers",
+          "activities": [
+            {
+              "code": "4.9.47",
+              "name": "EAMS Specification",
+              "questions": [
+                {
+                  "code": "4.9.47.123",
+                  "uid": "125",
+                  "text": "The organisation's database has a set protocol for staff access and authority levels?"
+                }
+              ]
+            },
+            {
+              "code": "4.9.50",
+              "name": "Change Management Planning + Implementation",
+              "questions": [
+                {
+                  "code": "4.9.50.124",
+                  "uid": "127",
+                  "text": "The organisation undertakes the review of avaliability of products and resources for planned changes?"
+                },
+                {
+                  "code": "4.9.50.125",
+                  "uid": "128",
+                  "text": "The organisational structure, roles and responsibilities for long term change management are regularly reviewed and updated by Senior Management?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "code": "5",
+      "name": "Quality",
+      "areas": [
+        {
+          "code": "5.10",
+          "name": "Quality Assurance",
+          "activities": [
+            {
+              "code": "5.10.51",
+              "name": "Asset Performance + Health Monitoring",
+              "questions": [
+                {
+                  "code": "5.10.51.126",
+                  "uid": "129",
+                  "text": "The organisation's asset performance measures and targets include requirements for monitoring and reporting of actual performance?"
+                },
+                {
+                  "code": "5.10.51.127",
+                  "uid": "130",
+                  "text": "The organisation's asset performance measures provide a basis for continuous improvement?"
+                },
+                {
+                  "code": "5.10.51.128",
+                  "uid": "131",
+                  "text": "The organisation's staff uses local and external performance measures for managing service delivery and decision making?"
+                },
+                {
+                  "code": "5.10.51.129",
+                  "uid": "132",
+                  "text": "The organisation undertakes regular reviews of Asset Health?"
+                }
+              ]
+            },
+            {
+              "code": "5.10.52",
+              "name": "Quality Management Practices",
+              "questions": [
+                {
+                  "code": "5.10.52.130",
+                  "uid": "133",
+                  "text": "The organisation's Improvement Programme specifies the timeframe for each improvement measures?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

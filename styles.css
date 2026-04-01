@@ -36,8 +36,9 @@ a:hover{ text-decoration: underline; }
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(10px);
-  background: rgba(7,10,20,.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(7,10,20,.68);
   border-bottom: 1px solid var(--line);
 }
 
@@ -144,7 +145,11 @@ h1{
 }
 
 .btn.ghost{
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.05);
+}
+
+.btn.ghost:hover{
+  background: rgba(255,255,255,.08);
 }
 
 .hero-notes{
@@ -175,7 +180,7 @@ h1{
 .hero-card .card{
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(13,20,48,.62);
+  background: rgba(13,20,48,.72);
   box-shadow: var(--shadow);
   padding: 18px 18px;
 }
@@ -254,7 +259,7 @@ h2{
 .tile{
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.04);
   padding: 16px 16px;
 }
 
