@@ -14,7 +14,7 @@ export function CoreAccessPage() {
   return (
     <div className="o-suite-shell">
       <div className="o-suite-workspace">
-        <div className="o-page">
+        <main className="o-page o-site-page">
           <SiteTopNav />
 
           <header className="o-page-header">
@@ -162,7 +162,7 @@ export function CoreAccessPage() {
               )}
             </div>
           </section>
-        </div>
+        </main>
       </div>
     </div>
   );

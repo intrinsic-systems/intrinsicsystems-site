@@ -1,0 +1,120 @@
+/* -------------------------------------------------
+   Alignment Matrix Panel / Table
+------------------------------------------------- */
+.o-alignment-table-wrap {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.o-alignment-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.o-alignment-table th,
+.o-alignment-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--oasis-line-soft);
+  text-align: left;
+  vertical-align: top;
+}
+
+.o-alignment-table thead th {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--oasis-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #f7fafc;
+}
+
+.o-alignment-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.o-alignment-table__capability {
+  min-width: 210px;
+  font-weight: 600;
+  color: var(--oasis-text-primary);
+}
+
+.o-alignment-table__empty {
+  color: var(--oasis-text-muted);
+  text-align: center;
+  padding: 18px 12px;
+}
+
+.o-align-chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.o-align-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  font-size: 10px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #eef4fb;
+  border: 1px solid #d6e2f2;
+  color: #2f5f91;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.o-align-risk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 74px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  border: 1px solid transparent;
+}
+
+.o-align-risk--high {
+  color: #b54747;
+  background: rgba(229, 93, 93, 0.12);
+  border-color: rgba(229, 93, 93, 0.22);
+}
+
+.o-align-risk--moderate {
+  color: #9a6b25;
+  background: rgba(214, 160, 71, 0.12);
+  border-color: rgba(214, 160, 71, 0.22);
+}
+
+.o-align-risk--uncertain {
+  color: #5a6b84;
+  background: rgba(124, 145, 172, 0.14);
+  border-color: rgba(124, 145, 172, 0.24);
+}
+
+.o-align-risk--low {
+  color: #3b7a5c;
+  background: rgba(84, 171, 125, 0.12);
+  border-color: rgba(84, 171, 125, 0.22);
+}
+
+@media (max-width: 768px) {
+  .o-alignment-table {
+    font-size: 12px;
+  }
+
+  .o-alignment-table th,
+  .o-alignment-table td {
+    padding: 10px 8px;
+  }
+
+  .o-alignment-table__capability {
+    min-width: 180px;
+  }
+}

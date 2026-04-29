@@ -24,6 +24,8 @@ type ISControlLayerProps = {
   maturityPct: number;
   confidencePct: number;
   riskLevel: string;
+  onHomeClick: () => void;
+  onPrototypeClick: () => void;
 };
 
 function ISControlLayer({
@@ -34,13 +36,24 @@ function ISControlLayer({
   maturityPct,
   confidencePct,
   riskLevel,
+  onHomeClick,
+  onPrototypeClick,
 }: ISControlLayerProps) {
   return (
     <div className="o-is-control-layer">
       <div className="o-is-control-layer__inner">
         <div className="o-is-control-layer__left">
-          <div className="o-is-mark">
-            <OasisLogo size={20} />
+          <div className="o-is-brand-lockup">
+            <button
+              type="button"
+              className="o-is-mark"
+              onClick={onHomeClick}
+              aria-label="Go to Suite home"
+            >
+              <OasisLogo size={26} />
+            </button>
+
+            <CoreFlowNav />
           </div>
         </div>
 
@@ -98,7 +111,14 @@ function ISControlLayer({
         </div>
 
         <div className="o-is-control-layer__right">
-          <div className="o-context-pill">Prototype</div>
+          <button
+            type="button"
+            className="o-context-pill o-context-pill--interactive"
+            onClick={onPrototypeClick}
+            aria-label="Open prototype overview"
+          >
+            Prototype
+          </button>
         </div>
       </div>
     </div>
@@ -189,9 +209,9 @@ export function CoreFlowShell() {
         maturityPct={assessmentSummary.maturityPct}
         confidencePct={assessmentSummary.confidencePct}
         riskLevel={assessmentSummary.riskLevel}
+        onHomeClick={() => navigate("/")}
+        onPrototypeClick={() => navigate("/about")}
       />
-
-      <CoreFlowNav />
 
       <div className="o-core-shell__content o-workspace-frame">
         <Outlet context={value} />

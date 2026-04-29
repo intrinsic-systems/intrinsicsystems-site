@@ -4,29 +4,33 @@ import type {
   ElementNode,
   Question,
   RadialNode,
-  RadialSelectionLevel,
   ScoreMode,
   ScoreSet,
 } from "./orgGovTypes";
 
 export function metricValue(score: ScoreSet, mode: ScoreMode): number {
-  if (mode === "variance") return Math.abs(score.variance ?? 0);
+  if (mode === "variance") {
+    return Math.max((score.target ?? 0) - (score.current ?? 0), 0);
+  }
   return score[mode] ?? 0;
 }
 
-export function scoreBandColor(score: number): string {
+export function scoreBandColor(score: number, mode: ScoreMode): string {
   const bounded = Math.max(0, Math.min(score, 5));
-  const t = bounded / 5;
 
-  if (bounded < 2.5) {
-    const opacity = 0.68 + t * 0.22;
-    return `rgba(180, 35, 24, ${opacity})`;
+  if (mode === "variance") {
+    if (bounded < 0.75) return "#cbd5e1";
+    if (bounded < 1.5) return "#93c5fd";
+    if (bounded < 2.5) return "#facc15";
+    if (bounded < 3.5) return "#f97316";
+    return "#ef4444";
   }
 
-  if (bounded < 3.25) return "#d97706";
-  if (bounded < 4.0) return "#7c8b2a";
-  if (bounded < 4.5) return "#2f6f57";
-  return "#1f8a70";
+  if (bounded < 2.5) return "#ef4444";
+  if (bounded < 3.25) return "#f97316";
+  if (bounded < 4.0) return "#eab308";
+  if (bounded < 4.5) return "#22c55e";
+  return "#10b981";
 }
 
 function formatScore(value?: number): string {
@@ -40,44 +44,51 @@ function getElementGroup(element: ElementNode): string {
 function groupBandColor(groupName: string): string {
   switch (groupName) {
     case "Direction & Control":
-      return "rgba(59, 130, 246, 0.18)";
+      return "rgba(59, 130, 246, 0.12)";
     case "Governance & Oversight":
-      return "rgba(168, 85, 247, 0.18)";
+      return "rgba(168, 85, 247, 0.12)";
     case "Compliance & Control":
-      return "rgba(245, 158, 11, 0.18)";
+      return "rgba(245, 158, 11, 0.12)";
     case "Information & Intelligence":
-      return "rgba(14, 165, 233, 0.18)";
+      return "rgba(14, 165, 233, 0.12)";
     case "Operating Model":
-      return "rgba(99, 102, 241, 0.18)";
+      return "rgba(99, 102, 241, 0.12)";
     case "Investment & Resourcing":
-      return "rgba(16, 185, 129, 0.18)";
+      return "rgba(16, 185, 129, 0.12)";
     default:
-      return "rgba(71, 85, 105, 0.18)";
+      return "rgba(100, 116, 139, 0.10)";
   }
 }
 
-function questionBandColor(modeValue: number): string {
-  const bounded = Math.max(0, Math.min(modeValue, 5));
+function questionBandColor(value: number, mode: ScoreMode): string {
+  const bounded = Math.max(0, Math.min(value, 5));
 
-  if (bounded < 2.5) return "rgba(180, 35, 24, 0.20)";
-  if (bounded < 3.25) return "rgba(217, 119, 6, 0.20)";
-  if (bounded < 4.0) return "rgba(124, 139, 42, 0.20)";
-  if (bounded < 4.5) return "rgba(47, 111, 87, 0.20)";
-  return "rgba(31, 138, 112, 0.20)";
-}
+  if (mode === "variance") {
+    if (bounded < 0.75) return "rgba(203, 213, 225, 0.35)";
+    if (bounded < 1.5) return "rgba(147, 197, 253, 0.30)";
+    if (bounded < 2.5) return "rgba(250, 204, 21, 0.26)";
+    if (bounded < 3.5) return "rgba(249, 115, 22, 0.24)";
+    return "rgba(239, 68, 68, 0.22)";
+  }
 
-function upliftGap(score: ScoreSet): number {
-  const target = score.target ?? 0;
-  const current = score.current ?? 0;
-  return Math.max(target - current, 0);
+  if (bounded < 2.5) return "rgba(239, 68, 68, 0.18)";
+  if (bounded < 3.25) return "rgba(249, 115, 22, 0.18)";
+  if (bounded < 4.0) return "rgba(234, 179, 8, 0.18)";
+  if (bounded < 4.5) return "rgba(34, 197, 94, 0.18)";
+  return "rgba(16, 185, 129, 0.18)";
 }
 
 function visibleFloor(value: number, floor = 0.05): number {
   return Math.max(value, floor);
 }
 
-function weightedGap(score: ScoreSet, weight = 1): number {
-  return upliftGap(score) * weight;
+function nodeDisplayValue(
+  score: ScoreSet,
+  mode: ScoreMode,
+  weight = 1
+): number {
+  const base = metricValue(score, mode);
+  return visibleFloor(base * weight, 0.05);
 }
 
 function toQuestionNode(
@@ -86,18 +97,17 @@ function toQuestionNode(
   parentId: string
 ): RadialNode {
   const modeValue = metricValue(question.score, mode);
-  const gap = weightedGap(question.score, question.weight ?? 1);
 
   return {
     id: question.id,
     name: question.prompt,
-    value: visibleFloor(gap, 0.03),
+    value: nodeDisplayValue(question.score, mode, question.weight ?? 1),
     weight: question.weight ?? 1,
     nodeType: "question",
     parentId,
     score: question.score,
     itemStyle: {
-      color: questionBandColor(modeValue),
+      color: questionBandColor(modeValue, mode),
     },
   };
 }
@@ -117,11 +127,9 @@ function toElementNode(
   const questionValueTotal =
     questionNodes?.reduce((sum, q) => sum + q.value, 0) ?? 0;
 
-  const elementGap = weightedGap(element.score, element.weight ?? 1);
-
   const elementValue = includeQuestions
-    ? visibleFloor(questionValueTotal, 0.05)
-    : visibleFloor(elementGap, 0.05);
+    ? visibleFloor(questionValueTotal, 0.08)
+    : nodeDisplayValue(element.score, mode, element.weight ?? 1);
 
   return {
     id: element.id,
@@ -132,7 +140,7 @@ function toElementNode(
     parentId,
     score: element.score,
     itemStyle: {
-      color: scoreBandColor(modeValue),
+      color: scoreBandColor(modeValue, mode),
     },
     children: questionNodes,
   };
@@ -224,14 +232,17 @@ export function toSunburstData(
       nodeType: "enterprise",
       score: domain.score,
       itemStyle: {
-        color: "rgba(51, 65, 85, 0.96)",
+        color: "#162033",
       },
       children,
     },
   ];
 }
 
-function isSelectedOrAncestor(node: RadialNode, selectedElementId?: string): boolean {
+function isSelectedOrAncestor(
+  node: RadialNode,
+  selectedElementId?: string
+): boolean {
   if (!selectedElementId) return false;
   if (node.id === selectedElementId) return true;
 
@@ -261,11 +272,13 @@ function applySelectionState(
           : selectedPath
           ? isDirectSelection
             ? 1
-            : 0.9
-          : 0.24,
-        shadowBlur: isDirectSelection ? 18 : 0,
+            : 0.94
+          : 0.16,
+        shadowBlur: isDirectSelection ? 18 : selectedPath ? 8 : 0,
         shadowColor: isDirectSelection
-          ? "rgba(2, 6, 23, 0.35)"
+          ? "rgba(43, 108, 176, 0.28)"
+          : selectedPath
+          ? "rgba(43, 108, 176, 0.14)"
           : "transparent",
       },
       children: node.children
@@ -275,7 +288,10 @@ function applySelectionState(
   });
 }
 
-function findNodeById(nodes: RadialNode[], id: string): RadialNode | undefined {
+function findNodeById(
+  nodes: RadialNode[],
+  id: string
+): RadialNode | undefined {
   for (const node of nodes) {
     if (node.id === id) return node;
     if (node.children) {
@@ -356,7 +372,9 @@ function centreMetricValue(mode: ScoreMode, score: ScoreSet): string {
     case "target":
       return formatScore(score.target);
     case "variance":
-      return formatScore(Math.max((score.target ?? 0) - (score.current ?? 0), 0));
+      return formatScore(
+        Math.max((score.target ?? 0) - (score.current ?? 0), 0)
+      );
     default:
       return formatScore(score.current);
   }
@@ -367,7 +385,7 @@ export function buildOrgGovSunburstOption(
   mode: ScoreMode,
   includeQuestions = false,
   selectedElementId?: string
-): any {
+): EChartsOption {
   const displayData = applySelectionState(data, selectedElementId);
 
   const selectedNode = selectedElementId
@@ -378,176 +396,198 @@ export function buildOrgGovSunburstOption(
   const activeNode = selectedNode ?? root;
 
   const centerTitle = wrapCenterTitle(activeNode?.name ?? "Domain Overview");
-  const current = activeNode?.score?.current ?? 0;
-  const target = activeNode?.score?.target ?? 0;
+  const activeScore = activeNode?.score ?? { current: 0 };
+  const current = activeScore.current ?? 0;
+  const target = activeScore.target ?? 0;
   const gapValue =
     typeof current === "number" && typeof target === "number"
       ? Math.max(target - current, 0)
       : undefined;
+
+  const centreMetric = centreMetricValue(mode, activeScore);
+  const centreLabel = centreMetricLabel(mode);
   const gap = typeof gapValue === "number" ? gapValue.toFixed(1) : "-";
 
+  const innerRadius = includeQuestions ? 13 : 15;
+  const outerRadius = includeQuestions ? 86 : 82;
+
   return {
-    backgroundColor: "#dbe4ea",
+    backgroundColor: "transparent",
     animation: true,
-
     tooltip: {
-      trigger: "item",
-      backgroundColor: "#10131a",
-      borderColor: "#2a3342",
-      borderWidth: 1,
-      padding: 10,
-      textStyle: {
-        color: "#e7edf5",
-        fontFamily: "Inter, system-ui, sans-serif",
-        fontSize: 12,
-      },
-      formatter: (params: any) => {
-        const d = params?.data;
-        const score = d?.score ?? {};
-
-        return [
-          `<strong>${d?.name ?? ""}</strong>`,
-          `Mode: ${mode}`,
-          `Current: ${formatScore(score.current)}`,
-          `Benchmark: ${formatScore(score.benchmark)}`,
-          `Target: ${formatScore(score.target)}`,
-          `Variance: ${formatScore(score.variance)}`,
-          `Confidence: ${formatScore(score.confidence)}`,
-        ].join("<br/>");
-      },
-      confine: true,
+      show: false,
     },
-
     graphic: [
+      {
+        type: "circle",
+        left: "center",
+        top: "center",
+        silent: true,
+        shape: {
+          cx: 0,
+          cy: 0,
+          r: includeQuestions ? 48 : 54,
+        },
+        style: {
+          fill: "#162033",
+          stroke: "rgba(184, 201, 227, 0.42)",
+          lineWidth: 1.1,
+          shadowBlur: 10,
+          shadowColor: "rgba(15, 23, 42, 0.08)",
+        },
+      },
       {
         type: "group",
         left: "center",
         top: "center",
         silent: true,
+        bounding: "raw",
         children: [
           {
             type: "text",
+            x: 0,
+            y: -18,
             style: {
               text: centerTitle,
-              fill: "#f8fafc",
+              fill: "#dbe7f3",
               font: "600 11px Inter, system-ui, sans-serif",
+              align: "center",
+              textAlign: "center",
+              textVerticalAlign: "middle",
+              lineHeight: 14,
             },
-            x: -46,
-            y: -16,
           },
           {
             type: "text",
+            x: 0,
+            y: 6,
             style: {
-              text: `${centreMetricLabel(mode)} ${centreMetricValue(
-                mode,
-                activeNode?.score ?? { current: 0, benchmark: 0, target: 0 }
-              )}`,
-              fill: "#dbeafe",
-              font: "600 9px Inter, system-ui, sans-serif",
+              text: centreMetric,
+              fill: "#ffffff",
+              font: "700 18px Inter, system-ui, sans-serif",
+              align: "center",
+              textAlign: "center",
+              textVerticalAlign: "middle",
             },
-            x: -34,
-            y: 12,
           },
           {
             type: "text",
+            x: 0,
+            y: 24,
+            style: {
+              text: centreLabel,
+              fill: "#a8bfd7",
+              font: "10px Inter, system-ui, sans-serif",
+              align: "center",
+              textAlign: "center",
+              textVerticalAlign: "middle",
+            },
+          },
+          {
+            type: "text",
+            x: 0,
+            y: 38,
             style: {
               text: `Gap ${gap}`,
-              fill: "#cbd5e1",
+              fill: "#8da6bf",
               font: "9px Inter, system-ui, sans-serif",
+              align: "center",
+              textAlign: "center",
+              textVerticalAlign: "middle",
             },
-            x: -15,
-            y: 24,
           },
         ],
       },
     ],
-
     series: [
       {
         type: "sunburst",
         data: displayData,
-        radius: includeQuestions ? ["22%", "88%"] : ["26%", "86%"],
+        radius: [`${innerRadius}%`, `${outerRadius}%`],
         center: ["50%", "52%"],
-        minAngle: 10,
+        minAngle: 8,
         sort: undefined,
         nodeClick: false,
         selectedMode: "single",
-
         emphasis: {
           focus: "ancestor",
           itemStyle: {
-            opacity: 0.95,
-            shadowBlur: 12,
-            shadowColor: "rgba(79, 140, 255, 0.28)",
+            opacity: 0.98,
+            shadowBlur: 10,
+            shadowColor: "rgba(43, 108, 176, 0.18)",
           },
         },
-
         blur: {
           itemStyle: {
-            opacity: 0.48,
+            opacity: 0.45,
           },
         },
-
         label: {
           show: false,
         },
-
         itemStyle: {
-          borderColor: "rgba(15, 23, 42, 0.45)",
-          borderWidth: 1.1,
-          opacity: 0.96,
+          borderColor: "rgba(255, 255, 255, 0.78)",
+          borderWidth: 1.2,
+          opacity: 0.98,
         },
-
         levels: [
           {},
           {
             r0: "0%",
-            r: includeQuestions ? "22%" : "26%",
+            r: includeQuestions ? "12%" : "14%",
             itemStyle: {
-              color: "#334155",
-              borderWidth: 1.2,
-              borderColor: "#0f172a",
+              color: "#162033",
+              borderWidth: 1.3,
+              borderColor: "#ffffff",
             },
           },
           {
-            r0: includeQuestions ? "22%" : "26%",
-            r: includeQuestions ? "44%" : "48%",
+            r0: includeQuestions ? "16%" : "18%",
+            r: includeQuestions ? "31%" : "33%",
             itemStyle: {
-              borderWidth: 1,
-              borderColor: "rgba(15, 23, 42, 0.20)",
+              borderWidth: 1.8,
+              borderColor: "rgba(255,255,255,0.92)",
             },
           },
           {
-            r0: includeQuestions ? "44%" : "48%",
-            r: includeQuestions ? "66%" : "68%",
+            r0: includeQuestions ? "36%" : "38%",
+            r: includeQuestions ? "52%" : "54%",
             itemStyle: {
-              borderWidth: 1,
-              borderColor: "rgba(15, 23, 42, 0.28)",
+              borderWidth: 1.8,
+              borderColor: "rgba(255,255,255,0.92)",
             },
           },
           ...(includeQuestions
             ? [
                 {
-                  r0: "66%",
-                  r: "88%",
+                  r0: "57%",
+                  r: "71%",
                   itemStyle: {
-                    borderWidth: 0.9,
-                    borderColor: "rgba(15, 23, 42, 0.14)",
+                    borderWidth: 1.7,
+                    borderColor: "rgba(255,255,255,0.90)",
+                  },
+                },
+                {
+                  r0: "76%",
+                  r: "86%",
+                  itemStyle: {
+                    borderWidth: 1.4,
+                    borderColor: "rgba(255,255,255,0.86)",
                   },
                 },
               ]
             : [
                 {
-                  r0: "48%",
-                  r: "86%",
+                  r0: "60%",
+                  r: "82%",
                   itemStyle: {
-                    borderWidth: 1,
-                    borderColor: "rgba(15, 23, 42, 0.30)",
+                    borderWidth: 1.8,
+                    borderColor: "rgba(255,255,255,0.92)",
                   },
                 },
               ]),
         ],
       },
     ],
-  } as any;
+  };
 }

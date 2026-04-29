@@ -20,6 +20,8 @@ export function OrgGovRadial({
   onSelectElement,
 }: OrgGovRadialProps) {
   const chartRef = useRef<ReactECharts | null>(null);
+  const shellRef = useRef<HTMLDivElement | null>(null);
+  const resizeFrameRef = useRef<number | null>(null);
 
   const data = useMemo(
     () => toSunburstData(domain, mode, includeQuestions),
@@ -63,21 +65,74 @@ export function OrgGovRadial({
     };
   }, [onSelectElement]);
 
+  useEffect(() => {
+    const chart = chartRef.current?.getEchartsInstance?.();
+    const shell = shellRef.current;
+    if (!chart || !shell) return;
+
+    const resizeChart = () => {
+      if (resizeFrameRef.current) {
+        cancelAnimationFrame(resizeFrameRef.current);
+      }
+
+      resizeFrameRef.current = requestAnimationFrame(() => {
+        chart.resize();
+      });
+    };
+
+    const observer = new ResizeObserver(() => {
+      resizeChart();
+    });
+
+    observer.observe(shell);
+    window.addEventListener("resize", resizeChart);
+
+    const timeoutA = window.setTimeout(resizeChart, 60);
+    const timeoutB = window.setTimeout(resizeChart, 180);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", resizeChart);
+      window.clearTimeout(timeoutA);
+      window.clearTimeout(timeoutB);
+
+      if (resizeFrameRef.current) {
+        cancelAnimationFrame(resizeFrameRef.current);
+      }
+    };
+  }, []);
+
+  const minHeight = includeQuestions ? 500 : 440;
+
   return (
-    <div className="h-full w-full rounded-[1rem] bg-slate-800/70 p-2 shadow-inner">
-      <div className="h-full w-full overflow-hidden rounded-[0.9rem] border border-slate-700/60 bg-slate-700/40">
+    <div
+      ref={shellRef}
+      className="h-full w-full bg-transparent"
+      style={{
+        minHeight,
+        height: "100%",
+      }}
+    >
+      <div
+        className="h-full w-full overflow-hidden rounded-[1rem]"
+        style={{
+          minHeight,
+        }}
+      >
         <ReactECharts
           ref={chartRef}
           option={option}
           style={{
             height: "100%",
             width: "100%",
+            minHeight,
           }}
-          opts={{ renderer: "canvas" }}
+          opts={{ renderer: "canvas", devicePixelRatio: 2 }}
           notMerge
           lazyUpdate
           onChartReady={(chart: any) => {
-            chart.resize();
+            requestAnimationFrame(() => chart.resize());
+            window.setTimeout(() => chart.resize(), 120);
           }}
           onEvents={{
             click: (params: any) => {

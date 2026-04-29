@@ -1,0 +1,56 @@
+/* -------------------------------------------------
+   Assessment Question Layout
+------------------------------------------------- */
+.o-assessment-main {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 520px;
+  min-width: 0;
+}
+
+.o-assessment-body {
+  min-width: 0;
+}
+
+.o-assessment-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  margin-top: 20px;
+  padding-top: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(238, 243, 249, 0) 0%,
+    rgba(238, 243, 249, 0.92) 18%,
+    rgba(238, 243, 249, 0.98) 100%
+  );
+  border-top: 1px solid var(--oasis-border-subtle);
+}
+
+.o-assessment-actions__inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.o-assessment-actions__group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .o-assessment-main {
+    min-height: 0;
+  }
+
+  .o-assessment-actions__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .o-assessment-actions__group {
+    width: 100%;
+  }
+}

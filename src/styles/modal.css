@@ -1,0 +1,98 @@
+/* -------------------------------------------------
+   Modal
+------------------------------------------------- */
+.o-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}
+
+.o-modal {
+  max-width: min(960px, 100vw - 32px);
+  max-height: calc(100vh - 64px);
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 16px;
+  border: 1px solid var(--oasis-border-subtle);
+  box-shadow: 0 18px 40px rgba(24, 44, 82, 0.14);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.o-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--oasis-text-secondary);
+}
+
+.o-modal-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.o-modal-radar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: visible;
+}
+
+.o-modal-legend {
+  font-size: 11px;
+  color: var(--oasis-text-secondary);
+  overflow: auto;
+}
+
+.o-modal-close-btn {
+  border: none;
+  background: transparent;
+  color: var(--oasis-text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.o-modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--oasis-text-primary);
+}
+
+.o-module-position-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.o-module-position-strip__item {
+  border: 1px solid var(--oasis-border-subtle);
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: var(--oasis-shadow-subtle);
+}
+
+.o-module-position-strip__label {
+  display: block;
+  font-size: 11px;
+  color: var(--oasis-text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.o-module-position-strip__item strong {
+  font-size: 13px;
+  color: var(--oasis-text-primary);
+}

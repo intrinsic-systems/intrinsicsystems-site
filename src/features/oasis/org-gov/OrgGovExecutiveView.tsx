@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { OrgGovRadial } from "./OrgGovRadial";
-import { OrgGovDetailPanel } from "./OrgGovDetailPanel";
 import { mapOrgGovFromResults } from "./mapOrgGovFromResults";
 import type { ScoreMode } from "./orgGovTypes";
 
@@ -51,18 +50,26 @@ function modeHelpText(mode: ScoreMode): string {
 type OrgGovExecutiveViewProps = {
   embedded?: boolean;
   results?: CoreResultsInput;
+  mode: ScoreMode;
+  selectedElementId?: string;
+  includeQuestions: boolean;
+  onModeChange: (mode: ScoreMode) => void;
+  onSelectedElementChange: (elementId?: string) => void;
+  onIncludeQuestionsChange: (value: boolean) => void;
+  onResetView: () => void;
 };
 
 export default function OrgGovExecutiveView({
   embedded = false,
   results,
+  mode,
+  selectedElementId,
+  includeQuestions,
+  onModeChange,
+  onSelectedElementChange,
+  onIncludeQuestionsChange,
+  onResetView,
 }: OrgGovExecutiveViewProps) {
-  const [mode, setMode] = useState<ScoreMode>("current");
-  const [selectedElementId, setSelectedElementId] = useState<string | undefined>(
-    undefined
-  );
-  const [includeQuestions, setIncludeQuestions] = useState(false);
-
   const orgGovDomain = useMemo(() => {
     if (!results) return null;
 
@@ -79,6 +86,7 @@ export default function OrgGovExecutiveView({
 
   const selectedElement = useMemo(() => {
     if (!orgGovDomain) return undefined;
+
     return orgGovDomain.elements.find(
       (element) => element.id === selectedElementId
     );
@@ -90,154 +98,254 @@ export default function OrgGovExecutiveView({
 
   if (!orgGovDomain) {
     return (
-      <div
-        className={
-          embedded
-            ? "text-slate-100"
-            : "min-h-screen bg-slate-950 px-6 py-6 text-slate-100"
-        }
-      >
-        <div className={embedded ? "" : "mx-auto max-w-7xl"}>
-          <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-2xl shadow-black/20">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-              OASIS CORE · Executive Capability View
-            </div>
-            <h3 className="text-2xl font-semibold text-white">
-              Organisation & Governance
-            </h3>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
-              Executive capability view will appear once CORE results are
-              available.
-            </p>
-          </section>
-        </div>
+      <div>
+        <section className="o-card o-card-pad" style={{ padding: 24 }}>
+          <div className="o-card-eyebrow" style={{ marginBottom: 8 }}>
+            OASIS CORE · Executive Capability View
+          </div>
+
+          <h3 className="o-card-title" style={{ margin: "0 0 10px" }}>
+            Organisation & Governance
+          </h3>
+
+          <div className="o-card-subtitle" style={{ maxWidth: 760 }}>
+            Executive capability view will appear once CORE results are
+            available.
+          </div>
+        </section>
       </div>
     );
   }
 
   return (
-    <div
-      className={
-        embedded
-          ? "text-slate-100"
-          : "min-h-screen bg-slate-950 px-6 py-6 text-slate-100"
-      }
-    >
-      <div className={embedded ? "" : "mx-auto max-w-7xl"}>
-        {!embedded && (
-          <div className="mb-6 flex flex-col gap-4 rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-2xl shadow-black/30 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-400">
-                OASIS CORE · Executive Capability View
-              </div>
-              <h1 className="text-3xl font-semibold text-white">
-                Organisation & Governance
-              </h1>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
-                Engineered capability view showing domain-to-element performance,
-                traceable question drivers, and evidence-aware inspection for
-                executive and practitioner use.
-              </p>
-            </div>
+    <div>
+      {embedded && (
+        <div style={{ marginBottom: 14 }}>
+          <div className="o-card-eyebrow" style={{ marginBottom: 8 }}>
+            OASIS CORE · Executive Capability View
           </div>
-        )}
 
-        {embedded && (
-          <div className="mb-5">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-              OASIS CORE · Executive Capability View
-            </div>
-            <h3 className="text-2xl font-semibold text-slate-900">
-              Organisation & Governance
-            </h3>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
-              Interactive domain view showing rolled-up capability position,
-              element-level drivers, and evidence-aware inspection.
-            </p>
-            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-500">
-              This preview shows how OASIS CORE extends beyond static scoring
-              into structured capability intelligence.
-            </p>
+          <h3 className="o-card-title" style={{ margin: "0 0 8px" }}>
+            Organisation & Governance
+          </h3>
+
+          <div className="o-card-subtitle" style={{ maxWidth: 860 }}>
+            Interactive capability view with grouped enterprise domains,
+            selectable elements, and structured inspection support.
           </div>
-        )}
-
-        <div className="grid gap-6 xl:grid-cols-[1.12fr_0.88fr]">
-          <section className="flex h-[820px] flex-col rounded-3xl border border-slate-800 bg-slate-900/70 p-5 shadow-2xl shadow-black/20">
-            <div className="mb-4 flex min-h-[84px] items-start justify-between gap-4">
-              <div className="min-w-0">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Radial Capability Engine
-                </div>
-                <div className="mt-1 min-h-[56px] text-lg font-semibold leading-6 text-white">
-                  {radialTitle}
-                </div>
-              </div>
-
-              <div className="max-w-[220px] text-sm leading-5 text-slate-400">
-                Select an element to inspect its score and primary drivers.
-              </div>
-            </div>
-
-            <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
-              <div className="flex flex-wrap gap-2">
-                {MODES.map((item) => {
-                  const active = item === mode;
-                  return (
-                    <button
-                      key={item}
-                      type="button"
-                      onClick={() => setMode(item)}
-                      className={[
-                        "rounded-xl border px-4 py-2 text-sm font-medium transition",
-                        active
-                          ? "border-slate-500 bg-slate-100 text-slate-950"
-                          : "border-slate-700 bg-slate-950/80 text-slate-200 hover:border-slate-500",
-                      ].join(" ")}
-                    >
-                      {modeLabel(item)}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <label className="inline-flex cursor-pointer items-center gap-3 rounded-xl border border-slate-700 bg-slate-950/70 px-3 py-2 text-sm text-slate-300">
-                <input
-                  type="checkbox"
-                  checked={includeQuestions}
-                  onChange={(event) => setIncludeQuestions(event.target.checked)}
-                  className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-blue-500 focus:ring-blue-500"
-                />
-                Show question ring
-              </label>
-            </div>
-
-            <div className="mb-4 rounded-xl border border-slate-800 bg-slate-950/55 px-3 py-2 text-xs text-slate-400">
-              <span className="font-semibold text-slate-300">
-                {modeLabel(mode)} mode:
-              </span>{" "}
-              {modeHelpText(mode)}
-            </div>
-
-            <div className="flex-1 rounded-2xl border border-slate-800 bg-slate-900/55 p-2">
-              <div className="h-full overflow-hidden rounded-[1.15rem] border border-slate-700/60 bg-slate-800/65">
-                <OrgGovRadial
-                  domain={orgGovDomain}
-                  mode={mode}
-                  includeQuestions={includeQuestions}
-                  selectedElementId={selectedElementId}
-                  onSelectElement={setSelectedElementId}
-                />
-              </div>
-            </div>
-          </section>
-
-          <OrgGovDetailPanel
-            domain={orgGovDomain}
-            selectedElementId={selectedElementId}
-            mode={mode}
-          />
         </div>
-      </div>
+      )}
+
+      <section
+        className="o-card"
+        style={{
+          padding: embedded ? 16 : 20,
+          display: "flex",
+          flexDirection: "column",
+          minHeight: embedded ? 480 : 700,
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: embedded
+              ? "minmax(0, 1fr) 150px"
+              : "minmax(0, 1fr) 180px",
+            gap: embedded ? 10 : 12,
+            alignItems: "start",
+            marginBottom: 10,
+          }}
+        >
+          <div>
+            <div className="o-card-eyebrow" style={{ marginBottom: 8 }}>
+              Radial capability engine
+            </div>
+
+            <div
+              className="o-card-title"
+              style={{
+                fontSize: embedded ? 15 : 16,
+                marginBottom: 8,
+              }}
+            >
+              {radialTitle}
+            </div>
+
+            <div className="o-card-subtitle" style={{ maxWidth: 760 }}>
+              Read the outer structure as grouped enterprise capability
+              domains, then inspect individual elements in the detail panel.
+              Question-level detail is optional and should stay off by default
+              for executive review.
+            </div>
+          </div>
+
+          <div
+            className="o-card"
+            style={{
+              padding: embedded ? 10 : 12,
+              background: "rgba(248, 250, 252, 0.74)",
+              border: "1px solid rgba(148, 163, 184, 0.22)",
+              boxShadow: "none",
+            }}
+          >
+            <div className="o-card-eyebrow" style={{ marginBottom: 8 }}>
+              Interaction
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gap: 6,
+                fontSize: embedded ? 11 : 12,
+                lineHeight: 1.45,
+                color: "var(--oasis-text-muted)",
+              }}
+            >
+              <div>Select a segment to inspect it.</div>
+              <div>Use the mode buttons to change the scoring lens.</div>
+              <div>Enable the question ring only for deeper traceability.</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 12,
+            flexWrap: "wrap",
+            marginBottom: 8,
+            padding: "8px 10px",
+            borderRadius: 12,
+            border: "1px solid rgba(148, 163, 184, 0.18)",
+            background: "rgba(248, 250, 252, 0.72)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}
+          >
+            {MODES.map((item) => {
+              const active = item === mode;
+
+              return (
+                <button
+                  key={item}
+                  type="button"
+                  className={`o-btn ${
+                    active ? "o-btn--primary" : "o-btn--secondary"
+                  }`}
+                  onClick={() => onModeChange(item)}
+                  style={{
+                    minWidth: 82,
+                    height: 34,
+                    padding: "0 12px",
+                  }}
+                >
+                  {modeLabel(item)}
+                </button>
+              );
+            })}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+              flexWrap: "wrap",
+              alignItems: "center",
+            }}
+          >
+            <button
+              type="button"
+              className="o-btn o-btn--secondary"
+              onClick={onResetView}
+              style={{
+                height: 34,
+                padding: "0 12px",
+              }}
+            >
+              Reset view
+            </button>
+
+            <label
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                padding: "6px 10px",
+                borderRadius: 10,
+                border: "1px solid rgba(148, 163, 184, 0.18)",
+                background: "#ffffff",
+                fontSize: 12,
+                lineHeight: 1.2,
+                color: "var(--oasis-text-muted)",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={includeQuestions}
+                onChange={(event) =>
+                  onIncludeQuestionsChange(event.target.checked)
+                }
+              />
+              Show question ring
+            </label>
+          </div>
+        </div>
+
+        <div
+          style={{
+            fontSize: 11,
+            lineHeight: 1.4,
+            color: "var(--oasis-text-muted)",
+            marginBottom: 10,
+          }}
+        >
+          <strong style={{ color: "var(--oasis-text-primary)" }}>
+            {modeLabel(mode)} mode:
+          </strong>{" "}
+          {modeHelpText(mode)}
+        </div>
+
+        <div
+          style={{
+            flex: 1,
+            minHeight: embedded ? 360 : 560,
+            borderRadius: 20,
+            border: "1px solid rgba(148, 163, 184, 0.20)",
+            background:
+              "radial-gradient(circle at 50% 42%, rgba(255,255,255,0.98) 0%, rgba(247,250,252,0.98) 65%, rgba(241,245,249,0.98) 100%)",
+            padding: 6,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              borderRadius: 16,
+              overflow: "hidden",
+              background: "transparent",
+            }}
+          >
+            <OrgGovRadial
+              domain={orgGovDomain}
+              mode={mode}
+              includeQuestions={includeQuestions}
+              selectedElementId={selectedElementId}
+              onSelectElement={onSelectedElementChange}
+            />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

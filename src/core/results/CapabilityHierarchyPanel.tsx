@@ -71,8 +71,10 @@ export function CapabilityHierarchyPanel({
 
   return (
     <section className="o-card o-card-pad">
-      <div className="o-results-section-header">
-        <h2 className="o-section-heading">{title}</h2>
+      <div className="o-results-section-header o-results-section-header--left">
+        <div>
+          <h2 className="o-section-heading">{title}</h2>
+        </div>
         <div className="o-text-small">{subtitle}</div>
       </div>
 

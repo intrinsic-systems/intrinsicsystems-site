@@ -20,22 +20,15 @@ export function ContextAside({
 }: ContextAsideProps) {
   return (
     <aside
-      className="o-card o-page-aside o-side-context-card o-card-pad"
+      className="o-card o-side-context-card o-card-pad"
       style={{
         background: "rgba(56,132,255,0.06)",
         border: "1px solid rgba(56,132,255,0.18)",
       }}
     >
-      {eyebrow ? <div className="o-text-label">{eyebrow}</div> : null}
+      {eyebrow ? <div className="o-card-eyebrow">{eyebrow}</div> : null}
 
-      <h3
-        style={{
-          fontSize: 15,
-          margin: eyebrow ? "6px 0 12px" : "0 0 12px",
-        }}
-      >
-        {title}
-      </h3>
+      <h3 className="o-card-title--sm">{title}</h3>
 
       <div
         className="o-stack-sm o-text-small"

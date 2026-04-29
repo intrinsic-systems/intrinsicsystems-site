@@ -245,7 +245,7 @@ export function OasisModulePage() {
   return (
     <div className="o-suite-shell">
       <div className="o-suite-workspace">
-        <div className="o-page">
+        <main className="o-page o-site-page">
           <SiteTopNav />
 
           <header className="o-page-header" style={{ marginBottom: 12 }}>
@@ -376,7 +376,7 @@ export function OasisModulePage() {
               />
             </div>
           </section>
-        </div>
+        </main>
       </div>
     </div>
   );

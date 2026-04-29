@@ -34,7 +34,11 @@ export function CoreFlowNav() {
     { label: "Suite", path: "/", isEnabled: true },
     { label: "CORE", path: "/core", isEnabled: true },
     { label: "Setup", path: "/core/onboarding", isEnabled: true },
-    { label: "Assessment", path: "/core/acma", isEnabled: hasProfile || hasAnswers },
+    {
+      label: "Assessment",
+      path: "/core/acma",
+      isEnabled: hasProfile || hasAnswers,
+    },
     { label: "Results", path: "/core/results", isEnabled: hasAnswers },
   ];
 
@@ -46,9 +50,18 @@ export function CoreFlowNav() {
     return location.pathname.startsWith(path);
   };
 
+  const handleNavigate = (step: FlowStep) => {
+    if (step.isEnabled) {
+      navigate(step.path);
+    }
+  };
+
   return (
-    <nav className="o-flow-nav" aria-label="CORE flow navigation">
-      <div className="o-flow-nav__inner">
+    <nav
+      className="o-flow-nav o-flow-nav--embedded"
+      aria-label="CORE flow navigation"
+    >
+      <div className="o-flow-nav__track">
         {steps.map((step, index) => {
           const active = isActive(step.path);
           const sectionActive = step.path === "/core" && isCoreRoute;
@@ -58,17 +71,19 @@ export function CoreFlowNav() {
             <div key={step.path} className="o-flow-nav__item">
               <button
                 type="button"
-                className={
-                  "o-flow-nav__step" +
-                  (sectionActive ? " o-flow-nav__step--section-active" : "") +
-                  (stepActive ? " o-flow-nav__step--active" : "") +
-                  (!step.isEnabled ? " o-flow-nav__step--disabled" : "")
-                }
-                onClick={() => step.isEnabled && navigate(step.path)}
+                className={[
+                  "o-flow-nav__step",
+                  sectionActive ? "o-flow-nav__step--section-active" : "",
+                  stepActive ? "o-flow-nav__step--active" : "",
+                  !step.isEnabled ? "o-flow-nav__step--disabled" : "",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+                onClick={() => handleNavigate(step)}
                 disabled={!step.isEnabled}
                 aria-current={active ? "page" : undefined}
               >
-                {step.label}
+                <span className="o-flow-nav__step-label">{step.label}</span>
               </button>
 
               {index < steps.length - 1 && (

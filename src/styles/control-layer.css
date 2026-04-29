@@ -1,0 +1,267 @@
+/* -------------------------------------------------
+   Control Layer
+------------------------------------------------- */
+.o-is-control-layer {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  background: var(--oasis-shell);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--oasis-shell-border);
+  border-radius: var(--oasis-radius-lg);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  margin-bottom: 12px;
+}
+
+.o-is-control-layer__inner {
+  min-height: 64px;
+  padding: 0 18px;
+  display: grid;
+  grid-template-columns: auto minmax(420px, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+/* ---------- Layout zones ---------- */
+
+.o-is-control-layer__left,
+.o-is-control-layer__center,
+.o-is-control-layer__right {
+  min-width: 0;
+}
+
+.o-is-control-layer__left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.o-is-control-layer__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-width: 0;
+}
+
+.o-is-control-layer__center--compact {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.o-is-control-layer__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 96px;
+}
+
+/* ---------- Branding ---------- */
+
+.o-is-brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.o-is-mark {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.07) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  flex: 0 0 auto;
+}
+
+.o-is-mark:hover {
+  border-color: rgba(255, 255, 255, 0.26);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.09) 100%
+  );
+}
+
+.o-is-mark:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.o-is-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 28px;
+  max-height: 28px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+/* ---------- Embedded flow nav ---------- */
+
+.o-is-brand-lockup .o-flow-nav {
+  width: auto;
+  min-width: 0;
+  flex: 0 1 auto;
+  margin: 0;
+}
+
+.o-is-brand-lockup .o-flow-nav__track {
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+/* ---------- Context / Metrics ---------- */
+
+.o-context-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: var(--oasis-radius-pill);
+  font-size: var(--oasis-text-sm);
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--oasis-text-on-dark-muted);
+}
+
+.o-context-pill--interactive {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition:
+    background 120ms ease-out,
+    border-color 120ms ease-out,
+    color 120ms ease-out,
+    transform 120ms ease-out;
+}
+
+.o-context-pill--interactive:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--oasis-text-on-dark);
+  transform: translateY(-1px);
+}
+
+.o-context-pill--interactive:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.o-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 92px;
+}
+
+.o-metric__label {
+  font-size: var(--oasis-text-sm);
+  color: var(--oasis-text-on-dark-muted);
+}
+
+.o-metric__value {
+  font-size: var(--oasis-text-xl);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--oasis-text-on-dark);
+}
+
+/* ---------- Progress ---------- */
+
+.o-progress {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.o-progress__bar {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--oasis-accent);
+  width: 0%;
+  transition: width 420ms ease-out;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1180px) {
+  .o-is-control-layer__inner {
+    grid-template-columns: 1fr;
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .o-is-control-layer__left,
+  .o-is-control-layer__center,
+  .o-is-control-layer__right {
+    width: 100%;
+  }
+
+  .o-is-control-layer__left {
+    justify-content: flex-start;
+  }
+
+  .o-is-control-layer__center {
+    justify-content: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .o-is-control-layer__right {
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .o-is-brand-lockup {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .o-is-brand-lockup .o-flow-nav__track {
+    flex-wrap: wrap;
+  }
+
+  .o-metric {
+    min-width: 88px;
+  }
+}
+
+@media (max-width: 768px) {
+  .o-is-control-layer {
+    top: 8px;
+  }
+
+  .o-is-control-layer__inner {
+    padding: 10px 12px;
+  }
+
+  .o-is-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .o-is-logo {
+    max-width: 24px;
+    max-height: 24px;
+  }
+}
