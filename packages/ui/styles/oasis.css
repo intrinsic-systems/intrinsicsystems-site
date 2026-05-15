@@ -1,7 +1,9 @@
 /* -------------------------------------------------
    OASIS Design Tokens
 ------------------------------------------------- */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   /* Platform shell */
