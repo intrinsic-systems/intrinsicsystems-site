@@ -1,0 +1,1904 @@
+{
+  "version": "1.0.0",
+  "meta": {
+    "id": "acma-core-merged",
+    "title": "OASIS Core \u2014 ACMA (Merged with MIST 2017)",
+    "description": "Merged question set aligning the 2017 MIST taxonomy with ISO 55000, grouped into four sections for MVP delivery.",
+    "iso_alignment": [
+      "Leadership",
+      "Planning",
+      "Support",
+      "Operation",
+      "Performance Evaluation",
+      "Improvement"
+    ],
+    "scoring": {
+      "scale": {
+        "min": 1,
+        "max": 5,
+        "labels": [
+          "No evidence",
+          "Emerging",
+          "Developing",
+          "Established",
+          "Optimised"
+        ]
+      },
+      "weights": {
+        "S1": 0.25,
+        "S2": 0.25,
+        "S3": 0.25,
+        "S4": 0.25
+      },
+      "star_thresholds": {
+        "1": 60,
+        "2": 70,
+        "3": 80,
+        "4": 90,
+        "5": 95
+      }
+    }
+  },
+  "sections": [
+    {
+      "id": "S1",
+      "title": "Organisation & Governance",
+      "iso_refs": [
+        "Leadership",
+        "Support"
+      ],
+      "questions": [
+        {
+          "id": "1.1.1.1",
+          "prompt": "The organisation has a Vision and Strategy that includes the management of Assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.1.1"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.1.2",
+          "prompt": "The organisation's asset management Vision and Strategy provides adequate information for asset management Objectives and Plans to be prepared.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.1.2"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.2.5",
+          "prompt": "The organisation has an asset management Policy that is consistent with its Vision and Strategy.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.2.5"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.2.6",
+          "prompt": "The organisation has communicated the asset management Policy to all internal and external stakeholders.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.2.6"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.2.7",
+          "prompt": "The organisation's asset management Policy is regularly reviewed.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.2.7"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.4.11",
+          "prompt": "The organisation has an asset management Strategy that is consistent with its asset management Vision, Policy and Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.4.11"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.8.31",
+          "prompt": "The organisation has communciated the asset management Strategy and Plan to relevant (internal and external) stakeholders.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.8.31"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.9.33",
+          "prompt": "The organisation has reviewed and included relevant Technical Standards, Specifications and Legislation in the Asset Management Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.9.33"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.9.34",
+          "prompt": "The organisation has a review process to assess changes to technical standards, specification and legislation and its potential impact on the Asset Management Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.9.34"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.9.35",
+          "prompt": "The organisation undertakes regular reviews of the Asset Management Plan to ensure compliance with relevant technical standards, specifications and legislation.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.9.35"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.12.45",
+          "prompt": "The organisation regularly reviews performance measures to ensure they are consistent with the asset management Strategy.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.12.45"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.14.51",
+          "prompt": "The organisation has a documented resourcing strategy in accordance with the Asset Management Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.14.51"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.14.52",
+          "prompt": "The organisation has an established process that reviews and updates the Resourcing Strategy.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.14.52"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.15.53",
+          "prompt": "The organisation has undertaken risk assessment for all assets and incorporated the outcome into the organisation's risk management strategy.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.15.53"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.19.68",
+          "prompt": "The organisation has a Asset Information Strategy which is implemented and regularly reviewed.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.19.68"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.20.69",
+          "prompt": "The Organsation has a Data Strategy to direct the management of asset information",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.20.69"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.20.70",
+          "prompt": "The organisation has data standards to manage existing and new asset data and to guide data development.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.20.70"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.22.77",
+          "prompt": "The organisation has developed Condition Measurement Standards and included them in the Asset Management Plans.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.22.77"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.22.79",
+          "prompt": "The organisation undertakes regular reviews of the asset condition standards, assessment procedures and measurements.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.22.79"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.23.82",
+          "prompt": "The organisation uses costed scenarios to develop (or amend) asset management policies, standards or programmes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.23.82"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.34.107",
+          "prompt": "The organisation maintains an Asset Management Plan with clearly defined asset management Strategy and Objectives across the asset lifecycle (creation, acquistion, utilisation, maintenance, enhancement and disposal).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.34.107"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.36.114",
+          "prompt": "The organisation has a set of standardised procedures for asset management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.36.114"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.36.115",
+          "prompt": "The organisation uses standardised procedures to reduce risk and enable confidence in outcomes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.36.115"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.36.116",
+          "prompt": "The organisation provides (electronic) access to standardised procedures for all staff.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.36.116"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.36.117",
+          "prompt": "The organisation's Standard Operating Procedures are regularly reviewed and updated.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.36.117"
+          ],
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "Asset Condition & Risk",
+      "iso_refs": [
+        "Operation",
+        "Performance Evaluation"
+      ],
+      "questions": [
+        {
+          "id": "1.1.1.3",
+          "prompt": "The organisation has an established Risk Management Process to identify and control risks associated with all of its assets and services.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.1.3"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.10.37",
+          "prompt": "The organisation has established technical measures to record condition requirements of different asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.10.37"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.17.58",
+          "prompt": "The organisation has undertaken risk assessment on all asset groups and implemented relevant changes for continuous improvement.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.17.58"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.17.59",
+          "prompt": "The organisation has incorporated the outcomes of the risk assessment and control measures into the Asset Management Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.17.59"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.17.60",
+          "prompt": "The organisation's Risk Management Process and Register is regularly reviewed and updated by staff and Senior Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.17.60"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.19.66",
+          "prompt": "The organisation has provided staff with easy access to all information (including asset inventry, usage, condition and performance).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.19.66"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.21.74",
+          "prompt": "The organisation collects asset condition data for all assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.21.74"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.21.76",
+          "prompt": "The organisation's Inventory Data Collection and Condition Assessment Process is regularly reviewed by Senior Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.21.76"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.22.78",
+          "prompt": "The organisation has implemented statistical methods for asset condition assessment.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.22.78"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.23.80",
+          "prompt": "The organisation has statistical data on the overall condition of the assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.23.80"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.23.83",
+          "prompt": "The organisation ensures that work optimisation considers criticality of the asset elements in the performance of the whole asset.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.23.83"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.6.29.98",
+          "prompt": "The organisation ensures that asset creation considers criticality of the asset to the operation of the organisation.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.6.29.98"
+          ],
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "title": "Decision Quality & Planning",
+      "iso_refs": [
+        "Planning",
+        "Improvement"
+      ],
+      "questions": [
+        {
+          "id": "1.1.1.4",
+          "prompt": "The organisation has an established process that reviews and updates the Vision.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.1.4"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.3.9",
+          "prompt": "The organisation has an established Senior Management Forum for the preparation of asset management Plans and assessment management Practices.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.3.9"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.3.10",
+          "prompt": "The organisation's asset management Strategic Initiatives and Direction is regularly reviewed by Senior Leadership.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.3.10"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.4.12",
+          "prompt": "The organisation has identified Critical Assets for its operation and developed a Strategic Asset Management Plan for them.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.4.12"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.4.13",
+          "prompt": "The organisation has a prioritised asset management Improvement Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.4.13"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.1.4.14",
+          "prompt": "The organisation's strategic asset management Plan is regularly reviewed, updated and reported to Senior Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.4.14"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.15",
+          "prompt": "The organisation has an asset management Communication Plan to effectively communicate asset management information to (internal and external) stakeholders.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.15"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.16",
+          "prompt": "The organisation has documented significant services for which Levels of Service are subject to stakeholder consultation and agreement.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.16"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.17",
+          "prompt": "The organisation has an asset management (internal and external) Stakeholder Register which is regularly reviewed and updated.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.17"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.18",
+          "prompt": "The organisation has an asset management Communication Plan to manage stakeholder engagement.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.18"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.19",
+          "prompt": "The organisation has an established Stakeholder Feedback Process to collate and respond to all queries, concerns and comments.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.19"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.5.20",
+          "prompt": "The organisation's Communication Plan is regularly reviewed and updated.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.5.20"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.6.21",
+          "prompt": "The organisation has established Levels of Service for significant assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.6.21"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.6.22",
+          "prompt": "The organisation has a Procedure for reviewing, monitoring and reporting on the asset's Level of Service.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.6.22"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.6.23",
+          "prompt": "The organisation regularly conducts Gap Analysis on all aspects of service delivery .",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.6.23"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.6.24",
+          "prompt": "The organisation's Performance and Levels of Service are regularly reviewed and reported to Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.6.24"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.7.25",
+          "prompt": "The Organisation has a documented procedure for Asset Planning to interface with Master Planning",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.7.25"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.7.26",
+          "prompt": "The organisation has a documented Procedure for future planning and/or growth.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.7.26"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.7.27",
+          "prompt": "The organisation has utilised future growth in the asset acquisition and planning process.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.7.27"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.7.28",
+          "prompt": "The organisation has incorporated asset management requirements in future planning process.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.7.28"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.7.29",
+          "prompt": "The organisation has a process where the Interface Plan (with Master Planning) is regularly reviewed and reported to Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.7.29"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.8.30",
+          "prompt": "The organisation has undertaken stakeholder consultation to establish Level of Service options for significant assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.8.30"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.8.32",
+          "prompt": "The organisation uses stakeholder consultation to drive continuous improvement in its services.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.8.32"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.9.36",
+          "prompt": "The organisation's Asset Management Plan compliance is regularly reviewed by Senior Leadership.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.9.36"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.10.38",
+          "prompt": "The organisation has made a future projection of technical targets and methods of measurement.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.10.38"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.10.39",
+          "prompt": "The organisation has developed and applied a consistent growth (demand) for asset management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.10.39"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.10.40",
+          "prompt": "The organisation has undertaken a sensitivity analysis of asset (capital works) programme and demand changes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.10.40"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.11.41",
+          "prompt": "The organisation has developed asset lifecycle models and future works programmes including an assessment of the remaining useful lives of assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.11.41"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.11.42",
+          "prompt": "The organisation has a Procedure for evaluating maintenance options against cost and benefit variables (including social, economic, environmental and cultural factors).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.11.42"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.11.43",
+          "prompt": "The organisation uses predictive models in the development of long-term works programme (4 years or greater).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.11.43"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.11.44",
+          "prompt": "The organisation's Operations and Mainenance Decision Making Process is regularly reviewed by Senior Leadership.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.11.44"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "1.2.12.46",
+          "prompt": "The organisation's Asset Management System is regularly reviewed by Senior Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.2.12.46"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.13.47",
+          "prompt": "The organisation has recognised asset management as a core business function.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.13.47"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.15.54",
+          "prompt": "The organisation has an established process that reviews the Organisational Structure and Culture.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.15.54"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.16.55",
+          "prompt": "The organisation has a Procedure for reviewing, monitoring and reporting on the Level of Service as measured by asset performance.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.16.55"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.16.56",
+          "prompt": "The organisation has a Procedure for connecting staff performance to asset performance under their responsibility.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.16.56"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.16.57",
+          "prompt": "The organisation has an established process that reviews the competence of the staff and the organisation.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.16.57"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.18.61",
+          "prompt": "The organisation has developed a Contingency Plan as part of the Asset Management Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.18.61"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.18.62",
+          "prompt": "The organisation has incorporated response time and required resources into the Contingency Plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.18.62"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.18.63",
+          "prompt": "The organisation'scontingency planning process is regularly reviewed by Senior Management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.18.63"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.19.64",
+          "prompt": "The organisation has a clear understanding of the data required to manage the performance of assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.19.64"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.19.65",
+          "prompt": "The organisation has a central database of all work undertaken on each asset, including locations of the work when linear asset is involved.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.19.65"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.19.67",
+          "prompt": "Where separate asset management information systems exist, the organisation is capable of providing consistent asset information across all departments.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.19.67"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.20.71",
+          "prompt": "The organisation has an established asset management system, with a defined scope for its data management system.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.20.71"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.20.72",
+          "prompt": "The organsation has identified the data system requirements and implemented a solution.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.20.72"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.21.73",
+          "prompt": "The organisation has a complete (electronic) asset inventory for all asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.21.73"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.4.21.75",
+          "prompt": "The organisation has informed the asset managers on the validity and confidence of the asset data.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.4.21.75"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.23.81",
+          "prompt": "The organisation interrogates and analyses activity history when developing future works programme.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.23.81"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.24.84",
+          "prompt": "The organisation undertakes financial planning for asset management (including allowance for overhead, staff, external fees and future works).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.24.84"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.24.85",
+          "prompt": "The organisation has prepared a detailed (project level) financial plan for the first three years.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.24.85"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.24.86",
+          "prompt": "The organisation's financial plan includes projected (future) maintance costs associated with all asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.24.86"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.24.87",
+          "prompt": "The organisation regularly reviews financial requirements including accrued costs, commitments and future budgets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.24.87"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.25.88",
+          "prompt": "The organisation's financial plan includes projected (future) operational costs associated with all asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.25.88"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.25.89",
+          "prompt": "The organisation has prepared a summary (activity level) financial plan for four to ten years.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.25.89"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.25.90",
+          "prompt": "The organisation's financial plan includes projected (future) capital (renewal) costs associated with all asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.25.90"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.25.91",
+          "prompt": "The organisation's long term financial plans are reviewed annually and updated.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.25.91"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.26.92",
+          "prompt": "The organisation undertakes an assessment of the remaining useful lives of assets when developing lifecycle models.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.26.92"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.26.93",
+          "prompt": "The organisation interrogates and analyses activity history when assessing asset lifecycle costs.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.26.93"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.26.94",
+          "prompt": "The organisation has a procedure for evaluating the asset lifecycle costs.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.26.94"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.26.95",
+          "prompt": "The organisation has prepared lifecycle plans for all asset types.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.26.95"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.5.26.96",
+          "prompt": "The organisation uses whole life cost graphs when developing asset lifecycle plans.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.5.26.96"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.6.27.97",
+          "prompt": "The organisation uses (demand based) predictive models in developing long term programmes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.6.27.97"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.6.29.99",
+          "prompt": "The organisation has a procedure for assessing asset creation options against cost and benefit variables (including social, economic, environmental and cultural factors).",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.6.29.99"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.6.29.100",
+          "prompt": "The organisation regularly undertakes Gap Analysis of service delivery to identify missing assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.6.29.100"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.31.101",
+          "prompt": "The organisation undertakes an assessment of the remaining useful lives of assets when developing preventative maintenance strategies.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.31.101"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.31.102",
+          "prompt": "The organisation uses predictive models for the development of preventative maintenance programmes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.31.102"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.31.103",
+          "prompt": "The organisation has a review process to determine if preventative maintenance is appropriately implemented in the asset management plans.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.31.103"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.32.104",
+          "prompt": "The organisation uses inventory and performance information in the evaluation of asset performance.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.32.104"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.32.105",
+          "prompt": "The organisation undertakes an assessment of asset performance when developing lifecycle models and future works programme.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.32.105"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.33.106",
+          "prompt": "The organisation regularly updates lifecycle plans by comparing asset lifecycle plans with asset modelling.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.33.106"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.34.108",
+          "prompt": "The organisation's Asset Management Plan indicates the degree of confidence of data reliability of asset performance.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.34.108"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.34.109",
+          "prompt": "The organisation's Asset Management Plan includes detailed performance targets for the first three years.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.34.109"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.34.110",
+          "prompt": "The organisation's Asset Management Plan includes (outline) performance targets for the next seven years.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.34.110"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.35.112",
+          "prompt": "The organisation maintains a future works programme based on a minimum three year forecast of all planned projects.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.35.112"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.35.113",
+          "prompt": "The organisation prepares and distributes future works programme that covers cross asset programming issues.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.35.113"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.8.40.118",
+          "prompt": "The organisation ensures maintenance costs are reported against individual assets.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.8.40.118"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.8.40.119",
+          "prompt": "The organisation's central database inputs maintenance and cost records as part of normal work processes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.8.40.119"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.8.40.120",
+          "prompt": "The organisation regularly conducts Gap Analysis on all aspects of Maintenance service delivery .",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.8.40.120"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.8.46.122",
+          "prompt": "The organisation's resource allocation and plan is reviewed annually and the resource costs included in the financial plan.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.8.46.122"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "4.9.47.123",
+          "prompt": "The organisation's database has a set protocol for staff access and authority levels.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "4.9.47.123"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "4.9.50.124",
+          "prompt": "The organisation undertakes the review of avaliability of products and resources for planned changes.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "4.9.50.124"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "5.10.51.126",
+          "prompt": "The organisation's asset performance measures and targets include requirements for monitoring and reporting of actual performance.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "5.10.51.126"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "5.10.51.127",
+          "prompt": "The organisation's asset performance measures provide a basis for continuous improvement.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "5.10.51.127"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "5.10.51.128",
+          "prompt": "The organisation's staff uses local and external performance measures for managing service delivery and decision making.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "5.10.51.128"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "5.10.51.129",
+          "prompt": "The organisation undertakes regular reviews of Asset Health",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "5.10.51.129"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "5.10.52.130",
+          "prompt": "The organisation's Improvement Programme specifies the timeframe for each improvement measures.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "5.10.52.130"
+          ],
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "title": "People & Capability (Pathways)",
+      "iso_refs": [
+        "Support",
+        "Improvement"
+      ],
+      "questions": [
+        {
+          "id": "1.1.3.8",
+          "prompt": "The organisation has an established organisational structure with clearly defined roles, responsibilities and authorities for effective asset management.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "1.1.3.8"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.13.48",
+          "prompt": "The organisation has documented and communicated asset management roles, responsibilities and accountabilities to relevant staff.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.13.48"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.13.49",
+          "prompt": "The organisation has an established process that reviews and updates the organisational structure and roles and responsibilities.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.13.49"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "2.3.14.50",
+          "prompt": "The organisation recognises that resourcing the Asset Management Plan is a core activity.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "2.3.14.50"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.7.34.111",
+          "prompt": "The organisation's Asset Management Plan includes gap analysis of current service capability and required service capability to meet future demand and target service levels.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.7.34.111"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "3.8.46.121",
+          "prompt": "The organisation's detailed resourcing plan is prepared a year in advance.",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "3.8.46.121"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "id": "4.9.50.125",
+          "prompt": "The organisational structure, roles and responsibilities for long term change management are regularly reviewed and updated by Senior Management",
+          "type": "likert",
+          "metric": "",
+          "iso_refs": [],
+          "weight": 1,
+          "taxonomy_tags": [
+            "4.9.50.125"
+          ],
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}

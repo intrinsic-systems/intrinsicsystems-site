@@ -1,0 +1,272 @@
+/* -------------------------------------------------
+   Capability Radar (hero comparison radar)
+------------------------------------------------- */
+.o-results-radar-shell {
+  border: 1px solid var(--oasis-border-subtle);
+  border-radius: var(--oasis-radius-lg);
+  background: linear-gradient(180deg, #fbfdff 0%, #f4f8fd 100%);
+  padding: 16px;
+  min-width: 0;
+}
+
+.o-results-radar-shell__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.o-results-radar-shell__metric-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  background: linear-gradient(
+    180deg,
+    rgba(239, 246, 255, 0.96) 0%,
+    rgba(219, 234, 254, 0.92) 100%
+  );
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.08);
+}
+
+.o-results-radar-shell__metric-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+.o-results-radar-shell__metric-value {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--oasis-text-primary);
+}
+
+.o-capability-radar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  min-height: 340px;
+}
+
+.o-capability-radar__svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  overflow: visible;
+}
+
+.o-capability-radar__empty {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  border-radius: 18px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--oasis-text-muted);
+  font-size: 13px;
+}
+
+.o-capability-radar__ring,
+.o-capability-radar__axis {
+  fill: none;
+  stroke: rgba(22, 32, 51, 0.1);
+  stroke-width: 1;
+}
+
+.o-capability-radar__axis-label {
+  font-size: 8px;
+  font-weight: 700;
+  fill: #64748b;
+  dominant-baseline: middle;
+  letter-spacing: 0.01em;
+}
+
+.o-capability-radar__series--current {
+  fill: rgba(22, 163, 74, 0.1);
+  stroke: #16a34a;
+  stroke-width: 2.5;
+}
+
+.o-capability-radar__series--benchmark {
+  fill: rgba(37, 99, 235, 0.08);
+  stroke: #2563eb;
+  stroke-width: 2;
+}
+
+.o-capability-radar__series--target {
+  fill: rgba(245, 158, 11, 0.05);
+  stroke: #f59e0b;
+  stroke-width: 2;
+}
+
+.o-capability-radar__series--core {
+  fill: rgba(124, 58, 237, 0.1);
+  stroke: #7c3aed;
+  stroke-width: 2;
+}
+
+.o-capability-radar__center-dot {
+  fill: #ffffff;
+  stroke: rgba(184, 201, 227, 0.95);
+  stroke-width: 1.25;
+}
+
+.o-capability-radar__point {
+  fill: #16a34a;
+  stroke: #ffffff;
+  stroke-width: 1.75;
+}
+
+.o-capability-radar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 14px;
+  margin-top: -4px;
+}
+
+.o-capability-radar__legend-row {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 999px;
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--oasis-text-secondary);
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.o-capability-radar__legend-row:hover {
+  background: rgba(19, 119, 201, 0.05);
+  border-color: rgba(19, 119, 201, 0.14);
+}
+
+.o-capability-radar__legend-row--active {
+  background: rgba(19, 119, 201, 0.08);
+  border-color: rgba(19, 119, 201, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(19, 119, 201, 0.04);
+}
+
+.o-capability-radar__legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.o-capability-radar__legend-swatch--current {
+  background: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.o-capability-radar__legend-swatch--benchmark {
+  background: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.o-capability-radar__legend-swatch--target {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.o-capability-radar__legend-swatch--core {
+  background: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.o-capability-radar__labels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 10px 12px;
+  align-items: stretch;
+}
+
+.o-capability-radar__label {
+  border: 1px solid rgba(184, 201, 227, 0.6);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+  padding: 9px 11px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 68px;
+}
+
+.o-capability-radar__label-title {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--oasis-text-primary);
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 31px;
+}
+
+.o-capability-radar__label-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 9px;
+  font-size: 10.5px;
+  line-height: 1.35;
+  color: var(--oasis-text-muted);
+  margin-top: auto;
+}
+
+.o-capability-radar__label-values span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 1200px) {
+  .o-capability-radar__svg {
+    max-width: 500px;
+  }
+
+  .o-capability-radar__labels {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .o-capability-radar {
+    gap: 14px;
+    min-height: 0;
+  }
+
+  .o-capability-radar__svg {
+    max-width: 100%;
+  }
+
+  .o-capability-radar__legend {
+    justify-content: flex-start;
+  }
+
+  .o-capability-radar__labels {
+    grid-template-columns: 1fr;
+  }
+}

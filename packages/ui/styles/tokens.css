@@ -1,0 +1,58 @@
+/* -------------------------------------------------
+   OASIS Design Tokens
+------------------------------------------------- */
+:root {
+  --oasis-bg: #08111f;
+  --oasis-bg-deep: #050b16;
+  --oasis-shell: rgba(9, 17, 31, 0.88);
+  --oasis-shell-border: rgba(148, 163, 184, 0.14);
+
+  --oasis-workspace: #eef3f9;
+  --oasis-surface: #ffffff;
+  --oasis-card: #ffffff;
+  --oasis-card-soft: #f7faff;
+  --oasis-surface-elevated: #ffffff;
+
+  --oasis-border-subtle: #d8e2f0;
+  --oasis-border-strong: #b8c9e3;
+  --oasis-border: #d8e2f0;
+  --oasis-border-soft: #e6edf6;
+  --oasis-line-soft: rgba(151, 176, 204, 0.22);
+
+  --oasis-text-primary: #162033;
+  --oasis-text-secondary: #4f5f7d;
+  --oasis-text-muted: #73819c;
+  --oasis-text-on-dark: #e8eef9;
+  --oasis-text-on-dark-muted: #a8b6cf;
+
+  --oasis-text-xs: 11px;
+  --oasis-text-sm: 12px;
+  --oasis-text-md: 13px;
+  --oasis-text-lg: 16px;
+  --oasis-text-xl: 20px;
+  --oasis-text-2xl: 24px;
+
+  --oasis-accent: #2b6cb0;
+  --oasis-accent-soft: rgba(43, 108, 176, 0.1);
+  --oasis-accent-strong: #1d4f91;
+  --oasis-highlight: #7c3aed;
+  --oasis-highlight-soft: rgba(124, 58, 237, 0.14);
+
+  --oasis-radius-sm: 6px;
+  --oasis-radius-md: 12px;
+  --oasis-radius-lg: 18px;
+  --oasis-radius-xl: 24px;
+  --oasis-radius-pill: 999px;
+
+  --oasis-space-1: 4px;
+  --oasis-space-2: 8px;
+  --oasis-space-3: 12px;
+  --oasis-space-4: 16px;
+  --oasis-space-5: 24px;
+  --oasis-space-6: 32px;
+
+  --oasis-shadow-soft: 0 18px 40px rgba(9, 17, 31, 0.14);
+  --oasis-shadow-subtle: 0 4px 14px rgba(24, 44, 82, 0.08);
+
+  --oasis-bg-surface: rgba(43, 108, 176, 0.06);
+}

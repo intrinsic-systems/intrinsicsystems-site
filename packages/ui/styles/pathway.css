@@ -1,0 +1,226 @@
+/* -------------------------------------------------
+   Improvement pathway progression
+------------------------------------------------- */
+
+.o-pathway-progress-card {
+  padding: 14px 16px;
+}
+
+.o-pathway-progress-card .o-results-section-header {
+  margin-bottom: 12px;
+}
+
+.o-pathway-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.o-pathway-progress__row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.o-pathway-progress__step {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #e8f0f8;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  color: var(--oasis-text-secondary);
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.o-pathway-progress__content {
+  min-width: 0;
+  border: 1px solid rgba(184, 201, 227, 0.62);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 8px 12px 10px;
+}
+
+.o-pathway-progress__topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+  gap: 12px;
+  align-items: start;
+  margin-bottom: 6px;
+}
+
+.o-pathway-progress__title-wrap {
+  min-width: 0;
+}
+
+.o-pathway-progress__label {
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--oasis-text-primary);
+}
+
+.o-pathway-progress__meta {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--oasis-text-secondary);
+}
+
+.o-pathway-progress__descriptor {
+  color: var(--oasis-text-secondary);
+}
+
+.o-pathway-progress__stat-card {
+  min-width: 72px;
+  padding: 7px 10px;
+  border: 1px solid rgba(184, 201, 227, 0.66);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  text-align: left;
+}
+
+.o-pathway-progress__stat-label {
+  font-size: 9px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.o-pathway-progress__stat-value {
+  margin-top: 2px;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--oasis-text-primary);
+}
+
+.o-pathway-progress__rail-wrap {
+  position: relative;
+  margin-top: 6px;
+  padding-top: 22px;
+}
+
+.o-pathway-progress__rail {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+  border-radius: 999px;
+  background: #e6edf5;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.o-pathway-progress__segment {
+  height: 100%;
+  position: relative;
+}
+
+.o-pathway-progress__segment:first-child {
+  border-radius: 999px 0 0 999px;
+}
+
+.o-pathway-progress__segment:last-child {
+  border-radius: 0 999px 999px 0;
+}
+
+.o-pathway-progress__segment + .o-pathway-progress__segment {
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.7);
+}
+
+.o-pathway-progress__segment--initial {
+  background: rgba(239, 68, 68, 0.22);
+}
+
+.o-pathway-progress__segment--aware {
+  background: rgba(249, 115, 22, 0.2);
+}
+
+.o-pathway-progress__segment--developing {
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.o-pathway-progress__segment--competent {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.o-pathway-progress__segment--optimising {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.o-pathway-progress__segment--leading {
+  background: rgba(16, 185, 129, 0.22);
+}
+
+.o-pathway-progress__marker {
+  position: absolute;
+  top: -22px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.o-pathway-progress__marker-value {
+  min-width: 38px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--oasis-accent);
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.o-pathway-progress__marker-pin {
+  width: 0;
+  height: 0;
+  margin: 2px auto 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--oasis-accent);
+}
+
+.o-pathway-progress__scale {
+  display: flex;
+  margin-top: 7px;
+}
+
+.o-pathway-progress__scale-label {
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--oasis-text-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .o-pathway-progress__row {
+    grid-template-columns: 1fr;
+  }
+
+  .o-pathway-progress__step {
+    display: none;
+  }
+
+  .o-pathway-progress__topline {
+    grid-template-columns: 1fr;
+  }
+
+  .o-pathway-progress__stat-card {
+    width: fit-content;
+  }
+
+  .o-pathway-progress__scale-label {
+    font-size: 9px;
+  }
+}

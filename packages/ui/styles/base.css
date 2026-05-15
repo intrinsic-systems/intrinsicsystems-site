@@ -1,0 +1,134 @@
+/* -------------------------------------------------
+   Global Base Styles
+------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--oasis-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--oasis-border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--oasis-accent);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(43, 108, 176, 0.22), transparent 28%),
+    radial-gradient(circle at top right, rgba(124, 58, 237, 0.16), transparent 24%),
+    linear-gradient(180deg, var(--oasis-bg) 0%, var(--oasis-bg-deep) 100%);
+  color: var(--oasis-text-primary);
+}
+
+/* App shell */
+.app-shell {
+  min-height: 100vh;
+  background: transparent;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+/* -------------------------------------------------
+   Info Block
+------------------------------------------------- */
+.o-info-block {
+  min-width: 0;
+}
+
+.o-info-block__label {
+  font-size: 12px;
+  color: var(--oasis-text-muted);
+  margin-bottom: 6px;
+}
+
+.o-info-block__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--oasis-text-primary);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.o-info-block__body {
+  font-size: 13px;
+  color: var(--oasis-text-secondary);
+  line-height: 1.65;
+}
+
+/* -------------------------------------------------
+   Text Utilities
+------------------------------------------------- */
+.o-text-lead {
+  font-size: 14px;
+  color: var(--oasis-text-secondary);
+  line-height: 1.65;
+}
+
+.o-text-body {
+  font-size: 13px;
+  line-height: 1.58;
+  color: var(--oasis-text-secondary);
+}
+
+.o-text-small {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--oasis-text-muted);
+}
+
+.o-text-label {
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.o-section-heading {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: var(--oasis-text-primary);
+}
+
+.o-section-title {
+  font-size: 22px;
+  margin: 0 0 10px;
+}
+
+/* -------------------------------------------------
+   Responsive
+------------------------------------------------- */
+@media (max-width: 768px) {
+  .app-shell {
+    padding: 16px;
+  }
+}

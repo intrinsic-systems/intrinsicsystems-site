@@ -1,0 +1,255 @@
+/* -------------------------------------------------
+   Base Layout Containers
+------------------------------------------------- */
+.o-suite-shell,
+.o-core-shell,
+.o-page {
+  width: 100%;
+}
+
+.o-suite-workspace,
+.o-is-control-layer__inner,
+.o-flow-nav__inner {
+  width: min(1760px, calc(100vw - 48px));
+  max-width: none;
+  margin: 0 auto;
+}
+
+.o-suite-workspace,
+.o-workspace-frame,
+.o-core-workspace-frame {
+  height: auto;
+  overflow: visible;
+}
+
+.o-suite-workspace {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 251, 255, 0.96) 0%,
+    rgba(241, 247, 255, 0.94) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--oasis-radius-xl);
+  box-shadow: var(--oasis-shadow-soft);
+}
+
+.o-workspace-frame,
+.o-core-workspace-frame {
+  background: rgba(248, 251, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--oasis-radius-xl);
+  box-shadow: var(--oasis-shadow-soft);
+}
+
+.o-suite-workspace {
+  padding: 32px 36px;
+}
+
+.o-core-shell {
+  min-height: 100vh;
+  height: auto;
+  overflow: visible;
+}
+
+.o-core-shell__content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 36px 56px;
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+  overflow: visible;
+}
+
+.o-page {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  scroll-padding-top: 96px;
+}
+
+.o-card,
+.o-section-card {
+  scroll-margin-top: 96px;
+}
+
+/* -------------------------------------------------
+   Standard Page Grid
+------------------------------------------------- */
+.o-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.48fr) minmax(340px, 0.52fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.o-page-grid > * {
+  min-width: 0;
+}
+
+.o-page-main,
+.o-page-aside,
+.o-stack-sm,
+.o-stack-md,
+.o-stack-lg {
+  min-width: 0;
+}
+
+.o-page-aside {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  align-self: start;
+}
+
+.o-stack-sm,
+.o-stack-md,
+.o-stack-lg {
+  display: flex;
+  flex-direction: column;
+}
+
+.o-stack-sm {
+  gap: 8px;
+}
+
+.o-stack-md {
+  gap: 16px;
+}
+
+.o-stack-lg {
+  gap: 20px;
+}
+
+.o-card-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.o-card-pad {
+  padding: 18px;
+}
+
+.o-divider-subtle {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--oasis-border-subtle);
+}
+
+.o-action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 14px;
+}
+
+.o-action-row .o-btn {
+  height: 40px;
+  min-height: 40px;
+}
+
+/* -------------------------------------------------
+   Start / Hero Page Grid
+------------------------------------------------- */
+.o-page-grid--hero {
+  position: relative;
+  overflow: hidden;
+  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.95fr);
+}
+
+.o-page-grid--hero::after,
+.o-core-hero-panel::after {
+  content: "";
+  position: absolute;
+  right: -60px;
+  top: -40px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.32;
+  background:
+    radial-gradient(circle at center, rgba(43, 108, 176, 0.08) 0%, transparent 34%),
+    radial-gradient(circle at center, transparent 42%, rgba(43, 108, 176, 0.12) 43%, transparent 44%),
+    radial-gradient(circle at center, transparent 58%, rgba(43, 108, 176, 0.1) 59%, transparent 60%),
+    radial-gradient(circle at center, transparent 74%, rgba(124, 58, 237, 0.08) 75%, transparent 76%);
+}
+
+.o-page-grid--hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.o-page-intro + * {
+  margin-top: 0;
+}
+
+/* -------------------------------------------------
+   Right Rail
+------------------------------------------------- */
+.o-page-grid > aside.o-page-aside.o-stack-md {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  overflow: visible;
+  max-height: none;
+  padding-right: 0;
+}
+
+.o-page-grid > aside.o-page-aside.o-stack-md > * {
+  width: 100%;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+/* -------------------------------------------------
+   Wide Screens
+------------------------------------------------- */
+@media (min-width: 1600px) {
+  .o-suite-workspace,
+  .o-is-control-layer__inner,
+  .o-flow-nav__inner {
+    width: min(1880px, calc(100vw - 56px));
+  }
+}
+
+/* -------------------------------------------------
+   Tablet / Narrow Desktop
+------------------------------------------------- */
+@media (max-width: 1200px) {
+  .o-suite-workspace,
+  .o-is-control-layer__inner,
+  .o-flow-nav__inner {
+    width: min(100%, calc(100vw - 28px));
+  }
+
+  .o-page-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .o-page-grid > aside.o-page-aside.o-stack-md {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+}
+
+/* -------------------------------------------------
+   Mobile
+------------------------------------------------- */
+@media (max-width: 768px) {
+  .o-core-shell__content {
+    padding: 18px 16px 32px;
+  }
+
+  .o-suite-workspace {
+    width: min(100%, calc(100vw - 16px));
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+}

@@ -1,0 +1,233 @@
+/* -------------------------------------------------
+   Cards / Common Components
+------------------------------------------------- */
+.o-card {
+  box-sizing: border-box;
+  border-radius: var(--oasis-radius-lg);
+  border: 1px solid var(--oasis-border-subtle);
+  background: var(--oasis-card);
+  box-shadow: var(--oasis-shadow-subtle);
+}
+
+.o-card--clickable {
+  display: block;
+  text-align: left;
+  padding: 18px;
+  cursor: pointer;
+  transition:
+    transform 120ms ease-out,
+    box-shadow 120ms ease-out,
+    border-color 120ms ease-out,
+    background 120ms ease-out;
+}
+
+.o-card--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(24, 44, 82, 0.1);
+  border-color: var(--oasis-accent);
+  background: var(--oasis-surface);
+}
+
+.o-card--clickable:focus-visible {
+  outline: 2px solid var(--oasis-accent);
+  outline-offset: 2px;
+}
+
+.o-side-context-card {
+  background: linear-gradient(180deg, #f7fbff 0%, #edf5ff 100%);
+}
+
+.o-context-aside__item-title {
+  color: var(--oasis-text-primary);
+}
+
+.o-card.o-results-priority-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(59, 130, 246, 0.14) 0%,
+    rgba(59, 130, 246, 0.08) 100%
+  );
+  border-color: rgba(59, 130, 246, 0.34);
+  box-shadow:
+    inset 4px 0 0 var(--oasis-accent),
+    0 10px 24px rgba(43, 108, 176, 0.08);
+}
+
+.o-card.o-results-priority-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.22),
+    transparent 34%
+  );
+}
+
+.o-card.o-results-pathway-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+  border-color: rgba(43, 108, 176, 0.16);
+}
+
+/* -------------------------------------------------
+   Card heading system
+------------------------------------------------- */
+.o-card-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+  margin: 0 0 6px;
+}
+
+.o-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--oasis-text-primary);
+  margin: 0 0 8px;
+}
+
+.o-card-title--sm {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.o-card-subtitle {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--oasis-text-secondary);
+  margin: 0;
+}
+
+.o-card-meta {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--oasis-text-secondary);
+  margin: 0;
+}
+
+/* -------------------------------------------------
+   Buttons
+------------------------------------------------- */
+.o-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.o-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.o-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.16);
+}
+
+.o-btn--primary {
+  background: linear-gradient(180deg, #2b6cb0 0%, #1f5f9f 100%);
+  border-color: rgba(31, 95, 159, 0.9);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(43, 108, 176, 0.18);
+}
+
+.o-btn--primary:hover {
+  background: linear-gradient(180deg, #2f78c5 0%, #2467aa 100%);
+  border-color: rgba(36, 103, 170, 0.95);
+}
+
+.o-btn--secondary {
+  background: #ffffff;
+  border-color: var(--oasis-border-subtle);
+  color: var(--oasis-text-primary);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.o-btn--secondary:hover {
+  background: #f8fbfd;
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+.o-btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--oasis-text-secondary);
+}
+
+.o-btn--ghost:hover {
+  background: rgba(43, 108, 176, 0.06);
+  color: var(--oasis-text-primary);
+}
+
+/* -------------------------------------------------
+   CORE final button + typography normalization
+------------------------------------------------- */
+
+.o-core-shell .o-question-card__title {
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.o-core-shell .o-question-context__sector {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--oasis-text-secondary);
+}
+
+.o-core-shell .o-question-context__activity {
+  font-size: 12px;
+  color: var(--oasis-text-secondary);
+}
+
+.o-core-shell .o-action-row .o-btn,
+.o-core-shell .o-assessment-actions .o-btn,
+.o-core-shell .o-core-route-actions .o-btn,
+.o-core-shell button.o-btn,
+.o-core-shell .o-btn {
+  height: auto;
+  min-height: 28px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  line-height: 1;
+  gap: 6px;
+}
+
+.o-core-shell .o-btn--ghost,
+.o-core-shell .o-btn--secondary {
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--oasis-text-secondary);
+}
+
+.o-core-shell .o-btn--primary {
+  color: #fff;
+}
