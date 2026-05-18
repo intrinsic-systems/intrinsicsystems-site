@@ -1,6 +1,5 @@
 // src/acma/ACMAWizardPage.tsx
 import React, { useMemo, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { ACMA_SECTORS } from "./acmaHierarchy";
 import { SectorSelector } from "./SectorSelector";
 import { SectorWizard } from "./SectorWizard";
@@ -53,7 +52,6 @@ export const ACMAWizardPage: React.FC<Props> = ({
   const [showDebug, setShowDebug] = useState<boolean>(debugEnabled);
 
   const overall = useMemo(() => buildAssessmentSummary(answers), [answers]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (import.meta.env.DEV) {
@@ -142,161 +140,121 @@ export const ACMAWizardPage: React.FC<Props> = ({
           </div>
       </div>
 
-      <main className="o-sector-wizard-layout">
-        <aside className="o-sector-wizard-aside">
+      {!currentSector && (
+        <main className="o-assessment-home">
+          <section className="o-assessment-home__main">
+            <div className="o-card o-standards-card">
+              <h2>Standards alignment</h2>
+              <p>
+                Results from this readiness assessment can be viewed through multiple
+                lenses after completion:
+              </p>
+              <ul>
+                <li>OASIS Readiness Model (default)</li>
+                <li>ISO 55001 clause mapping</li>
+                <li>GFMAM subject area mapping</li>
+              </ul>
+              <p>
+                <strong>
+                  In MVP+, mapping views are informational and do not redefine the
+                  primary readiness structure.
+                </strong>
+              </p>
+            </div>
+
+            <button
+              type="button"
+              className="o-btn o-btn--secondary"
+              onClick={onExitToWelcome}
+            >
+              ← Back to welcome
+            </button>
+
+            <p className="o-page-copy">
+              A structured readiness assessment designed to establish a practical
+              baseline across governance, lifecycle decision-making, capability alignment,
+              risk visibility, and performance feedback structures.
+            </p>
+
+            <p className="o-page-copy">
+              In this version, all responses are stored locally in your browser only. No
+              data is transmitted or shared.
+            </p>
+
+            <div className="o-card o-results-overview-card">
+              <h2>Results overview</h2>
+              <p>
+                Overall readiness: <strong>{overall.maturityPct}%</strong> (
+                {overall.answered}/{overall.total} answered)
+              </p>
+
+              <div className="o-results-summary-grid">
+                <div className="o-metric-card">
+                  <div className="o-metric-card__label">Enterprise capability baseline</div>
+                  <div className="o-metric-card__value">{overall.maturityPct}%</div>
+                </div>
+
+                <div className="o-metric-card">
+                  <div className="o-metric-card__label">Completion</div>
+                  <div className="o-metric-card__value">{overall.completionPct}%</div>
+                </div>
+
+                <div className="o-metric-card">
+                  <div className="o-metric-card__label">Confidence</div>
+                  <div className="o-metric-card__value">{overall.confidencePct}%</div>
+                </div>
+
+                <div className="o-metric-card">
+                  <div className="o-metric-card__label">Answers</div>
+                  <div className="o-metric-card__value">{overall.answered}/{overall.total}
+                  </div>
+                </div>
+              </div>
+
+              <div className="o-action-row">
+                <span>No baseline saved yet.</span>
+                <button
+                  type="button"
+                  className="o-btn o-btn--ghost"
+                  onClick={handleSaveBaseline}
+               >
+                  Save current as baseline
+                </button>
+              </div>
+            </div>
+
+            <SectorSelector
+              sectors={ACMA_SECTORS}
+              answers={answers}
+              onSelect={(code) => setCurrentSectorCode(code)}
+            />
+          </section>
+        </main>
+      )}
+
+      {currentSector && (
+        <main className="o-assessment-main-wrap">
           <div className="o-action-row o-assessment-back-row">
             <button
-              onClick={() =>
-                currentSector ? setCurrentSectorCode(null) : onExitToWelcome()
-              }
+              onClick={() => setCurrentSectorCode(null)}
               className="o-btn o-btn--secondary"
             >
-              {currentSector ? "← Back to sectors" : "← Back to welcome"}
+              ← Back to sectors
             </button>
           </div>
 
-          <SectorSelector
-            sectors={ACMA_SECTORS}
+          <SectorWizard
+            sector={currentSector}
             answers={answers}
-            onSelect={(code) => setCurrentSectorCode(code)}
+            onAnswer={onAnswer}
+            onExit={() => setCurrentSectorCode(null)}
+            onCompleteSector={() => {
+              const nextSectorCode = getNextIncompleteSectorCode(currentSector.code);
+              setCurrentSectorCode(nextSectorCode ?? null);
+            }}
           />
-        </aside>
-
-        <section className="o-assessment-main">
-          {!currentSector ? (
-            <>
-              <div className="o-card o-card-pad o-standards-card">
-                <div className="o-eyebrow">Standards alignment</div>
-
-                <div className="o-text-small">
-                  Results from this readiness assessment can be viewed through
-                  multiple lenses after completion:
-                </div>
-
-                <ul className="o-text-small o-list-compact">
-                  <li>OASIS Readiness Model (default)</li>
-                  <li>ISO 55001 clause mapping</li>
-                  <li>GFMAM subject area mapping</li>
-                </ul>
-
-                <div className="o-text-muted">
-                  In MVP+, mapping views are informational and do not redefine the
-                  primary readiness structure.
-                </div>
-              </div>
-
-              <div className="o-stack-sm o-assessment-intro-copy">
-                <p className="o-text-small">
-                  A structured readiness assessment designed to establish a practical
-                  baseline across governance, lifecycle decision-making, capability
-                  alignment, risk visibility, and performance feedback structures.
-                </p>
-
-                <p className="o-text-small">
-                  In this version, all responses are stored locally in your browser
-                  only. No data is transmitted or shared.
-                </p>
-              </div>
-
-              {overall.total > 0 && overall.answered > 0 && (
-                <div className="o-card o-card-pad o-results-overview-card">
-                  <div className="o-eyebrow">Results overview</div>
-
-                  <div className="o-text-small">
-                    Overall readiness:
-                    <strong> {overall.maturityPct}%</strong>
-                    {" "}({overall.answered}/{overall.total} answered)
-                  </div>
-
-                  <div className="o-results-summary-grid">
-                    <div className="o-metric-card">
-                      <div className="o-metric-card__label">
-                        Enterprise capability baseline
-                      </div>
-
-                      <div className="o-metric-card__value">
-                        {overall.maturityPct}%
-                      </div>
-                    </div>
-
-                    <div className="o-metric-card">
-                      <div className="o-metric-card__label">Completion</div>
-
-                      <div className="o-metric-card__value">
-                        {overall.completionPct}%
-                      </div>
-                    </div>
-
-                    <div className="o-metric-card">
-                      <div className="o-metric-card__label">Confidence</div>
-
-                      <div className="o-metric-card__value">
-                        {overall.confidencePct}%
-                      </div>
-                    </div>
-
-                    <div className="o-metric-card">
-                      <div className="o-metric-card__label">Answers</div>
-
-                      <div className="o-metric-card__value">
-                        {overall.answered}/{overall.total}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="o-baseline-actions">
-                    <span>
-                      {baseline
-                        ? `Baseline saved ${new Date(
-                            baseline.savedAt
-                          ).toLocaleString()}`
-                        : "No baseline saved yet."}
-                    </span>
-
-                    <button
-                      type="button"
-                      className="o-btn o-btn--ghost"
-                      onClick={handleSaveBaseline}
-                    >
-                      {baseline
-                        ? "Update baseline from current"
-                        : "Save current as baseline"}
-                    </button>
-
-                    {baseline && (
-                      <button
-                        type="button"
-                        className="o-btn o-btn--ghost"
-                        onClick={handleClearBaseline}
-                      >
-                        Clear baseline
-                      </button>
-                    )}
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
-            <SectorWizard
-              sector={currentSector}
-              answers={answers}
-              onAnswer={onAnswer}
-              onExit={() => setCurrentSectorCode(null)}
-              onCompleteSector={() => {
-                const nextSectorCode = getNextIncompleteSectorCode(
-                  currentSector.code
-                );
-
-                if (nextSectorCode) {
-                  setCurrentSectorCode(nextSectorCode);
-                } else {
-                 setCurrentSectorCode(null);
-                }
-              }}
-            />
-          )}
-        </section>
-      </main>
+        </main>
+      )}
 
       {debugEnabled && showDebug && (
         <DebugPanel

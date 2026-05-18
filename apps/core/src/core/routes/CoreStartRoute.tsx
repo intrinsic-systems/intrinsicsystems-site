@@ -22,10 +22,10 @@ export function CoreStartRoute() {
       hasPrevious={hasPrevious}
       onStartNew={() => {
         ctx.clearAllAnswers();
-        ctx.goOnboarding();
+        navigate("/core/onboarding");
       }}
-      onContinueExisting={() => ctx.goAcma()}
-      onBackToSuite={() => navigate("/")}
+      onContinueExisting={() => navigate("/core/acma")}
+      onBackToSuite={() => navigate("/core/start")}
     />
   );
 }

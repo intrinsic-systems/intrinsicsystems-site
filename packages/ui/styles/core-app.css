@@ -1,195 +1,9 @@
 /* =========================================================
-   OASIS CORE — App Layout Recovery
+   OASIS CORE — app layout authority
 ========================================================= */
-
-.o-core-shell__content {
-  padding: 28px 32px 56px;
-}
-
-/* ---------------------------------------------------------
-   Main workspace frame
---------------------------------------------------------- */
-
-.o-core-workspace-frame,
-.o-workspace-frame {
-  width: min(1680px, calc(100vw - 48px));
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* ---------------------------------------------------------
-   Main white application canvas
---------------------------------------------------------- */
-
-.o-page,
-.o-assessment-page,
-.o-core-start-page,
-.o-onboarding-page {
-  width: 100%;
-  max-width: none;
-}
-
-/* ---------------------------------------------------------
-   Start page
---------------------------------------------------------- */
-
-.o-core-start-shell,
-.o-start-shell {
-  width: min(1480px, calc(100vw - 96px));
-  margin: 0 auto;
-}
-
-/* ---------------------------------------------------------
-   Onboarding
---------------------------------------------------------- */
-
-.o-onboarding-shell {
-  width: min(1480px, calc(100vw - 96px));
-  margin: 0 auto;
-}
-
-/* ---------------------------------------------------------
-   Assessment results home
---------------------------------------------------------- */
-
-.o-assessment-workspace {
-  width: min(1480px, calc(100vw - 96px));
-  margin: 0 auto;
-}
-
-.o-assessment-home {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-/* ---------------------------------------------------------
-   Sector assessment layout
---------------------------------------------------------- */
-
-.o-sector-wizard-layout {
-  display: grid;
-  grid-template-columns: 280px 340px minmax(760px, 1fr);
-  gap: 28px;
-
-  width: min(1680px, calc(100vw - 96px));
-  margin: 0 auto;
-}
-
-/* ---------------------------------------------------------
-   Left columns
---------------------------------------------------------- */
-
-.o-sector-wizard-aside {
-  min-width: 0;
-}
-
-.o-assessment-profile {
-  min-width: 0;
-}
-
-/* ---------------------------------------------------------
-   Main assessment panel
---------------------------------------------------------- */
-
-.o-assessment-main {
-  width: 100%;
-  min-width: 0;
-  max-width: none;
-}
-
-/* ---------------------------------------------------------
-   Question response cards
---------------------------------------------------------- */
-
-.o-response-scale {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(120px, 1fr));
-  gap: 14px;
-}
-
-.o-response-scale__option {
-  min-height: 136px;
-}
-
-/* ---------------------------------------------------------
-   Results summary cards
---------------------------------------------------------- */
-
-.o-results-summary-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
-  gap: 18px;
-}
-
-/* ---------------------------------------------------------
-   Footer/action areas
---------------------------------------------------------- */
-
-.o-core-footer,
-.o-core-route-actions {
-  width: min(1480px, calc(100vw - 96px));
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* =========================================================
-   Responsive
-========================================================= */
-
-@media (max-width: 1400px) {
-
-  .o-sector-wizard-layout {
-    grid-template-columns: 260px 300px minmax(520px, 1fr);
-  }
-
-  .o-response-scale {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 1100px) {
-
-  .o-sector-wizard-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .o-response-scale {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .o-results-summary-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 768px) {
-
-  .o-core-shell__content {
-    padding: 16px;
-  }
-
-  .o-response-scale {
-    grid-template-columns: 1fr;
-  }
-
-  .o-results-summary-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .o-core-start-shell,
-  .o-start-shell,
-  .o-onboarding-shell,
-  .o-assessment-workspace,
-  .o-core-footer,
-  .o-core-route-actions,
-  .o-sector-wizard-layout {
-    width: 100%;
-  }
-}
 
 .o-core-shell .o-core-shell__content {
-  padding: 32px 56px 72px !important;
+  padding: 32px 56px 72px;
 }
 
 .o-core-shell .o-core-workspace-frame {
@@ -198,70 +12,161 @@
   margin: 28px auto 0;
   padding: 0;
   border-radius: 24px;
+  min-height: auto;
+  overflow: visible;
+}
+
+/* ---------------------------------------------------------
+   Shared CORE page containment
+--------------------------------------------------------- */
+
+.o-core-shell .o-page,
+.o-core-shell .o-assessment-page {
   min-height: 620px;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 
 .o-core-shell .o-assessment-workspace {
-  width: 100% !important;
-  max-width: 1280px !important;
-  margin: 0 auto !important;
+  width: min(1280px, 100%);
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .o-core-shell .o-assessment-page-header {
-  margin-bottom: 28px !important;
+  margin-bottom: 28px;
 }
 
-.o-core-shell .o-assessment-main {
-  width: 100% !important;
-  max-width: none !important;
+/* ---------------------------------------------------------
+   Assessment landing page
+--------------------------------------------------------- */
+
+.o-core-shell .o-assessment-home {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  height: auto;
+  overflow: visible;
 }
+
+.o-core-shell .o-assessment-home__main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+}
+
+.o-core-shell .o-assessment-home__main > * {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.o-core-shell .o-sector-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* ---------------------------------------------------------
+   Assessment landing metrics
+--------------------------------------------------------- */
+
+.o-core-shell .o-assessment-home .o-results-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(140px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.o-core-shell .o-assessment-home .o-metric-card {
+  border: 1px solid var(--oasis-border-subtle);
+  border-radius: var(--oasis-radius-md);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  padding: 16px;
+}
+
+.o-core-shell .o-assessment-home .o-metric-card__label {
+  font-size: 12px;
+  color: var(--oasis-text-muted);
+  margin-bottom: 6px;
+}
+
+.o-core-shell .o-assessment-home .o-metric-card__value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--oasis-text-primary);
+}
+
+/* ---------------------------------------------------------
+   Sector question page
+--------------------------------------------------------- */
 
 .o-core-shell .o-sector-wizard-layout {
-  display: grid !important;
-  grid-template-columns: 250px minmax(0, 1fr) !important;
-  gap: 36px !important;
-  align-items: start !important;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 34px;
+  width: 100%;
+  max-width: 1180px;
+  margin: 18px auto 0;
+  align-items: start;
 }
 
-.o-core-shell .o-response-scale {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(96px, 1fr)) !important;
-  gap: 12px !important;
+/* ---------------------------------------------------------
+   Footer/action areas
+--------------------------------------------------------- */
+
+.o-core-shell .o-core-footer {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding-top: 16px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--oasis-text-muted);
 }
 
-.o-core-shell .o-response-scale__option {
-  min-height: 118px !important;
+.o-core-shell .o-core-route-actions {
+  width: min(1180px, 100%);
+  margin: 20px auto 0;
+  justify-content: flex-end;
 }
 
-.o-core-shell .o-results-overview-card {
-  max-width: 760px !important;
+/* =========================================================
+   Responsive
+========================================================= */
+
+@media (max-width: 1200px) {
+  .o-core-shell .o-core-shell__content {
+    padding: 24px 32px 48px;
+  }
+
+  .o-core-shell .o-core-workspace-frame {
+    width: min(100%, calc(100vw - 48px));
+  }
+
+  .o-core-shell .o-assessment-home .o-results-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.o-core-shell .o-response-scale {
-  display: grid !important;
-  grid-template-columns: repeat(6, minmax(120px, 1fr)) !important;
-  gap: 14px !important;
-  margin-top: 16px !important;
-}
+@media (max-width: 768px) {
+  .o-core-shell .o-core-shell__content {
+    padding: 18px 16px 32px;
+  }
 
-.o-core-shell .o-response-scale__option {
-  display: flex !important;
-  flex-direction: column !important;
-  min-height: 128px !important;
-  padding: 14px !important;
-  border-radius: 16px !important;
-}
+  .o-core-shell .o-core-workspace-frame {
+    width: min(100%, calc(100vw - 24px));
+  }
 
-.o-core-shell .o-response-scale__top {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin-bottom: 10px !important;
-}
+  .o-core-shell .o-sector-wizard-layout {
+    grid-template-columns: 1fr;
+  }
 
-.o-core-shell .o-response-scale__short,
-.o-core-shell .o-response-scale__label,
-.o-core-shell .o-response-scale__hint {
-  display: block !important;
+  .o-core-shell .o-assessment-home .o-results-summary-grid {
+    grid-template-columns: 1fr;
+  }
 }

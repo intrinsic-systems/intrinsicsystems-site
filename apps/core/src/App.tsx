@@ -13,7 +13,7 @@ export default function App() {
         <Route path="/" element={<Navigate to="/core/start" replace />} />
 
         <Route path="/core" element={<CoreFlowShell />}>
-          <Route index element={<Navigate to="/core/start" replace />} />
+          <Route index element={<Navigate to="start" replace />} />
           <Route path="start" element={<CoreStartRoute />} />
           <Route path="onboarding" element={<CoreOnboardingRoute />} />
           <Route path="acma" element={<CoreAcmaRoute />} />
