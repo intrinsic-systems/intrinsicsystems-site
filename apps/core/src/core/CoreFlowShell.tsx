@@ -187,10 +187,11 @@ export function CoreFlowShell() {
   );
 
   const mode: "compact" | "standard" =
-    location.pathname.startsWith("/core/start") ||
-    location.pathname.startsWith("/core/onboarding")
-      ? "compact"
-      : "standard";
+  location.pathname === "/core" ||
+  location.pathname.startsWith("/core/start") ||
+  location.pathname.startsWith("/core/onboarding")
+    ? "compact"
+    : "standard";
 
   const answersCount = Object.keys(answers).length;
 

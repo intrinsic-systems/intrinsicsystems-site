@@ -11,9 +11,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/core/start" replace />} />
+        <Route path="/core" element={<Navigate to="/core/start" replace />} />
 
-        <Route path="/core" element={<CoreFlowShell />}>
-          <Route index element={<Navigate to="start" replace />} />
+        <Route path="/core/*" element={<CoreFlowShell />}>
           <Route path="start" element={<CoreStartRoute />} />
           <Route path="onboarding" element={<CoreOnboardingRoute />} />
           <Route path="acma" element={<CoreAcmaRoute />} />

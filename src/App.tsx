@@ -99,6 +99,7 @@ export default function App() {
         />
 
         <Route path="/core" element={<CoreFlowShell />}>
+          <Route index element={<CoreStartRoute />} />
           <Route path="start" element={<CoreStartRoute />} />
           <Route path="onboarding" element={<CoreOnboardingRoute />} />
           <Route path="acma" element={<CoreAcmaRoute />} />
