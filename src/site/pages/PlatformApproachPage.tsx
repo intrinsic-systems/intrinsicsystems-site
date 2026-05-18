@@ -70,14 +70,17 @@ export function PlatformApproachPage() {
 
             <div className="o-card o-card-pad o-site-three-grid">
               <InfoBlock
+                label="Capability"
                 title="Relational capability structure"
                 body="Moves beyond one-question-per-topic logic toward linked relationships across enterprise, domain, element, and evidence layers."
               />
               <InfoBlock
+                label="Evidence"
                 title="Evidence-aware interpretation"
                 body="Capability position incorporates confidence, answer strength, evidence status, and organisational context to improve interpretive value."
               />
               <InfoBlock
+                label="Decision"
                 title="Decision-layer foundation"
                 body="Outputs support leadership review, program planning, standards mapping, investment sequencing, and expansion into broader OASIS modules."
               />
