@@ -28,22 +28,6 @@
   margin: 0;
 }
 
-.o-core-shell .o-assessment-workspace {
-  width: 100%;
-  max-width: none;
-  margin: 0 auto;
-}
-
-.o-core-shell .o-sector-wizard-layout {
-  display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 34px;
-  width: min(1180px, 100%);
-  max-width: 1180px;
-  margin: 18px auto 0;
-  align-items: start;
-}
-
 /* ---------------------------------------------------------
    Shared CORE page containment
 --------------------------------------------------------- */
@@ -137,12 +121,18 @@
 
 .o-core-shell .o-sector-wizard-layout {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 34px;
-  width: 100%;
-  max-width: 1180px;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 36px;
+  width: min(1360px, 100%);
+  max-width: 1360px;
   margin: 18px auto 0;
   align-items: start;
+}
+
+.o-core-shell .o-assessment-main {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
 }
 
 /* ---------------------------------------------------------
@@ -178,6 +168,23 @@
 
   .o-core-shell .o-assessment-home .o-results-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .o-core-shell .o-page-grid,
+  .o-core-shell .o-page-grid--hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .o-core-shell .o-page-aside {
+    width: 100%;
+    max-width: none;
+  }
+
+  .o-core-shell .o-page-grid > aside.o-page-aside.o-stack-md {
+    position: static;
   }
 }
 
@@ -230,60 +237,4 @@
 .o-core-shell .o-page {
   width: 100%;
   max-width: none;
-}
-
-/* =========================================================
-   CORE FINAL LAYOUT LOCK
-   Keep this at the very bottom of core-app.css
-========================================================= */
-
-.o-core-shell .o-core-workspace-frame {
-  width: min(1560px, calc(100vw - 64px)) !important;
-  max-width: 1560px !important;
-  margin: 28px auto 0 !important;
-  padding: 0 !important;
-  min-height: 620px !important;
-  overflow: visible !important;
-}
-
-.o-core-shell .o-page,
-.o-core-shell .o-page-grid,
-.o-core-shell .o-page-grid--hero,
-.o-core-shell .o-flow-layout,
-.o-core-shell .o-assessment-page,
-.o-core-shell .o-assessment-workspace {
-  width: 100% !important;
-  max-width: none !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-
-.o-core-shell .o-page-grid,
-.o-core-shell .o-page-grid--hero,
-.o-core-shell .o-flow-layout {
-  padding: 0 !important;
-}
-
-.o-core-shell .o-page-main {
-  width: 100% !important;
-  max-width: none !important;
-  min-width: 0 !important;
-}
-
-.o-core-shell .o-page-aside {
-  min-width: 280px !important;
-  max-width: 360px !important;
-}
-
-.o-core-shell .o-sector-wizard-layout {
-  width: min(1180px, 100%) !important;
-  max-width: 1180px !important;
-  grid-template-columns: 280px minmax(0, 1fr) !important;
-  gap: 34px !important;
-}
-
-.o-core-shell .o-assessment-main {
-  max-width: 960px !important;
-  width: 100% !important;
 }
