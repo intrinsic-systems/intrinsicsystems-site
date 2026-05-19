@@ -274,3 +274,76 @@
     max-width: none;
   }
 }
+
+.o-core-shell .o-assessment-page .o-assessment-main {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* =========================================================
+   CORE ASSESSMENT VISUAL REFINEMENT
+========================================================= */
+
+/* Assessment landing: let white result cards align better with sector pills */
+.o-core-shell .o-assessment-home__main,
+.o-core-shell .o-assessment-home .o-card,
+.o-core-shell .o-assessment-home .o-section-card {
+  width: min(760px, 100%);
+}
+
+/* Question page: restore stronger blue decision-card treatment */
+.o-core-shell .o-assessment-page .o-question-card {
+  width: 100% !important;
+  max-width: none !important;
+  background: linear-gradient(180deg, #f7fbff 0%, #eef7ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.28);
+}
+
+/* Match progress/sector completed width to decision prompt card */
+.o-core-shell .o-assessment-page .o-assessment-main > * {
+  width: 100%;
+}
+
+/* Make sector completed pill feel linked to prompt card */
+.o-core-shell .o-sector-complete,
+.o-core-shell .o-assessment-complete,
+.o-core-shell .o-sector-completion {
+  background: #dcecf8;
+  border: 1px solid rgba(43, 108, 176, 0.45);
+  border-radius: 14px;
+}
+
+/* Back to sectors pill */
+.o-core-shell .o-assessment-page .o-btn--secondary {
+  background: #ffffff;
+  border: 1px solid rgba(43, 108, 176, 0.22);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+/* =========================================================
+   CORE RESPONSE SCALE COLOUR LOCK
+========================================================= */
+
+.o-core-shell .o-response-scale__option--level-1 {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+.o-core-shell .o-response-scale__option--level-2 {
+  background: linear-gradient(180deg, #ffffff 0%, #fee2e2 100%);
+}
+
+.o-core-shell .o-response-scale__option--level-3 {
+  background: linear-gradient(180deg, #ffffff 0%, #fef3c7 100%);
+}
+
+.o-core-shell .o-response-scale__option--level-4 {
+  background: linear-gradient(180deg, #ffffff 0%, #dbeafe 100%);
+}
+
+.o-core-shell .o-response-scale__option--level-5 {
+  background: linear-gradient(180deg, #ffffff 0%, #d6f4ff 100%);
+}
+
+.o-core-shell .o-response-scale__option--level-6 {
+  background: linear-gradient(180deg, #ffffff 0%, #d1fae5 100%);
+}
