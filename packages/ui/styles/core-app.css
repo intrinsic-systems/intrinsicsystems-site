@@ -5,7 +5,7 @@
 .o-core-shell .o-core-shell__content {
   width: 100%;
   box-sizing: border-box;
-  padding: 32px 56px 72px;
+  padding: 24px 48px 48px;
   display: flex;
   justify-content: center;
 }
@@ -16,7 +16,7 @@
   margin: 28px auto 0;
   padding: 0;
   border-radius: 24px;
-  min-height: 620px;
+  min-height: 760px;
   overflow: visible;
 }
 
@@ -171,23 +171,6 @@
   }
 }
 
-@media (max-width: 980px) {
-  .o-core-shell .o-page-grid,
-  .o-core-shell .o-page-grid--hero {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-  }
-
-  .o-core-shell .o-page-aside {
-    width: 100%;
-    max-width: none;
-  }
-
-  .o-core-shell .o-page-grid > aside.o-page-aside.o-stack-md {
-    position: static;
-  }
-}
-
 @media (max-width: 768px) {
   .o-core-shell .o-core-shell__content {
     padding: 18px 16px 32px;
@@ -237,4 +220,57 @@
 .o-core-shell .o-page {
   width: 100%;
   max-width: none;
+}
+
+@media (max-width: 980px) {
+  .o-core-shell .o-page-grid,
+  .o-core-shell .o-page-grid--hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .o-core-shell .o-page-aside {
+    width: 100%;
+    max-width: none;
+  }
+
+  .o-core-shell .o-page-grid > aside.o-page-aside.o-stack-md {
+    position: static;
+  }
+}
+
+/* =========================================================
+   CORE PAGE-SPECIFIC LAYOUT STABILISERS
+========================================================= */
+
+.o-core-shell .o-welcome-page .o-page-grid--hero,
+.o-core-shell .o-flow-page .o-flow-layout {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+}
+
+.o-core-shell .o-welcome-page .o-page-main,
+.o-core-shell .o-flow-page .o-page-main {
+  max-width: none;
+}
+
+.o-core-shell .o-results-page .o-page-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.o-core-shell .o-results-page .o-page-main {
+  max-width: none;
+}
+
+@media (max-width: 980px) {
+  .o-core-shell .o-welcome-page .o-page-grid--hero,
+  .o-core-shell .o-flow-page .o-flow-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .o-core-shell .o-welcome-page .o-page-aside,
+  .o-core-shell .o-flow-page .o-page-aside {
+    width: 100%;
+    max-width: none;
+  }
 }
