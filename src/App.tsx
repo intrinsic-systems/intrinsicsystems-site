@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./styles/oasis.css";
 
 import { HomePage } from "./site/pages/HomePage";
 import { WhatWeDoPage } from "./site/pages/WhatWeDoPage";

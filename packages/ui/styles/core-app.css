@@ -347,3 +347,10 @@
 .o-core-shell .o-response-scale__option--level-6 {
   background: linear-gradient(180deg, #ffffff 0%, #d1fae5 100%);
 }
+
+.o-core-shell .o-assessment-page .o-sector-complete-card {
+  width: 100%;
+  background: #dcecf8;
+  border: 1px solid rgba(43, 108, 176, 0.45);
+  border-radius: 14px;
+}
