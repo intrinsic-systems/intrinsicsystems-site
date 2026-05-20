@@ -8,7 +8,9 @@ export function determineTriggers(
 ): TriggerType[] {
   const triggers: TriggerType[] = [];
 
-  if (answer.score < 35) {
+  const score = answer.score ?? 0;
+
+  if (score < 35) {
     triggers.push("low-score");
   }
 
