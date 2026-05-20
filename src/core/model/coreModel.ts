@@ -1,5 +1,12 @@
 export type CapabilityWeight = "low" | "medium" | "high" | "critical";
 
+export type QuestionType =
+  | "core"
+  | "probe"
+  | "validation"
+  | "evidence"
+  | "benchmark";
+
 export type TriggerCondition =
   | "low_score"
   | "medium_score"
@@ -33,8 +40,15 @@ export type ConfidenceImpact = "reduce" | "neutral" | "increase";
 export type CoreQuestion = {
   id: string;
   text: string;
-  weight?: CapabilityWeight;
-  required?: boolean;
+
+  type?: QuestionType;
+
+  guidance?: string;
+  helpText?: string;
+
+  weight?: number;
+
+  tags?: string[];
 };
 
 export type ProbeQuestion = {
@@ -79,12 +93,19 @@ export type AiModelHooks = {
 export type CoreCapability = {
   id: string;
   label: string;
+  name?: string;
   description?: string;
+
+  domainId?: string;
+  elementId?: string;
 
   weight: CapabilityWeight;
   trigger?: TriggerCondition[];
+  triggers?: TriggerCondition[];
 
   coreQuestions: CoreQuestion[];
+  questions?: CoreQuestion[];
+
   probes?: ProbeQuestion[];
   evidence?: Array<string | EvidenceItem>;
 
