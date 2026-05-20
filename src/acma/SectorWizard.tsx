@@ -89,7 +89,7 @@ const RESPONSE_SCALE_OPTIONS: ResponseScaleOption[] = [
 
 function computeScopeScore(
   questionCodes: string[],
-  answers: Record<string, string>
+  answers: Record<string, string>,
 ): ScopeScore {
   const total = questionCodes.length;
   if (!total) return { total: 0, answered: 0, scorePct: 0 };
@@ -121,7 +121,7 @@ function computeScopeScore(
 
 const getActivityStats = (
   actQuestions: { code: string }[],
-  answers: Record<string, string>
+  answers: Record<string, string>,
 ) => {
   const codes = actQuestions.map((q) => q.code);
   const total = codes.length;
@@ -180,7 +180,10 @@ export const SectorWizard: React.FC<Props> = ({
   onExit,
   onCompleteSector,
 }) => {
-  const initialPosition = useMemo(() => findFirstValidPosition(sector), [sector]);
+  const initialPosition = useMemo(
+    () => findFirstValidPosition(sector),
+    [sector],
+  );
 
   const [areaIdx, setAreaIdx] = useState(initialPosition.areaIdx);
   const [activityIdx, setActivityIdx] = useState(initialPosition.activityIdx);
@@ -216,7 +219,7 @@ export const SectorWizard: React.FC<Props> = ({
       (q) =>
         q.areaIdx === areaIdx &&
         q.activityIdx === activityIdx &&
-        q.questionIdx === questionIdx
+        q.questionIdx === questionIdx,
     );
   }, [flatQuestions, areaIdx, activityIdx, questionIdx]);
 
@@ -239,8 +242,10 @@ export const SectorWizard: React.FC<Props> = ({
 
   const derivedInfo = useMemo(
     () =>
-      currentQuestion ? computeDerivedInfo(currentQuestion.code, answers) : null,
-    [currentQuestion, answers]
+      currentQuestion
+        ? computeDerivedInfo(currentQuestion.code, answers)
+        : null,
+    [currentQuestion, answers],
   );
 
   useEffect(() => {
@@ -255,7 +260,7 @@ export const SectorWizard: React.FC<Props> = ({
 
   const sectorScore = useMemo(
     () => computeSectorScore(sector.code, answers),
-    [sector.code, answers]
+    [sector.code, answers],
   );
 
   const sectorComplete =
@@ -272,7 +277,7 @@ export const SectorWizard: React.FC<Props> = ({
     if (!area) return { total: 0, answered: 0, scorePct: 0 };
     const qCodes: string[] = [];
     area.activities.forEach((act) =>
-      act.questions.forEach((q) => qCodes.push(q.code))
+      act.questions.forEach((q) => qCodes.push(q.code)),
     );
     return computeScopeScore(qCodes, answers);
   }, [area, answers]);
@@ -292,7 +297,7 @@ export const SectorWizard: React.FC<Props> = ({
       setActivityIdx(target.activityIdx);
       setQuestionIdx(target.questionIdx);
     },
-    [flatQuestions]
+    [flatQuestions],
   );
 
   const goPrevQuestion = useCallback(() => {
@@ -320,10 +325,10 @@ export const SectorWizard: React.FC<Props> = ({
 
   const handleJumpToActivity = (
     targetAreaIdx: number,
-    targetActIdx: number
+    targetActIdx: number,
   ) => {
     const firstQuestionInActivity = flatQuestions.find(
-      (q) => q.areaIdx === targetAreaIdx && q.activityIdx === targetActIdx
+      (q) => q.areaIdx === targetAreaIdx && q.activityIdx === targetActIdx,
     );
 
     if (!firstQuestionInActivity) return;
@@ -402,436 +407,301 @@ export const SectorWizard: React.FC<Props> = ({
   }
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "260px 1fr",
-        gap: 20,
-      }}
-    >
-      <aside
-        style={{
-          borderRight: "1px solid var(--oasis-border-subtle)",
-          paddingRight: 16,
-          paddingBottom: 8,
-        }}
-      >
-        {(profile.orgName ||
-          profile.sector ||
-          profile.region ||
-          profile.assetClass ||
-          profile.horizon) && (
-          <div
-            className="o-card"
-            style={{
-              padding: 10,
-              marginBottom: 14,
-              background: "var(--oasis-surface)",
-              borderRadius: "var(--oasis-radius-lg)",
-              border: "1px solid var(--oasis-border-subtle)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: 11,
-                textTransform: "uppercase",
-                letterSpacing: "0.08em",
-                color: "var(--oasis-text-muted)",
-                marginBottom: 4,
-              }}
-            >
-              Assessment profile
-            </div>
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 500,
-                marginBottom: 2,
-              }}
-            >
-              {profile.orgName || "Organisation not set"}
-            </div>
-            <div
-              style={{
-                fontSize: 11,
-                color: "var(--oasis-text-secondary)",
-              }}
-            >
-              {profile.sector && <span>{profile.sector}</span>}
-              {profile.sector && profile.region && " · "}
-              {profile.region && <span>{profile.region}</span>}
-            </div>
-            {(profile.assetClass || profile.horizon) && (
-              <div
-                style={{
-                  fontSize: 11,
-                  color: "var(--oasis-text-secondary)",
-                  marginTop: 4,
-                }}
-              >
-                {profile.assetClass && <span>{profile.assetClass}</span>}
-                {profile.assetClass && profile.horizon && " · "}
-                {profile.horizon && <span>{profile.horizon}</span>}
-              </div>
-            )}
-          </div>
-        )}
-
-        <div style={{ marginBottom: 16 }}>
-          <div
-            style={{
-              fontSize: "var(--oasis-text-sm)",
-              color: "var(--oasis-text-muted)",
-              marginBottom: 2,
-            }}
-          >
-            Sector {sector.code}
-          </div>
-          <div
-            style={{
-              fontSize: "var(--oasis-text-lg)",
-              fontWeight: 600,
-              color: "var(--oasis-text-primary)",
-            }}
-          >
-            {sector.name}
-          </div>
-          <div
-            style={{
-              fontSize: "var(--oasis-text-xs)",
-              color: "var(--oasis-text-secondary)",
-              marginTop: 2,
-            }}
-          >
-            {sectorScore.answered}/{sectorScore.total} questions ·{" "}
-            {sectorScore.total > 0
-              ? `${Math.round(sectorScore.scorePct)}% readiness`
-              : "No responses yet"}
-          </div>
+    <div className="o-sector-wizard">
+      <div className="o-assessment-profile-strip">
+        <div className="o-assessment-profile-strip__eyebrow">
+          Assessment profile
         </div>
-
-        <div style={{ fontSize: 13 }}>
-          <div
-            style={{
-              fontSize: 11,
-              textTransform: "uppercase",
-              letterSpacing: "0.08em",
-              color: "var(--oasis-text-muted)",
-              marginBottom: 6,
-            }}
-          >
-            Areas &amp; activities
-          </div>
-
-          {sector.areas.map((a, aIndex) => {
-            const isAreaActive = aIndex === areaIdx;
-            const isExpanded = isAreaActive;
-
-            return (
-              <div
-                key={a.code}
-                style={{
-                  marginBottom: 10,
-                  paddingBottom: 6,
-                  borderBottom:
-                    aIndex < sector.areas.length - 1
-                      ? "1px solid rgba(255, 255, 255, 0.04)"
-                      : "none",
-                }}
-              >
-                <div style={{ marginBottom: 6 }}>
-                  <div
-                    style={{
-                      fontSize: "var(--oasis-text-xs)",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.07em",
-                      color: "var(--oasis-text-muted)",
-                      marginBottom: 2,
-                    }}
-                  >
-                    Area {aIndex + 1}
-                  </div>
-
-                  <div
-                    style={{
-                      fontSize: "var(--oasis-text-md)",
-                      fontWeight: 500,
-                      color: isAreaActive
-                        ? "var(--oasis-text-primary)"
-                        : "var(--oasis-text-secondary)",
-                    }}
-                  >
-                    {a.code} {a.name}
-                  </div>
-                </div>
-
-                {isExpanded && (
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      paddingLeft: 12,
-                      margin: 0,
-                    }}
-                  >
-                    {a.activities.map((act, actIndex) => {
-                      const isActive =
-                        aIndex === areaIdx && actIndex === activityIdx;
-                      const stats = getActivityStats(act.questions, answers);
-
-                      const notStarted = stats.answered === 0;
-                      const complete =
-                        stats.answered > 0 &&
-                        stats.answered === stats.total &&
-                        stats.total > 0;
-                      const inProgress =
-                        !notStarted && !complete && stats.total > 0;
-
-                      let statusClass = "o-activity-status--idle";
-                      if (complete) statusClass = "o-activity-status--complete";
-                      else if (inProgress)
-                        statusClass = "o-activity-status--partial";
-
-                      return (
-                        <li
-                          id={`o-activity-${act.code}`}
-                          key={act.code}
-                          className={
-                            "o-area-item" +
-                            (isActive ? " o-area-item--active" : "")
-                          }
-                          style={{ marginBottom: 4 }}
-                        >
-                          <button
-                            className="o-area-button"
-                            onClick={() =>
-                              handleJumpToActivity(aIndex, actIndex)
-                            }
-                          >
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "flex-start",
-                                gap: 6,
-                              }}
-                            >
-                              <span
-                                className={"o-activity-status " + statusClass}
-                              />
-                              <div>
-                                <div className="o-area-code">{act.code}</div>
-                                <div className="o-area-name">{act.name}</div>
-                                <div className="o-area-progress">
-                                  {stats.answered}/{stats.total} · {stats.pct}%
-                                </div>
-                              </div>
-                            </div>
-                          </button>
-
-                          {isActive && currentQuestionCode && (
-                            <div
-                              style={{
-                                fontSize: 10,
-                                color: "var(--oasis-text-muted)",
-                                padding: "0 6px 4px 22px",
-                              }}
-                            >
-                              → Current question: {currentQuestionCode}
-                            </div>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </aside>
-
-      <main className="o-assessment-main">
-        <div className="o-assessment-body">
-          <div style={{ marginBottom: 10 }}>
-            <div
-              style={{
-                fontSize: 12,
-                color: "var(--oasis-text-muted)",
-                marginBottom: 4,
-              }}
-            >
-              Sector {sector.code} · {sector.name}
-            </div>
-            <div
-              style={{
-                fontSize: 13,
-                color: "var(--oasis-text-secondary)",
-              }}
-            >
-              {area.code} {area.name} · {activity.code} {activity.name}
-            </div>
-          </div>
-
-          <div
-            className="o-question-card o-question-card--active"
-            style={{ marginBottom: 16 }}
-          >
-            <div className="o-question-card__header">
-              <div className="o-question-card__eyebrow">
-                Current decision prompt
-              </div>
-
-              <div className="o-question-card__title">
-                {currentQuestion.text}
-              </div>
-            </div>
-
-            {derivedInfo ? (
-              <div className="o-question-card__derived">
-                <div className="o-question-card__derived-meta">
-                  Automatically determined from related responses (
-                  {derivedInfo.dependsOn.join(", ")}).
-                </div>
-
-                {derivedInfo.label ? (
-                  <div className="o-question-card__derived-pill">
-                    <span className="o-question-card__derived-icon">✓</span>
-                    <span>
-                      Calculated level: <strong>{derivedInfo.label}</strong>
-                    </span>
-                  </div>
-                ) : (
-                  <div className="o-question-card__derived-waiting">
-                    This response level will be calculated automatically once
-                    all contributing questions have been answered.
-                  </div>
-                )}
-
-                {derivedInfo.avgRank != null && (
-                  <div className="o-question-card__derived-score">
-                    Average score {derivedInfo.avgRank.toFixed(1)} of 6 from{" "}
-                    {derivedInfo.dependsOn.length} questions.
-                  </div>
-                )}
-              </div>
-            ) : (
-              <ResponseScale
-                options={RESPONSE_SCALE_OPTIONS}
-                selectedValue={answers[currentQuestion.code]}
-                onSelect={(value) => onAnswer(currentQuestion.code, value)}
-              />
-            )}
-          </div>
-
-          <div style={{ marginBottom: 10 }}>
-            <div
-              style={{
-                fontSize: 12,
-                color: "var(--oasis-text-secondary)",
-                marginBottom: 4,
-              }}
-            >
-              Question {questionNumberInActivity} of {totalQuestionsInActivity} in{" "}
-              {activity.code} {activity.name}
-            </div>
-
-            <div
-              style={{
-                height: 4,
-                borderRadius: 999,
-                background: "rgba(255, 255, 255, 0.06)",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  width: `${pctInActivity}%`,
-                  height: "100%",
-                  background: "var(--oasis-accent)",
-                  transition: "width 160ms ease-out",
-                }}
-              />
-            </div>
-          </div>
-
-          <div
-            style={{
-              fontSize: 12,
-              color: "var(--oasis-text-secondary)",
-              marginBottom: 12,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 12,
-            }}
-          >
+        <div className="o-assessment-profile-strip__main">
+          <strong>{profile.orgName || "Organisation not set"}</strong>
+          {(profile.sector || profile.region) && (
             <span>
-              <strong>Sector {sector.code}</strong>{" "}
-              {sectorScore.total > 0
-                ? `· ${Math.round(sectorScore.scorePct)}% readiness`
-                : "· n/a"}
+              {profile.sector}
+              {profile.sector && profile.region ? " · " : ""}
+              {profile.region}
             </span>
+          )}
+          {(profile.assetClass || profile.horizon) && (
             <span>
-              <strong>{area.code}</strong>{" "}
-              {areaScore.total > 0
-                ? `· ${Math.round(areaScore.scorePct)}% readiness`
-                : "· n/a"}
+              {profile.assetClass}
+              {profile.assetClass && profile.horizon ? " · " : ""}
+              {profile.horizon}
             </span>
-            <span>
-              <strong>{activity.code}</strong>{" "}
-              {activityScore.total > 0
-                ? `· ${Math.round(activityScore.scorePct)}% readiness`
-                : "· n/a"}
-            </span>
-          </div>
-
-          {sectorComplete && (
-            <div
-              className="o-card"
-              style={{
-                padding: 12,
-                marginTop: 12,
-                marginBottom: 12,
-                borderColor: "var(--oasis-accent)",
-                background: "var(--oasis-accent-soft)",
-                maxWidth: 560,
-              }}
-            >
-              <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 4 }}>
-                ✔ Sector completed
-              </div>
-              <div className="o-text-small">
-                All questions in this sector have been answered. Continue to
-                the next sector when ready.
-              </div>
-            </div>
           )}
         </div>
+      </div>
 
-        <div className="o-assessment-actions">
-          <div className="o-assessment-actions__inner">
-            <div className="o-assessment-actions__group">
-              <button
-                onClick={goPrevQuestion}
-                className="o-btn o-btn--ghost"
-                disabled={currentFlatIndex <= 0}
-              >
-                ← Previous
-              </button>
-            </div>
-
-            <div className="o-assessment-actions__group">
-              <button onClick={onExit} className="o-btn o-btn--ghost">
-                Save &amp; Exit
-              </button>
-
-              <button onClick={goNextQuestion} className="o-btn o-btn--primary">
-                {currentFlatIndex >= flatQuestions.length - 1
-                  ? "→ Continue to next sector"
-                  : "Next →"}
-              </button>
-            </div>
-          </div>
+      <div className="o-sector-workspace">
+        <div className="o-sector-workspace__toolbar">
+          <button type="button" onClick={onExit} className="o-btn o-btn--back">
+            ← Back to sectors
+          </button>
         </div>
-      </main>
+
+        <div className="o-sector-wizard-layout">
+          <aside className="o-sector-sidebar">
+            <div className="o-sector-tree">
+              <div className="o-sector-tree__header">
+                <div className="o-sector-tree__eyebrow">
+                  Sector {sector.code}
+                </div>
+                <div className="o-sector-tree__title">{sector.name}</div>
+                <div className="o-sector-tree__meta">
+                  {sectorScore.answered}/{sectorScore.total} questions ·{" "}
+                  {sectorScore.total > 0
+                    ? `${Math.round(sectorScore.scorePct)}% readiness`
+                    : "No responses yet"}
+                </div>
+              </div>
+
+              <div className="o-sector-tree__section">
+                <div className="o-sector-tree__label">
+                  Areas &amp; activities
+                </div>
+
+                {sector.areas.map((a, aIndex) => {
+                  const isAreaActive = aIndex === areaIdx;
+                  const isExpanded = isAreaActive;
+
+                  return (
+                    <div
+                      key={a.code}
+                      className={
+                        "o-sector-tree__area" +
+                        (isAreaActive ? " o-sector-tree__area--active" : "")
+                      }
+                    >
+                      <div className="o-sector-tree__area-header">
+                        <div className="o-sector-tree__area-label">
+                          Area {aIndex + 1}
+                        </div>
+                        <div className="o-sector-tree__area-title">
+                          {a.code} {a.name}
+                        </div>
+                      </div>
+
+                      {isExpanded && (
+                        <ul className="o-sector-tree__activity-list">
+                          {a.activities.map((act, actIndex) => {
+                            const isActive =
+                              aIndex === areaIdx && actIndex === activityIdx;
+                            const stats = getActivityStats(
+                              act.questions,
+                              answers,
+                            );
+
+                            const notStarted = stats.answered === 0;
+                            const complete =
+                              stats.answered > 0 &&
+                              stats.answered === stats.total &&
+                              stats.total > 0;
+                            const inProgress =
+                              !notStarted && !complete && stats.total > 0;
+
+                            let statusClass = "o-activity-status--idle";
+                            if (complete)
+                              statusClass = "o-activity-status--complete";
+                            else if (inProgress)
+                              statusClass = "o-activity-status--partial";
+
+                            return (
+                              <li
+                                id={`o-activity-${act.code}`}
+                                key={act.code}
+                                className={
+                                  "o-sector-tree__activity" +
+                                  (isActive
+                                    ? " o-sector-tree__activity--active"
+                                    : "")
+                                }
+                              >
+                                <button
+                                  type="button"
+                                  className="o-sector-tree__activity-button"
+                                  onClick={() =>
+                                    handleJumpToActivity(aIndex, actIndex)
+                                  }
+                                >
+                                  <span
+                                    className={
+                                      "o-activity-status " + statusClass
+                                    }
+                                  />
+                                  <span className="o-sector-tree__activity-copy">
+                                    <span className="o-area-code">
+                                      {act.code}
+                                    </span>
+                                    <span className="o-area-name">
+                                      {act.name}
+                                    </span>
+                                    <span className="o-area-progress">
+                                      {stats.answered}/{stats.total} ·{" "}
+                                      {stats.pct}%
+                                    </span>
+                                  </span>
+                                </button>
+
+                                {isActive && currentQuestionCode && (
+                                  <div className="o-sector-tree__current-question">
+                                    → Current question: {currentQuestionCode}
+                                  </div>
+                                )}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </aside>
+
+          <main className="o-assessment-main">
+            <div className="o-assessment-body">
+              <div className="o-question-context">
+                <div className="o-question-context__sector">
+                  Sector {sector.code} · {sector.name}
+                </div>
+                <div className="o-question-context__activity">
+                  {area.code} {area.name} · {activity.code} {activity.name}
+                </div>
+              </div>
+
+              <div className="o-question-card o-question-card--active">
+                <div className="o-question-card__header">
+                  <div className="o-question-card__eyebrow">
+                    Current decision prompt
+                  </div>
+
+                  <div className="o-question-card__title">
+                    {currentQuestion.text}
+                  </div>
+                </div>
+
+                {derivedInfo ? (
+                  <div className="o-question-card__derived">
+                    <div className="o-question-card__derived-meta">
+                      Automatically determined from related responses (
+                      {derivedInfo.dependsOn.join(", ")}).
+                    </div>
+
+                    {derivedInfo.label ? (
+                      <div className="o-question-card__derived-pill">
+                        <span className="o-question-card__derived-icon">✓</span>
+                        <span>
+                          Calculated level: <strong>{derivedInfo.label}</strong>
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="o-question-card__derived-waiting">
+                        This response level will be calculated automatically
+                        once all contributing questions have been answered.
+                      </div>
+                    )}
+
+                    {derivedInfo.avgRank != null && (
+                      <div className="o-question-card__derived-score">
+                        Average score {derivedInfo.avgRank.toFixed(1)} of 6 from{" "}
+                        {derivedInfo.dependsOn.length} questions.
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <ResponseScale
+                    options={RESPONSE_SCALE_OPTIONS}
+                    selectedValue={answers[currentQuestion.code]}
+                    onSelect={(value) => onAnswer(currentQuestion.code, value)}
+                  />
+                )}
+              </div>
+
+              <div className="o-question-progress">
+                <div className="o-question-progress__label">
+                  Question {questionNumberInActivity} of{" "}
+                  {totalQuestionsInActivity} in {activity.code} {activity.name}
+                </div>
+
+                <div className="o-question-progress__track">
+                  <div
+                    className="o-question-progress__bar"
+                    style={{ width: `${pctInActivity}%` }}
+                  />
+                </div>
+              </div>
+
+              <div className="o-scope-readiness-row">
+                <span>
+                  <strong>Sector {sector.code}</strong> ·{" "}
+                  {sectorScore.total > 0
+                    ? `${Math.round(sectorScore.scorePct)}% readiness`
+                    : "n/a"}
+                </span>
+                <span>
+                  <strong>{area.code}</strong> ·{" "}
+                  {areaScore.total > 0
+                    ? `${Math.round(areaScore.scorePct)}% readiness`
+                    : "n/a"}
+                </span>
+                <span>
+                  <strong>{activity.code}</strong> ·{" "}
+                  {activityScore.total > 0
+                    ? `${Math.round(activityScore.scorePct)}% readiness`
+                    : "n/a"}
+                </span>
+              </div>
+
+              {sectorComplete && (
+                <div className="o-sector-complete-card">
+                  <div className="o-sector-complete-card__title">
+                    ✔ Sector completed
+                  </div>
+                  <div className="o-text-small">
+                    All questions in this sector have been answered. Continue to
+                    the next sector when ready.
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="o-assessment-actions">
+              <div className="o-assessment-actions__inner">
+                <div className="o-assessment-actions__group">
+                  <button
+                    type="button"
+                    onClick={goPrevQuestion}
+                    className="o-btn o-btn--ghost"
+                    disabled={currentFlatIndex <= 0}
+                  >
+                    ← Previous
+                  </button>
+                </div>
+
+                <div className="o-assessment-actions__group">
+                  <button
+                    type="button"
+                    onClick={onExit}
+                    className="o-btn o-btn--ghost"
+                  >
+                    Save &amp; Exit
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={goNextQuestion}
+                    className="o-btn o-btn--primary"
+                  >
+                    {currentFlatIndex >= flatQuestions.length - 1
+                      ? "Continue to next sector →"
+                      : "Next →"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
   );
 };

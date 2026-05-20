@@ -123,7 +123,7 @@ export const ACMAWizardPage: React.FC<Props> = ({
   };
 
   return (
-    <div className="o-page">
+    <div className="o-page o-assessment-page">
       <div className="o-page-header">
         <div className="o-page-header-main">
           <h1 className="o-page-title">
@@ -324,14 +324,6 @@ export const ACMAWizardPage: React.FC<Props> = ({
 
       {currentSector && (
         <>
-          <button
-            onClick={() => setCurrentSectorCode(null)}
-            className="o-btn o-btn--secondary"
-            style={{ marginBottom: 12 }}
-          >
-            ← Back to sectors
-          </button>
-
           <SectorWizard
             sector={currentSector}
             answers={answers}

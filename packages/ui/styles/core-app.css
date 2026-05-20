@@ -123,9 +123,9 @@
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
   gap: 36px;
-  width: min(1360px, 100%);
+  width: 100%;
   max-width: 1360px;
-  margin: 18px auto 0;
+  margin: 18px 0 0;
   align-items: start;
 }
 
@@ -353,4 +353,685 @@
   background: #dcecf8;
   border: 1px solid rgba(43, 108, 176, 0.45);
   border-radius: 14px;
+}
+
+/* =========================================================
+   QUESTIONS PAGE — WIDTH + ALIGNMENT REFINEMENT
+========================================================= */
+
+/* Progress bar aligns to decision prompt width */
+.o-core-shell .o-assessment-page .o-progress-strip,
+.o-core-shell .o-assessment-page .o-question-progress,
+.o-core-shell .o-assessment-page .o-progress-bar {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Blue styling for back buttons */
+.o-core-shell .o-btn--secondary,
+.o-core-shell .o-btn--back {
+  background: linear-gradient(180deg, #f7fbff 0%, #e8f3ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.32);
+  color: #2b6cb0;
+  box-shadow: 0 4px 12px rgba(43, 108, 176, 0.08);
+}
+
+/* Sector complete card visual strengthening */
+.o-core-shell .o-sector-complete-card,
+.o-core-shell .o-sector-complete,
+.o-core-shell .o-assessment-complete {
+  background: linear-gradient(180deg, #eef7ff 0%, #dcecf8 100%);
+  border: 1px solid rgba(43, 108, 176, 0.42);
+  box-shadow: 0 8px 20px rgba(43, 108, 176, 0.08);
+}
+
+/* =========================================================
+   RESPONSE SCALE — RESPONSIVE COMPRESSION
+========================================================= */
+
+/* Prevent card text distortion on smaller widths */
+.o-core-shell .o-response-scale {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+/* Ensure cards shrink cleanly */
+.o-core-shell .o-response-scale__option {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Reduce typography progressively */
+@media (max-width: 1280px) {
+  .o-core-shell .o-response-scale__option {
+    padding: 12px;
+  }
+
+  .o-core-shell .o-response-scale__title {
+    font-size: 12px;
+  }
+
+  .o-core-shell .o-response-scale__description {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+}
+
+/* Mobile/tablet stacking */
+@media (max-width: 980px) {
+  .o-core-shell .o-response-scale {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .o-core-shell .o-response-scale {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   TOP NAVIGATION OVERFLOW PROTECTION
+========================================================= */
+
+.o-core-shell .o-top-nav,
+.o-core-shell .o-suite-nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  scrollbar-width: none;
+}
+
+.o-core-shell .o-top-nav::-webkit-scrollbar,
+.o-core-shell .o-suite-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================================================
+   ASSESSMENT PAGE — CARD ALIGNMENT CLEANUP
+========================================================= */
+
+/* Standards + Results cards align to capability pills */
+.o-core-shell .o-results-page .o-card,
+.o-core-shell .o-results-page .o-section-card,
+.o-core-shell .o-results-page .o-results-summary-card {
+  width: min(1180px, 100%);
+  max-width: 1180px;
+}
+
+/* Metric cards visual emphasis */
+.o-core-shell .o-results-summary-grid .o-metric-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.18);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+/* Capability pills stronger visual identity */
+.o-core-shell .o-sector-pill,
+.o-core-shell .o-results-sector-pill {
+  background: linear-gradient(180deg, #ffffff 0%, #edf5ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.24);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* QUESTIONS LEFT NAV — HIERARCHY TREE */
+
+.o-core-shell .o-sector-nav {
+  border-left: 1px solid rgba(43, 108, 176, 0.18);
+  padding-left: 14px;
+}
+
+.o-core-shell .o-area-heading,
+.o-core-shell .o-sector-nav__group-title {
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.o-core-shell .o-sector-nav button,
+.o-core-shell .o-area-button {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  border-radius: 12px;
+  padding: 10px 12px 10px 18px;
+  border: 1px solid transparent;
+  background: transparent;
+}
+
+.o-core-shell .o-sector-nav button::before,
+.o-core-shell .o-area-button::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background: rgba(43, 108, 176, 0.22);
+}
+
+.o-core-shell .o-sector-nav button:hover,
+.o-core-shell .o-area-button:hover {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(43, 108, 176, 0.18);
+}
+
+.o-core-shell .o-sector-nav button[aria-current="true"],
+.o-core-shell .o-area-button--active,
+.o-core-shell .is-active {
+  background: linear-gradient(180deg, #f7fbff 0%, #eaf5ff 100%);
+  border-color: rgba(43, 108, 176, 0.45);
+  box-shadow: inset 3px 0 0 var(--oasis-blue, #0077b6);
+}
+
+.o-core-shell .o-sector-sidebar {
+  background: rgba(255, 255, 255, 0.35);
+  border-right: 1px solid rgba(43, 108, 176, 0.14);
+  padding-right: 18px;
+}
+
+.o-core-shell .o-area-list {
+  margin-left: 10px;
+  border-left: 1px solid rgba(43, 108, 176, 0.22);
+  padding-left: 12px;
+}
+
+.o-core-shell .o-area-button {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(43, 108, 176, 0.12);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.o-core-shell .o-area-button--active {
+  background: linear-gradient(180deg, #f7fbff 0%, #eaf6ff 100%);
+  border-color: rgba(43, 108, 176, 0.5);
+  box-shadow: inset 4px 0 0 #0077b6;
+}
+
+.o-core-shell .o-area-button:not(.o-area-button--active):hover {
+  background: rgba(255, 255, 255, 0.75);
+  border-color: rgba(43, 108, 176, 0.28);
+}
+
+.o-core-shell .o-sector-tree {
+  margin-top: 18px;
+  padding: 14px 12px 16px;
+  border: 1px solid rgba(43, 108, 176, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.o-core-shell .o-sector-tree__section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(43, 108, 176, 0.12);
+}
+
+.o-core-shell .o-sector-tree__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+/* =========================================================
+   QUESTIONS PAGE — STRUCTURED HIERARCHY REFINEMENT
+========================================================= */
+
+.o-core-shell .o-sector-wizard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---------------------------------------------------------
+   Top toolbar/profile strip
+--------------------------------------------------------- */
+
+.o-core-shell .o-assessment-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 22px;
+}
+
+.o-core-shell .o-assessment-toolbar .o-btn {
+  flex: 0 0 auto;
+}
+
+.o-core-shell .o-assessment-profile-strip {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 12px 16px;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.72) 0%,
+    rgba(248,251,255,0.92) 100%
+  );
+
+  border: 1px solid rgba(43, 108, 176, 0.14);
+}
+
+.o-core-shell .o-assessment-profile-strip__eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.o-core-shell .o-assessment-profile-strip__main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-size: 12px;
+  color: var(--oasis-text-secondary);
+}
+
+.o-core-shell .o-assessment-profile-strip__main strong {
+  color: var(--oasis-text-primary);
+}
+
+/* ---------------------------------------------------------
+   Left hierarchy panel
+--------------------------------------------------------- */
+
+.o-core-shell .o-sector-sidebar {
+  position: relative;
+}
+
+.o-core-shell .o-sector-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  padding: 18px 16px 18px;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.42) 0%,
+    rgba(255,255,255,0.18) 100%
+  );
+
+  border: 1px solid rgba(43, 108, 176, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.o-core-shell .o-sector-tree__header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(43, 108, 176, 0.12);
+}
+
+.o-core-shell .o-sector-tree__eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+  margin-bottom: 4px;
+}
+
+.o-core-shell .o-sector-tree__title {
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 700;
+  color: var(--oasis-text-primary);
+}
+
+.o-core-shell .o-sector-tree__meta {
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--oasis-text-secondary);
+}
+
+/* ---------------------------------------------------------
+   Area hierarchy blocks
+--------------------------------------------------------- */
+
+.o-core-shell .o-sector-tree__section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.o-core-shell .o-sector-tree__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+}
+
+.o-core-shell .o-sector-tree__area {
+  position: relative;
+  padding-left: 14px;
+}
+
+.o-core-shell .o-sector-tree__area::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 100%;
+
+  background: rgba(43, 108, 176, 0.16);
+}
+
+.o-core-shell .o-sector-tree__area-header {
+  margin-bottom: 10px;
+}
+
+.o-core-shell .o-sector-tree__area-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--oasis-text-muted);
+  margin-bottom: 2px;
+}
+
+.o-core-shell .o-sector-tree__area-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--oasis-text-primary);
+}
+
+/* ---------------------------------------------------------
+   Activity cards
+--------------------------------------------------------- */
+
+.o-core-shell .o-sector-tree__activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  border-left: 1px solid rgba(43, 108, 176, 0.14);
+}
+
+.o-core-shell .o-sector-tree__activity {
+  position: relative;
+}
+
+.o-core-shell .o-sector-tree__activity-button {
+  width: 100%;
+  border: 1px solid rgba(43, 108, 176, 0.10);
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.50);
+
+  padding: 10px 12px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  text-align: left;
+
+  transition:
+    border-color 140ms ease,
+    background 140ms ease,
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.o-core-shell .o-sector-tree__activity-button:hover {
+  background: rgba(255,255,255,0.82);
+  border-color: rgba(43, 108, 176, 0.26);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.o-core-shell .o-sector-tree__activity--active .o-sector-tree__activity-button {
+  background: linear-gradient(
+    180deg,
+    #f7fbff 0%,
+    #eaf5ff 100%
+  );
+
+  border-color: rgba(43, 108, 176, 0.42);
+
+  box-shadow:
+    inset 3px 0 0 #2b6cb0,
+    0 10px 24px rgba(43, 108, 176, 0.10);
+}
+
+.o-core-shell .o-sector-tree__activity-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.o-core-shell .o-sector-tree__current-question {
+  padding: 4px 0 0 24px;
+
+  font-size: 10px;
+  color: var(--oasis-text-muted);
+}
+
+/* ---------------------------------------------------------
+   Question context refinement
+--------------------------------------------------------- */
+
+.o-core-shell .o-question-context {
+  margin-bottom: 14px;
+}
+
+.o-core-shell .o-question-context__sector {
+  font-size: 12px;
+  color: var(--oasis-text-muted);
+  margin-bottom: 4px;
+}
+
+.o-core-shell .o-question-context__activity {
+  font-size: 13px;
+  color: var(--oasis-text-secondary);
+}
+
+/* ---------------------------------------------------------
+   Progress refinement
+--------------------------------------------------------- */
+
+.o-core-shell .o-question-progress {
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.o-core-shell .o-question-progress__label {
+  font-size: 12px;
+  color: var(--oasis-text-secondary);
+  margin-bottom: 6px;
+}
+
+.o-core-shell .o-question-progress__track {
+  height: 5px;
+  border-radius: 999px;
+  overflow: hidden;
+
+  background: rgba(43, 108, 176, 0.08);
+}
+
+.o-core-shell .o-question-progress__bar {
+  height: 100%;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #2b6cb0 0%,
+    #4f8cff 100%
+  );
+
+  transition: width 160ms ease-out;
+}
+
+/* ---------------------------------------------------------
+   Readiness summary row
+--------------------------------------------------------- */
+
+.o-core-shell .o-scope-readiness-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-bottom: 14px;
+
+  font-size: 12px;
+  color: var(--oasis-text-secondary);
+}
+
+/* ---------------------------------------------------------
+   Mobile refinement
+--------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  .o-core-shell .o-assessment-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .o-core-shell .o-assessment-profile-strip__main {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+/* =========================================================
+   FINAL CORE ASSESSMENT POLISH
+========================================================= */
+
+/* Back button sits clearly as page navigation */
+.o-core-shell .o-sector-workspace__toolbar {
+  margin-bottom: 16px;
+}
+
+.o-core-shell .o-btn--back,
+.o-core-shell .o-assessment-page .o-btn--secondary {
+  background: linear-gradient(180deg, #f7fbff 0%, #e3f2ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.36);
+  color: #1f5f99;
+  box-shadow: 0 5px 14px rgba(43, 108, 176, 0.08);
+}
+
+/* Unified workspace surface around hierarchy + question pane */
+.o-core-shell .o-sector-workspace {
+  margin-top: 18px;
+  padding: 20px 22px 22px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.44), rgba(248,251,255,0.78));
+  border: 1px solid rgba(43, 108, 176, 0.10);
+  box-shadow:
+    0 14px 36px rgba(15, 23, 42, 0.045),
+    inset 0 1px 0 rgba(255,255,255,0.72);
+}
+
+.o-core-shell .o-sector-wizard-layout {
+  margin-top: 0;
+}
+
+/* Improve complete-card internal spacing */
+.o-core-shell .o-sector-complete-card {
+  padding: 10px 14px;
+  width: 100%;
+  background: linear-gradient(180deg, #eef7ff 0%, #dcecf8 100%);
+  border: 1px solid rgba(43, 108, 176, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(43, 108, 176, 0.06);
+}
+
+.o-core-shell .o-sector-complete-card__title {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+/* Left hierarchy polish */
+.o-core-shell .o-sector-tree {
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.055);
+}
+
+.o-core-shell .o-sector-tree__activity {
+  margin-bottom: 8px;
+}
+
+.o-core-shell .o-sector-tree__activity-button {
+  border-radius: 13px;
+  background: rgba(255,255,255,0.76);
+  border: 1px solid rgba(43, 108, 176, 0.13);
+}
+
+.o-core-shell .o-sector-tree__activity-button:hover {
+  background: #ffffff;
+  border-color: rgba(43, 108, 176, 0.28);
+}
+
+.o-core-shell .o-sector-tree__activity--active .o-sector-tree__activity-button {
+  background: linear-gradient(180deg, #f7fbff 0%, #eaf6ff 100%);
+  border-color: rgba(43, 108, 176, 0.52);
+  box-shadow: inset 4px 0 0 #0077b6;
+}
+
+/* Assessment landing card alignment */
+.o-core-shell .o-assessment-home__main,
+.o-core-shell .o-assessment-home .o-card,
+.o-core-shell .o-assessment-home .o-section-card {
+  width: min(880px, 100%);
+  max-width: 880px;
+}
+
+.o-core-shell .o-assessment-home .o-results-summary-grid .o-metric-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f9ff 100%);
+  border: 1px solid rgba(43, 108, 176, 0.22);
+  box-shadow: 0 7px 18px rgba(15, 23, 42, 0.045);
+}
+
+.o-core-shell .o-sector-pills {
+  width: min(880px, 100%);
+}
+
+/* Response scale compression */
+.o-core-shell .o-response-scale {
+  grid-template-columns: repeat(6, minmax(110px, 1fr));
+}
+
+@media (max-width: 1180px) {
+  .o-core-shell .o-response-scale {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .o-core-shell .o-response-scale {
+    grid-template-columns: 1fr;
+  }
+
+  .o-core-shell .o-sector-workspace {
+    padding: 16px;
+  }
 }
