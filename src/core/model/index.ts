@@ -8,6 +8,7 @@ export * from "./coreConfidence";
 export * from "./coreTriggers";
 
 export * from "./coreResponseState";
+export * from "./applyCoreAnswer";
 
 export * from "./domains";
 export * from "./elements";
