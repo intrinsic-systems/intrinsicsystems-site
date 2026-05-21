@@ -12,6 +12,7 @@ export * from "./coreResponseState";
 
 export * from "./applyCoreAnswer";
 export * from "./applyEvidence";
+export * from "./applyCoreAnswerAndRecalculate";
 
 export * from "./domains";
 export * from "./elements";
