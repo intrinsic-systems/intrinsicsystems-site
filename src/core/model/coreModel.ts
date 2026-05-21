@@ -31,6 +31,20 @@ export type CoreAnswer = {
   probeResponses?: ProbeQuestion[];
 };
 
+export type CapabilityRelationshipType =
+  | "dependency"
+  | "influence"
+  | "constraint"
+  | "enabler"
+  | "risk-propagation";
+
+export type CapabilityRelationship = {
+  targetCapabilityId: string;
+  type: CapabilityRelationshipType;
+  influence: number;
+  rationale?: string;
+};
+
 export type EvidenceStrength = "weak" | "partial" | "strong";
 
 export type ConfidenceLevel = "low" | "medium" | "high";
@@ -118,6 +132,8 @@ export type CoreCapability = {
   adaptive?: AdaptiveRules;
   benchmark?: BenchmarkReference;
   ai?: AiModelHooks;
+
+  relationships?: CapabilityRelationship[];
 
   dependencies?: string[];
   tags?: string[];

@@ -88,4 +88,14 @@ export const roleClarityCapability: CoreCapability = {
     "missing-evidence",
     "low-confidence",
   ],
+
+  relationships: [
+  {
+    targetCapabilityId: "gov-decision-rights",
+    type: "enabler",
+    influence: 0.72,
+    rationale:
+      "Role clarity enables clearer decision rights and reduces ambiguity in governance escalation.",
+  },
+],
 };
