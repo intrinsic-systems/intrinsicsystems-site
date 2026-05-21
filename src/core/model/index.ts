@@ -2,6 +2,7 @@
 export * from "./buildCapabilityGraph";
 export * from "./buildCapabilityMap";
 export * from "./buildRadialCapabilityView";
+export * from "./buildRadialRelationshipView";
 
 export * from "./activateCapabilityProbes";
 
