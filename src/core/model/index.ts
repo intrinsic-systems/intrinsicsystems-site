@@ -1,15 +1,17 @@
 // src/core/model/index.ts
 export * from "./buildCapabilityGraph";
 export * from "./buildCapabilityMap";
+
 export * from "./activateCapabilityProbes";
 
 export * from "./coreModel";
 export * from "./coreEvidence";
 export * from "./coreConfidence";
 export * from "./coreTriggers";
-
 export * from "./coreResponseState";
+
 export * from "./applyCoreAnswer";
+export * from "./applyEvidence";
 
 export * from "./domains";
 export * from "./elements";
