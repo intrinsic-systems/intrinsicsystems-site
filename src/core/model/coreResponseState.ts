@@ -20,4 +20,7 @@ export type CapabilityResponseState = {
 
 export type EnterpriseResponseState = {
   capabilities: CapabilityResponseState[];
+
+  enterpriseScore?: number;
+  enterpriseConfidence?: number;
 };
