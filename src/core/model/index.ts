@@ -13,6 +13,7 @@ export * from "./coreResponseState";
 export * from "./applyCoreAnswer";
 export * from "./applyEvidence";
 export * from "./applyCoreAnswerAndRecalculate";
+export * from "./applyEvidenceAndRecalculate";
 
 export * from "./domains";
 export * from "./elements";
