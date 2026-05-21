@@ -6,6 +6,7 @@ export * from "./activateCapabilityProbes";
 
 export * from "./getCapabilityRuntimeView";
 export * from "./getCapabilityRelationships";
+export * from "./getCapabilityInfluenceMap";
 
 export * from "./coreModel";
 export * from "./coreEvidence";
