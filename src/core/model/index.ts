@@ -1,6 +1,7 @@
 // src/core/model/index.ts
 export * from "./buildCapabilityGraph";
 export * from "./buildCapabilityMap";
+export * from "./buildRadialCapabilityView";
 
 export * from "./activateCapabilityProbes";
 
