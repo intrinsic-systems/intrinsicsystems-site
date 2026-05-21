@@ -4,6 +4,8 @@ export * from "./buildCapabilityMap";
 
 export * from "./activateCapabilityProbes";
 
+export * from "./getCapabilityRuntimeView";
+
 export * from "./coreModel";
 export * from "./coreEvidence";
 export * from "./coreConfidence";
