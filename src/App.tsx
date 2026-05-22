@@ -16,6 +16,8 @@ import { CoreAcmaRoute } from "./core/routes/CoreAcmaRoute";
 import { CoreResultsRoute } from "./core/results/CoreResultsRoute";
 import { CoreAccessPage } from "./site/pages/CoreAccessPage";
 
+import { RadialRuntimePreview } from "./core/model/debug";
+
 function SiteFrame({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
@@ -96,6 +98,7 @@ export default function App() {
             </SiteFrame>
           }
         />
+        <Route path="/core/debug/radial-runtime" element={<RadialRuntimePreview />} />
 
         <Route path="/core" element={<CoreFlowShell />}>
           <Route index element={<CoreStartRoute />} />
