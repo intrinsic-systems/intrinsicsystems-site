@@ -18,6 +18,8 @@ import { CoreAccessPage } from "./site/pages/CoreAccessPage";
 
 import { RadialRuntimePreview } from "./core/model/debug";
 
+import { RuntimeMutationPreview } from "./core/model/debug/RuntimeMutationPreview";
+
 function SiteFrame({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
@@ -99,6 +101,10 @@ export default function App() {
           }
         />
         <Route path="/core/debug/radial-runtime" element={<RadialRuntimePreview />} />
+        <Route
+          path="/core/debug/runtime-mutation"
+          element={<RuntimeMutationPreview />}
+        />
 
         <Route path="/core" element={<CoreFlowShell />}>
           <Route index element={<CoreStartRoute />} />

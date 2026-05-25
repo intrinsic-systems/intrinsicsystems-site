@@ -4,7 +4,7 @@ type RadialNode = {
   id: string;
   label: string;
   score: number;
-  confidence: string;
+  confidence: number;
 };
 
 type RadialLink = {
@@ -16,12 +16,11 @@ type RadialLink = {
 type Props = {
   nodes: RadialNode[];
   links: RadialLink[];
+  enterpriseScore?: number;
 };
 
-function getConfidenceOpacity(confidence: string) {
-  if (confidence === "high") return 0.52;
-  if (confidence === "medium") return 0.36;
-  return 0.22;
+function getConfidenceOpacity(confidence: number) {
+  return 0.16 + confidence * 0.68;
 }
 
 function getScoreColor(score: number) {
@@ -32,10 +31,8 @@ function getScoreColor(score: number) {
   return "#ef4444";
 }
 
-function getConfidenceThickness(confidence: string) {
-  if (confidence === "high") return 70;
-  if (confidence === "medium") return 48;
-  return 28;
+function getConfidenceThickness(confidence: number) {
+  return 22 + confidence * 52;
 }
 
 function getRelationshipOpacity(sourceScore: number, targetScore: number) {
@@ -43,10 +40,27 @@ function getRelationshipOpacity(sourceScore: number, targetScore: number) {
   return 0.12 + avgScore / 140;
 }
 
-export function RadialRuntimeCanvas({ nodes, links }: Props) {
+export function RadialRuntimeCanvas({
+  nodes,
+  links,
+  enterpriseScore,
+}: Props) {
   const size = 900;
   const center = size / 2;
   const radius = 300;
+  const calculatedEnterpriseScore =
+    enterpriseScore ??
+    nodes.reduce((sum, node) => sum + node.score, 0) /
+      Math.max(nodes.length, 1);
+
+  const enterpriseLabel =
+    calculatedEnterpriseScore >= 75
+      ? "Strong Alignment"
+      : calculatedEnterpriseScore >= 50
+        ? "Moderate Alignment"
+        : calculatedEnterpriseScore >= 30
+          ? "Structural Strain"
+          : "Critical Weakness";
 
   const orbitByCapability: Record<string, number> = {
     "gov-role-clarity": 250,
@@ -99,7 +113,8 @@ export function RadialRuntimeCanvas({ nodes, links }: Props) {
           stroke="rgba(59,130,246,0.35)"
           strokeWidth={2}
           style={{
-            transition: "all 240ms ease",
+            transition:
+              "all 600ms cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         />
 
@@ -160,6 +175,10 @@ export function RadialRuntimeCanvas({ nodes, links }: Props) {
               fillOpacity={getConfidenceOpacity(node.confidence)}
               stroke={getScoreColor(node.score)}
               strokeWidth={1}
+              style={{
+                transition:
+                "all 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
             />
           );
         })}
@@ -182,6 +201,10 @@ export function RadialRuntimeCanvas({ nodes, links }: Props) {
               y2={target.y}
               stroke={`rgba(148,163,184,${opacity})`}
               strokeWidth={1 + link.influence * 4}
+              style={{
+                transition:
+                "all 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
               strokeLinecap="round"
             />
           );
@@ -205,6 +228,10 @@ export function RadialRuntimeCanvas({ nodes, links }: Props) {
               fill="#ffffff"
               stroke={getScoreColor(node.score)}
               strokeWidth={3}
+              style={{
+                transition:
+                "all 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
             />
 
             <text
@@ -238,27 +265,42 @@ export function RadialRuntimeCanvas({ nodes, links }: Props) {
             fill="rgba(15,23,42,0.92)"
             stroke="rgba(96,165,250,0.28)"
             strokeWidth={2}
+            style={{
+              transition:
+              "all 600mall 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+            }}
           />
 
           <text
             x={center}
-            y={center - 8}
+            y={center - 20}
             textAnchor="middle"
-            fontSize="18"
+            fontSize="11"
             fontWeight="700"
-            fill="#f8fafc"
+            fill="#94a3b8"
           >
-            OASIS
+            Enterprise Coherence
           </text>
 
           <text
             x={center}
-            y={center + 18}
+            y={center + 8}
             textAnchor="middle"
-            fontSize="12"
+            fontSize="30"
+            fontWeight="800"
+            fill="#f8fafc"
+          >
+            {Math.round(calculatedEnterpriseScore)}
+          </text>
+
+          <text
+            x={center}
+            y={center + 32}
+            textAnchor="middle"
+            fontSize="11"
             fill="#94a3b8"
           >
-            Enterprise Runtime
+            {enterpriseLabel}
           </text>
         </g>
       </svg>
