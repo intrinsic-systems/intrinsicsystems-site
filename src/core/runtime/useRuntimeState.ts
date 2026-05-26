@@ -10,6 +10,8 @@ export function useRuntimeState() {
   const [runtime, setRuntime] =
     useState<EnterpriseRuntimeState>({
       capabilities: {},
+      enterpriseScore: 0,
+      triggers: [],
     });
 
   function mutate(

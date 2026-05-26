@@ -17,6 +17,8 @@ export function recalculateCapability(
 
     confidence: mutation.confidence,
 
+    hasEvidence: mutation.hasEvidence,
+
     evidenceCoverage,
   };
 }
