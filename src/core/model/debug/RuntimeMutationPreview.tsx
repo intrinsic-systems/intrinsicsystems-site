@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { RadialRuntimeCanvas } from "../../results/components/RadialRuntimeCanvas";
 import { useRuntimeState } from "../../runtime/useRuntimeState";
+import { propagateRuntimeInfluence } from "../../runtime/propagateRuntimeInfluence";
+import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
+import { RuntimeAlertsPanel } from "../../runtime/RuntimeAlertsPanel";
 
 export function RuntimeMutationPreview() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
@@ -57,15 +60,6 @@ export function RuntimeMutationPreview() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const nodes = Object.entries(runtime.capabilities).map(
-    ([id, capability]) => ({
-      id,
-      label: id.split("-").join(" "),
-      score: capability.score,
-      confidence: capability.confidence,
-    }),
-  );
-
   const links = [
     {
       sourceId: "gov-role-clarity",
@@ -94,6 +88,21 @@ export function RuntimeMutationPreview() {
     },
   ];
 
+  const propagatedRuntime = propagateRuntimeInfluence(runtime, links);
+
+  const nodes = Object.entries(propagatedRuntime.capabilities).map(
+    ([id, capability]) => ({
+      id,
+      label: id.split("-").join(" "),
+      score: capability.score,
+      confidence: capability.confidence,
+    }),
+  );
+
+  const alerts = buildRuntimeAlerts(
+    propagatedRuntime.triggers,
+  );
+
   return (
     <main
       style={{
@@ -103,11 +112,22 @@ export function RuntimeMutationPreview() {
         padding: 48,
       }}
     >
-      <RadialRuntimeCanvas
-        nodes={nodes}
-        links={links}
-        enterpriseScore={enterpriseScore}
-      />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 32,
+        }}
+      >
+        <RadialRuntimeCanvas
+          nodes={nodes}
+          links={links}
+          enterpriseScore={enterpriseScore}
+        />
+
+        <RuntimeAlertsPanel alerts={alerts} />
+      </div>
     </main>
   );
 }
