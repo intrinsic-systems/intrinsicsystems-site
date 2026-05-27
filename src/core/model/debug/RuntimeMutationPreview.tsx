@@ -5,6 +5,21 @@ import { propagateRuntimeInfluence } from "../../runtime/propagateRuntimeInfluen
 import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
 import { RuntimeAlertsPanel } from "../../runtime/RuntimeAlertsPanel";
 import { runtimeQuestionRouter } from "../../runtime/runtimeQuestionRouter";
+import { buildEvidenceRequirements } from "../../runtime/buildEvidenceRequirements";
+import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
+
+const evidenceRequirements =
+  buildEvidenceRequirements({
+    capabilityId: "risk-ownership",
+
+    assetClass: "substation",
+
+    criticality: "critical",
+
+    lifecyclePhase: "handover",
+
+    geography: "western-region",
+  });
 
 export function RuntimeMutationPreview() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
@@ -139,7 +154,7 @@ export function RuntimeMutationPreview() {
           }}
         >
           <RuntimeAlertsPanel alerts={alerts} />
-
+          
           {questionRouting.next ? (
             <div
               style={{
@@ -154,6 +169,10 @@ export function RuntimeMutationPreview() {
               <div style={{ fontSize: 12, color: "#93c5fd", marginBottom: 8 }}>
                 Next Adaptive Probe
               </div>
+
+              <RuntimeEvidencePanel
+                requirements={evidenceRequirements}
+              />
 
               <div style={{ fontWeight: 700, marginBottom: 8 }}>
                 {questionRouting.next.reason}
