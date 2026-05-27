@@ -4,6 +4,7 @@ import { useRuntimeState } from "../../runtime/useRuntimeState";
 import { propagateRuntimeInfluence } from "../../runtime/propagateRuntimeInfluence";
 import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
 import { RuntimeAlertsPanel } from "../../runtime/RuntimeAlertsPanel";
+import { runtimeQuestionRouter } from "../../runtime/runtimeQuestionRouter";
 
 export function RuntimeMutationPreview() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
@@ -103,6 +104,10 @@ export function RuntimeMutationPreview() {
     propagatedRuntime.triggers,
   );
 
+  const questionRouting = runtimeQuestionRouter(
+    propagatedRuntime,
+  );
+
   return (
     <main
       style={{
@@ -126,7 +131,40 @@ export function RuntimeMutationPreview() {
           enterpriseScore={enterpriseScore}
         />
 
-        <RuntimeAlertsPanel alerts={alerts} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}
+        >
+          <RuntimeAlertsPanel alerts={alerts} />
+
+          {questionRouting.next ? (
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 16,
+                border: "1px solid rgba(96,165,250,0.6)",
+                background: "rgba(15,23,42,0.82)",
+                color: "#e2e8f0",
+                maxWidth: 380,
+              }}
+            >
+              <div style={{ fontSize: 12, color: "#93c5fd", marginBottom: 8 }}>
+                Next Adaptive Probe
+              </div>
+
+              <div style={{ fontWeight: 700, marginBottom: 8 }}>
+                {questionRouting.next.reason}
+              </div>
+
+              <div style={{ fontSize: 13, lineHeight: 1.5, color: "#cbd5e1" }}>
+                {questionRouting.next.question}
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
     </main>
   );
