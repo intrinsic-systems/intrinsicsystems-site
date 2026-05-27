@@ -7,19 +7,25 @@ import { RuntimeAlertsPanel } from "../../runtime/RuntimeAlertsPanel";
 import { runtimeQuestionRouter } from "../../runtime/runtimeQuestionRouter";
 import { buildEvidenceRequirements } from "../../runtime/buildEvidenceRequirements";
 import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
+import { buildCollectionWorkflow } from "../../runtime/buildCollectionWorkflow";
+import { RuntimeCollectionWorkflowPanel } from "../../runtime/RuntimeCollectionWorkflowPanel";
+
+const runtimeContext = {
+  capabilityId: "risk-ownership",
+  assetClass: "substation",
+  criticality: "critical" as const,
+  lifecyclePhase: "handover" as const,
+  geography: "western-region",
+};
 
 const evidenceRequirements =
-  buildEvidenceRequirements({
-    capabilityId: "risk-ownership",
+  buildEvidenceRequirements(runtimeContext);
 
-    assetClass: "substation",
-
-    criticality: "critical",
-
-    lifecyclePhase: "handover",
-
-    geography: "western-region",
-  });
+const collectionWorkflow =
+  buildCollectionWorkflow(
+    runtimeContext,
+    evidenceRequirements,
+  );
 
 export function RuntimeMutationPreview() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
@@ -154,7 +160,7 @@ export function RuntimeMutationPreview() {
           }}
         >
           <RuntimeAlertsPanel alerts={alerts} />
-          
+
           {questionRouting.next ? (
             <div
               style={{
@@ -166,23 +172,44 @@ export function RuntimeMutationPreview() {
                 maxWidth: 380,
               }}
             >
-              <div style={{ fontSize: 12, color: "#93c5fd", marginBottom: 8 }}>
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#93c5fd",
+                  marginBottom: 8,
+                }}
+              >
                 Next Adaptive Probe
               </div>
 
-              <RuntimeEvidencePanel
-                requirements={evidenceRequirements}
-              />
-
-              <div style={{ fontWeight: 700, marginBottom: 8 }}>
+              <div
+                style={{
+                  fontWeight: 700,
+                  marginBottom: 8,
+                }}
+              >
                 {questionRouting.next.reason}
               </div>
 
-              <div style={{ fontSize: 13, lineHeight: 1.5, color: "#cbd5e1" }}>
+              <div
+                style={{
+                  fontSize: 13,
+                  lineHeight: 1.5,
+                  color: "#cbd5e1",
+                }}
+              >
                 {questionRouting.next.question}
               </div>
             </div>
           ) : null}
+
+          <RuntimeEvidencePanel
+            requirements={evidenceRequirements}
+          />
+
+          <RuntimeCollectionWorkflowPanel
+            workflow={collectionWorkflow}
+          />
         </div>
       </div>
     </main>
