@@ -1,14 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RadialRuntimeCanvas } from "../../results/components/RadialRuntimeCanvas";
-import { useRuntimeState } from "../../runtime/useRuntimeState";
-import { propagateRuntimeInfluence } from "../../runtime/propagateRuntimeInfluence";
-import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
+
 import { RuntimeAlertsPanel } from "../../runtime/RuntimeAlertsPanel";
-import { runtimeQuestionRouter } from "../../runtime/runtimeQuestionRouter";
-import { buildEvidenceRequirements } from "../../runtime/buildEvidenceRequirements";
-import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
-import { buildCollectionWorkflow } from "../../runtime/buildCollectionWorkflow";
 import { RuntimeCollectionWorkflowPanel } from "../../runtime/RuntimeCollectionWorkflowPanel";
+import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
+import { RuntimeInformationPanel } from "../../runtime/RuntimeInformationPanel";
+
+import { buildCollectionWorkflow } from "../../runtime/buildCollectionWorkflow";
+import { buildEvidenceRequirements } from "../../runtime/buildEvidenceRequirements";
+import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
+import { propagateRuntimeInfluence } from "../../runtime/propagateRuntimeInfluence";
+import { runtimeInformationGraph } from "../../runtime/runtimeInformationGraph";
+import { runtimeQuestionRouter } from "../../runtime/runtimeQuestionRouter";
+import { useRuntimeState } from "../../runtime/useRuntimeState";
+
+import type { RuntimeAttributeValue } from "../../runtime/buildTrustScores";
+
+import { buildCapabilityInfluenceMap } from "../../runtime/buildCapabilityInfluenceMap";
+import { buildRuntimeNarrative } from "../../runtime/runtimeNarrative";
 
 const runtimeContext = {
   capabilityId: "risk-ownership",
@@ -22,13 +31,49 @@ const evidenceRequirements =
   buildEvidenceRequirements(runtimeContext);
 
 const collectionWorkflow =
-  buildCollectionWorkflow(
-    runtimeContext,
-    evidenceRequirements,
-  );
+  buildCollectionWorkflow(runtimeContext, evidenceRequirements);
+
+const runtimeAttributes: RuntimeAttributeValue[] = [
+  {
+    attribute: "geometry",
+    source: "GIS - Esri ArcGIS",
+    value: "SUB-001-POINT-A",
+    sourceConfidence: 0.92,
+  },
+  {
+    attribute: "geometry",
+    source: "HANDOVER - Project Delivery",
+    value: "SUB-001-DESIGN-POINT",
+    sourceConfidence: 0.55,
+  },
+  {
+    attribute: "condition",
+    source: "FIELD - Manual Inspection",
+    value: "Fair",
+    sourceConfidence: 0.72,
+  },
+  {
+    attribute: "condition",
+    source: "AMS - SAP",
+    value: "Good",
+    sourceConfidence: 0.48,
+  },
+  {
+    attribute: "financial-value",
+    source: "ERP - SAP Finance",
+    value: 1250000,
+    sourceConfidence: 0.86,
+  },
+];
+
+const informationGraph =
+  runtimeInformationGraph(runtimeAttributes);
 
 export function RuntimeMutationPreview() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
+
+  const [activeCapabilityId, setActiveCapabilityId] =
+    useState<string | null>(null);
 
   useEffect(() => {
     mutate({
@@ -110,24 +155,40 @@ export function RuntimeMutationPreview() {
     },
   ];
 
-  const propagatedRuntime = propagateRuntimeInfluence(runtime, links);
-
-  const nodes = Object.entries(propagatedRuntime.capabilities).map(
-    ([id, capability]) => ({
-      id,
-      label: id.split("-").join(" "),
-      score: capability.score,
-      confidence: capability.confidence,
-    }),
+  const propagatedRuntime = propagateRuntimeInfluence(
+    runtime,
+    links,
   );
+
+  const influenceMap = useMemo(() => {
+    if (!activeCapabilityId) {
+      return null;
+    }
+
+    return buildCapabilityInfluenceMap(
+      activeCapabilityId,
+      links,
+    );
+  }, [activeCapabilityId, links]);
+
+  const runtimeNarrative =
+    buildRuntimeNarrative(influenceMap);
+
+  const nodes = Object.entries(
+    propagatedRuntime.capabilities,
+  ).map(([id, capability]) => ({
+    id,
+    label: id.split("-").join(" "),
+    score: capability.score,
+    confidence: capability.confidence,
+  }));
 
   const alerts = buildRuntimeAlerts(
     propagatedRuntime.triggers,
   );
 
-  const questionRouting = runtimeQuestionRouter(
-    propagatedRuntime,
-  );
+  const questionRouting =
+    runtimeQuestionRouter(propagatedRuntime);
 
   return (
     <main
@@ -135,41 +196,78 @@ export function RuntimeMutationPreview() {
         minHeight: "100vh",
         background:
           "radial-gradient(circle at top, #0f172a 0%, #020617 60%)",
-        padding: 48,
+        padding: 32,
       }}
     >
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 32,
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1fr) 420px",
+          gap: 28,
+          alignItems: "start",
+          maxWidth: 1500,
+          margin: "0 auto",
         }}
       >
-        <RadialRuntimeCanvas
-          nodes={nodes}
-          links={links}
-          enterpriseScore={enterpriseScore}
-        />
-
-        <div
+        <section
           style={{
+            minHeight: "calc(100vh - 64px)",
             display: "flex",
-            flexDirection: "column",
-            gap: 16,
+            alignItems: "stretch",
+            justifyContent: "stretch",
+            padding: 32,
+            borderRadius: 28,
+            border: "1px solid rgba(96,165,250,0.14)",
+            background:
+              "radial-gradient(circle at center, rgba(15,23,42,0.52), rgba(2,6,23,0.12))",
+            overflow: "hidden",
+            position: "relative",
           }}
         >
-          <RuntimeAlertsPanel alerts={alerts} />
+          <div
+            style={{
+              flex: 1,
+              width: "100%",
+              minHeight: 820,
 
-          {questionRouting.next ? (
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+              position: "relative",
+            }}
+          >
+            <RadialRuntimeCanvas
+              nodes={nodes}
+              links={links}
+              enterpriseScore={enterpriseScore}
+              activeCapabilityId={activeCapabilityId}
+              relatedCapabilityIds={influenceMap?.related ?? []}
+              onCapabilityFocus={setActiveCapabilityId}
+            />
+          </div>
+        </section>
+
+        <aside
+          style={{
+            maxHeight: "calc(100vh - 64px)",
+            overflowY: "auto",
+            paddingRight: 6,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+            }}
+          >
             <div
               style={{
                 padding: 16,
-                borderRadius: 16,
-                border: "1px solid rgba(96,165,250,0.6)",
-                background: "rgba(15,23,42,0.82)",
-                color: "#e2e8f0",
-                maxWidth: 380,
+                borderRadius: 18,
+                border: "1px solid rgba(96,165,250,0.22)",
+                background: "rgba(15,23,42,0.86)",
               }}
             >
               <div
@@ -179,38 +277,118 @@ export function RuntimeMutationPreview() {
                   marginBottom: 8,
                 }}
               >
-                Next Adaptive Probe
+                CORE Runtime Preview
               </div>
 
               <div
                 style={{
-                  fontWeight: 700,
+                  color: "#f8fafc",
+                  fontSize: 18,
+                  fontWeight: 800,
                   marginBottom: 8,
                 }}
               >
-                {questionRouting.next.reason}
+                Operational Truth Intelligence
+              </div>
+
+              <div
+                style={{
+                  color: "#94a3b8",
+                  fontSize: 13,
+                  lineHeight: 1.5,
+                }}
+              >
+                Live runtime view showing capability strain, adaptive probes,
+                required evidence, collection workflow, and cross-system trust
+                review.
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 16,
+                border: "1px solid rgba(14,165,233,0.35)",
+                background: "rgba(15,23,42,0.82)",
+                color: "#cbd5e1",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#67e8f9",
+                  marginBottom: 8,
+                }}
+              >
+                Runtime Focus
               </div>
 
               <div
                 style={{
                   fontSize: 13,
                   lineHeight: 1.5,
-                  color: "#cbd5e1",
                 }}
               >
-                {questionRouting.next.question}
+                {runtimeNarrative}
               </div>
             </div>
-          ) : null}
 
-          <RuntimeEvidencePanel
-            requirements={evidenceRequirements}
-          />
+            <RuntimeAlertsPanel alerts={alerts} />
 
-          <RuntimeCollectionWorkflowPanel
-            workflow={collectionWorkflow}
-          />
-        </div>
+            {questionRouting.next ? (
+              <div
+                style={{
+                  padding: 16,
+                  borderRadius: 16,
+                  border: "1px solid rgba(96,165,250,0.6)",
+                  background: "rgba(15,23,42,0.82)",
+                  color: "#e2e8f0",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 12,
+                    color: "#93c5fd",
+                    marginBottom: 8,
+                  }}
+                >
+                  Next Adaptive Probe
+                </div>
+
+                <div
+                  style={{
+                    fontWeight: 700,
+                    marginBottom: 8,
+                  }}
+                >
+                  {questionRouting.next.reason}
+                </div>
+
+                <div
+                  style={{
+                    fontSize: 13,
+                    lineHeight: 1.5,
+                    color: "#cbd5e1",
+                  }}
+                >
+                  {questionRouting.next.question}
+                </div>
+              </div>
+            ) : null}
+
+            <RuntimeEvidencePanel
+              requirements={evidenceRequirements}
+            />
+
+            <RuntimeCollectionWorkflowPanel
+              workflow={collectionWorkflow}
+            />
+
+            <RuntimeInformationPanel
+              graph={informationGraph}
+            />
+          </div>
+        </aside>
       </div>
     </main>
   );

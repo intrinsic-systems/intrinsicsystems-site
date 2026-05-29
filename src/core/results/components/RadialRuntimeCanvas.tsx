@@ -17,6 +17,9 @@ type Props = {
   nodes: RadialNode[];
   links: RadialLink[];
   enterpriseScore?: number;
+  activeCapabilityId?: string | null;
+  relatedCapabilityIds?: string[];
+  onCapabilityFocus?: (capabilityId: string | null) => void;
 };
 
 function getConfidenceOpacity(confidence: number) {
@@ -44,10 +47,13 @@ export function RadialRuntimeCanvas({
   nodes,
   links,
   enterpriseScore,
+  activeCapabilityId,
+  relatedCapabilityIds = [],
+  onCapabilityFocus,
 }: Props) {
   const size = 900;
   const center = size / 2;
-  const radius = 300;
+  const radius = 340;
   const calculatedEnterpriseScore =
     enterpriseScore ??
     nodes.reduce((sum, node) => sum + node.score, 0) /
@@ -63,14 +69,14 @@ export function RadialRuntimeCanvas({
           : "Critical Weakness";
 
   const orbitByCapability: Record<string, number> = {
-    "gov-role-clarity": 250,
-    "gov-decision-rights": 250,
-    "gov-escalation-governance": 250,
+    "gov-role-clarity": 280,
+    "gov-decision-rights": 280,
+    "gov-escalation-governance": 280,
 
-    "info-asset-information-strategy": 320,
+    "info-asset-information-strategy": 360,
 
-    "lifecycle-planning": 380,
-    "risk-ownership": 380,
+    "lifecycle-planning": 430,
+    "risk-ownership": 430,
   };
 
   const positioned = nodes.map((node, index) => {
@@ -90,20 +96,51 @@ export function RadialRuntimeCanvas({
 
   const byId = new Map(positioned.map((node) => [node.id, node]));
 
+  const hasActiveFocus = Boolean(activeCapabilityId);
+
+  function isCapabilityRelated(id: string) {
+    if (!hasActiveFocus) {
+      return true;
+    }
+
+    return relatedCapabilityIds.includes(id);
+  }
+
+  function isLinkRelated(link: RadialLink) {
+    if (!hasActiveFocus) {
+      return true;
+    }
+
+    return (
+      relatedCapabilityIds.includes(link.sourceId) &&
+      relatedCapabilityIds.includes(link.targetId)
+    );
+  }
+
   return (
     <div
       style={{
+        width: "100%",
+        height: "100%",
+        minHeight: 760,
         display: "flex",
+        alignItems: "center",
         justifyContent: "center",
-        padding: 48,
+        padding: 0,
         overflow: "visible",
       }}
+      onMouseLeave={() => onCapabilityFocus?.(null)}
     >
       <svg
         viewBox={`0 0 ${size} ${size}`}
         role="img"
         aria-label="Radial runtime capability view"
-        style={{ width: "100%", maxWidth: size, overflow: "visible" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          minHeight: 760,
+          overflow: "visible",
+        }}
       >
         <circle
           cx={center}
@@ -160,6 +197,9 @@ export function RadialRuntimeCanvas({
           const endAngle = nodeAngle + arcLength / 2;
           const thickness = getConfidenceThickness(node.confidence);
 
+          const isRelated = isCapabilityRelated(node.id);
+          const isActive = node.id === activeCapabilityId;
+
           return (
             <path
               key={`${node.id}-arc`}
@@ -191,6 +231,7 @@ export function RadialRuntimeCanvas({
           if (!source || !target) return null;
 
           const opacity = getRelationshipOpacity(source.score, target.score);
+          const related = isLinkRelated(link);
 
           return (
             <line
@@ -199,8 +240,8 @@ export function RadialRuntimeCanvas({
               y1={source.y}
               x2={target.x}
               y2={target.y}
-              stroke={`rgba(148,163,184,${opacity})`}
-              strokeWidth={1 + link.influence * 4}
+              stroke={`rgba(148,163,184,${related ? opacity : 0.08})`}
+              strokeWidth={related ? 1 + link.influence * 4 : 1}
               style={{
                 transition:
                 "all 600ms cubic-bezier(0.22, 1, 0.36, 1)",
@@ -211,8 +252,22 @@ export function RadialRuntimeCanvas({
         })}
 
         {/* nodes last */}
-        {positioned.map((node) => (
-          <g key={node.id}>
+        {positioned.map((node) => {
+          const isRelated = isCapabilityRelated(node.id);
+          const isActive = node.id === activeCapabilityId;
+
+          return (
+            <g
+              key={node.id}
+              opacity={isRelated ? 1 : 0.18}
+              style={{
+                cursor: "pointer",
+                transition:
+                  "all 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
+              onMouseEnter={() => onCapabilityFocus?.(node.id)}
+              onClick={() => onCapabilityFocus?.(node.id)}
+            >
             <circle
               cx={node.x}
               cy={node.y}
@@ -255,8 +310,9 @@ export function RadialRuntimeCanvas({
             >
               {node.label}
             </text>
-          </g>
-        ))}
+            </g>
+          );
+        })}
         <g>
           <circle
             cx={center}
@@ -267,7 +323,10 @@ export function RadialRuntimeCanvas({
             strokeWidth={2}
             style={{
               transition:
-              "all 600mall 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+                "all 420ms cubic-bezier(0.22, 1, 0.36, 1)",
+
+              animation:
+                "runtimePulse 6s ease-in-out infinite",
             }}
           />
 
