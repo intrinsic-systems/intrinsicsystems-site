@@ -23,3 +23,17 @@
 
 /* Public website recovery layer */
 @import "./site.css";
+
+@keyframes runtimePulse {
+  0% {
+    filter: drop-shadow(0 0 18px rgba(59,130,246,0.10));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 42px rgba(59,130,246,0.24));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 18px rgba(59,130,246,0.10));
+  }
+}
