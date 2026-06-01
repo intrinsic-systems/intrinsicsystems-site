@@ -6,6 +6,8 @@ import { RuntimeCollectionWorkflowPanel } from "../../runtime/RuntimeCollectionW
 import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
 import { RuntimeInformationPanel } from "../../runtime/RuntimeInformationPanel";
 
+import { RuntimeActionQueuePanel } from "../../runtime/RuntimeActionQueuePanel";
+
 import { RuntimeWorkspace } from "../../runtime/RuntimeWorkspace";
 import { RuntimePrimaryPanel } from "../../runtime/RuntimePrimaryPanel";
 import { RuntimeSidebar } from "../../runtime/RuntimeSidebar";
@@ -195,11 +197,11 @@ export function RuntimeMutationPreview() {
   );
 
   const enterpriseBeliefState =
-  buildEnterpriseBeliefState({
-    enterpriseScore,
-    alerts,
-    informationGraph,
-  });
+    buildEnterpriseBeliefState({
+      enterpriseScore,
+      alerts,
+      informationGraph,
+    });
 
   const questionRouting =
     runtimeQuestionRouter(propagatedRuntime);
@@ -299,6 +301,10 @@ export function RuntimeMutationPreview() {
               {enterpriseBeliefState.summary}
             </div>
           </div>
+
+          <RuntimeActionQueuePanel
+            queue={enterpriseBeliefState.actionQueue}
+          />
 
           <div
             style={{
