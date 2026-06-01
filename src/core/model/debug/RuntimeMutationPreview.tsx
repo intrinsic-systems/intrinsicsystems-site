@@ -6,6 +6,11 @@ import { RuntimeCollectionWorkflowPanel } from "../../runtime/RuntimeCollectionW
 import { RuntimeEvidencePanel } from "../../runtime/RuntimeEvidencePanel";
 import { RuntimeInformationPanel } from "../../runtime/RuntimeInformationPanel";
 
+import { RuntimeWorkspace } from "../../runtime/RuntimeWorkspace";
+import { RuntimePrimaryPanel } from "../../runtime/RuntimePrimaryPanel";
+import { RuntimeSidebar } from "../../runtime/RuntimeSidebar";
+import { RuntimeInsightStack } from "../../runtime/RuntimeInsightStack";
+
 import { buildCollectionWorkflow } from "../../runtime/buildCollectionWorkflow";
 import { buildEvidenceRequirements } from "../../runtime/buildEvidenceRequirements";
 import { buildRuntimeAlerts } from "../../runtime/buildRuntimeAlerts";
@@ -200,92 +205,140 @@ export function RuntimeMutationPreview() {
     runtimeQuestionRouter(propagatedRuntime);
 
   return (
-    <main
-      style={{
-        height: "100vh",
-        overflow: "hidden",
-        background:
-          "radial-gradient(circle at top, #0f172a 0%, #020617 60%)",
-        padding: 32,
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1fr) 420px",
-          gap: 28,
-          alignItems: "stretch",
-          maxWidth: 1500,
-          height: "100%",
-          margin: "0 auto",
-        }}
-      >
-        <section
-          style={{
-            height: "100%",
-            display: "flex",
-            alignItems: "stretch",
-            justifyContent: "stretch",
-            padding: 32,
-            borderRadius: 28,
-            border: "1px solid rgba(96,165,250,0.14)",
-            background:
-              "radial-gradient(circle at center, rgba(15,23,42,0.52), rgba(2,6,23,0.12))",
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
+    <RuntimeWorkspace>
+      <RuntimePrimaryPanel>
+        <RadialRuntimeCanvas
+          nodes={nodes}
+          links={links}
+          enterpriseScore={enterpriseScore}
+          activeCapabilityId={activeCapabilityId}
+          relatedCapabilityIds={influenceMap?.related ?? []}
+          onCapabilityFocus={setActiveCapabilityId}
+        />
+      </RuntimePrimaryPanel>
+
+      <RuntimeSidebar>
+        <RuntimeInsightStack>
           <div
             style={{
-              flex: 1,
-              width: "100%",
-              minHeight: 820,
-
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-
-              position: "relative",
-            }}
-          >
-            <RadialRuntimeCanvas
-              nodes={nodes}
-              links={links}
-              enterpriseScore={enterpriseScore}
-              activeCapabilityId={activeCapabilityId}
-              relatedCapabilityIds={influenceMap?.related ?? []}
-              onCapabilityFocus={setActiveCapabilityId}
-            />
-          </div>
-        </section>
-
-        <aside
-          style={{
-            height: "100%",
-            overflow: "hidden",
-            borderRadius: 24,
-            border: "1px solid rgba(96,165,250,0.10)",
-            background: "rgba(2,6,23,0.28)",
-          }}
-        >
-          <div
-            style={{
-             height: "100%",
-              overflowY: "auto",
-              paddingRight: 10,
-              paddingBottom: 32,
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
+              padding: 16,
+              borderRadius: 18,
+              border: "1px solid rgba(96,165,250,0.22)",
+              background: "rgba(15,23,42,0.86)",
             }}
           >
             <div
               style={{
+                fontSize: 12,
+                color: "#93c5fd",
+                marginBottom: 8,
+              }}
+            >
+              CORE Runtime Preview
+            </div>
+
+            <div
+              style={{
+                color: "#f8fafc",
+                fontSize: 18,
+                fontWeight: 800,
+                marginBottom: 8,
+              }}
+            >
+              Operational Truth Intelligence
+            </div>
+
+            <div
+              style={{
+                color: "#94a3b8",
+                fontSize: 13,
+                lineHeight: 1.5,
+              }}
+            >
+              Live runtime view showing capability strain, adaptive probes,
+              required evidence, collection workflow, and cross-system trust
+              review.
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 16,
+              border: "1px solid rgba(251,191,36,0.35)",
+              background: "rgba(15,23,42,0.86)",
+              color: "#cbd5e1",
+            }}
+          >
+            <div
+              style={{
+                fontSize: 12,
+                color: "#fbbf24",
+                marginBottom: 8,
+              }}
+            >
+              Enterprise Belief State
+            </div>
+
+            <div
+              style={{
+                color: "#f8fafc",
+                fontWeight: 800,
+                marginBottom: 8,
+              }}
+            >
+              {enterpriseBeliefState.severity.label}
+            </div>
+
+            <div
+              style={{
+                fontSize: 13,
+                lineHeight: 1.5,
+              }}
+            >
+              {enterpriseBeliefState.summary}
+            </div>
+          </div>
+
+          <div
+            style={{
+              padding: 16,
+              borderRadius: 16,
+              border: "1px solid rgba(14,165,233,0.35)",
+              background: "rgba(15,23,42,0.82)",
+              color: "#cbd5e1",
+            }}
+          >
+            <div
+              style={{
+                fontSize: 12,
+                color: "#67e8f9",
+                marginBottom: 8,
+              }}
+            >
+              Runtime Focus
+            </div>
+
+            <div
+              style={{
+                fontSize: 13,
+                lineHeight: 1.5,
+              }}
+            >
+              {runtimeNarrative}
+            </div>
+          </div>
+
+          <RuntimeAlertsPanel alerts={alerts} />
+
+          {questionRouting.next ? (
+            <div
+              style={{
                 padding: 16,
-                borderRadius: 18,
-                border: "1px solid rgba(96,165,250,0.22)",
-                background: "rgba(15,23,42,0.86)",
+                borderRadius: 16,
+                border: "1px solid rgba(96,165,250,0.6)",
+                background: "rgba(15,23,42,0.82)",
+                color: "#e2e8f0",
               }}
             >
               <div
@@ -295,158 +348,43 @@ export function RuntimeMutationPreview() {
                   marginBottom: 8,
                 }}
               >
-                CORE Runtime Preview
+                Next Adaptive Probe
               </div>
 
               <div
                 style={{
-                  color: "#f8fafc",
-                  fontSize: 18,
-                  fontWeight: 800,
+                  fontWeight: 700,
                   marginBottom: 8,
                 }}
               >
-                Operational Truth Intelligence
-              </div>
-
-              <div
-                style={{
-                  color: "#94a3b8",
-                  fontSize: 13,
-                  lineHeight: 1.5,
-                }}
-              >
-                Live runtime view showing capability strain, adaptive probes,
-                required evidence, collection workflow, and cross-system trust
-                review.
-              </div>
-            </div>
-
-            <div
-              style={{
-                padding: 16,
-                borderRadius: 16,
-                border: "1px solid rgba(251,191,36,0.35)",
-                background: "rgba(15,23,42,0.86)",
-                color: "#cbd5e1",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 12,
-                  color: "#fbbf24",
-                  marginBottom: 8,
-                }}
-              >
-                Enterprise Belief State
-              </div>
-
-              <div
-                style={{
-                  color: "#f8fafc",
-                  fontWeight: 800,
-                  marginBottom: 8,
-                }}
-              >
-                {enterpriseBeliefState.severity.label}
+                {questionRouting.next.reason}
               </div>
 
               <div
                 style={{
                   fontSize: 13,
                   lineHeight: 1.5,
+                  color: "#cbd5e1",
                 }}
               >
-                {enterpriseBeliefState.summary}
+                {questionRouting.next.question}
               </div>
             </div>
+          ) : null}
 
-            <div
-              style={{
-                padding: 16,
-                borderRadius: 16,
-                border: "1px solid rgba(14,165,233,0.35)",
-                background: "rgba(15,23,42,0.82)",
-                color: "#cbd5e1",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 12,
-                  color: "#67e8f9",
-                  marginBottom: 8,
-                }}
-              >
-                Runtime Focus
-              </div>
+          <RuntimeEvidencePanel
+            requirements={evidenceRequirements}
+          />
 
-              <div
-                style={{
-                  fontSize: 13,
-                  lineHeight: 1.5,
-                }}
-              >
-                {runtimeNarrative}
-              </div>
-            </div>
+          <RuntimeCollectionWorkflowPanel
+            workflow={collectionWorkflow}
+          />
 
-            <RuntimeAlertsPanel alerts={alerts} />
-
-            {questionRouting.next ? (
-              <div
-                style={{
-                  padding: 16,
-                  borderRadius: 16,
-                  border: "1px solid rgba(96,165,250,0.6)",
-                  background: "rgba(15,23,42,0.82)",
-                  color: "#e2e8f0",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 12,
-                    color: "#93c5fd",
-                    marginBottom: 8,
-                  }}
-                >
-                  Next Adaptive Probe
-                </div>
-
-                <div
-                  style={{
-                    fontWeight: 700,
-                    marginBottom: 8,
-                  }}
-                >
-                  {questionRouting.next.reason}
-                </div>
-
-                <div
-                  style={{
-                    fontSize: 13,
-                    lineHeight: 1.5,
-                    color: "#cbd5e1",
-                  }}
-                >
-                  {questionRouting.next.question}
-                </div>
-              </div>
-            ) : null}
-
-            <RuntimeEvidencePanel
-              requirements={evidenceRequirements}
-            />
-
-            <RuntimeCollectionWorkflowPanel
-              workflow={collectionWorkflow}
-            />
-
-            <RuntimeInformationPanel
-              graph={informationGraph}
-            />
-          </div>
-        </aside>
-      </div>
-    </main>
+          <RuntimeInformationPanel
+            graph={informationGraph}
+          />
+        </RuntimeInsightStack>
+      </RuntimeSidebar>
+    </RuntimeWorkspace>
   );
 }
