@@ -19,6 +19,8 @@ import type { RuntimeAttributeValue } from "../../runtime/buildTrustScores";
 import { buildCapabilityInfluenceMap } from "../../runtime/buildCapabilityInfluenceMap";
 import { buildRuntimeNarrative } from "../../runtime/runtimeNarrative";
 
+import { buildEnterpriseBeliefState } from "../../runtime/buildEnterpriseBeliefState";
+
 const runtimeContext = {
   capabilityId: "risk-ownership",
   assetClass: "substation",
@@ -187,6 +189,13 @@ export function RuntimeMutationPreview() {
     propagatedRuntime.triggers,
   );
 
+  const enterpriseBeliefState =
+  buildEnterpriseBeliefState({
+    enterpriseScore,
+    alerts,
+    informationGraph,
+  });
+
   const questionRouting =
     runtimeQuestionRouter(propagatedRuntime);
 
@@ -310,6 +319,45 @@ export function RuntimeMutationPreview() {
                 Live runtime view showing capability strain, adaptive probes,
                 required evidence, collection workflow, and cross-system trust
                 review.
+              </div>
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderRadius: 16,
+                border: "1px solid rgba(251,191,36,0.35)",
+                background: "rgba(15,23,42,0.86)",
+                color: "#cbd5e1",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#fbbf24",
+                  marginBottom: 8,
+                }}
+              >
+                Enterprise Belief State
+              </div>
+
+              <div
+                style={{
+                  color: "#f8fafc",
+                  fontWeight: 800,
+                  marginBottom: 8,
+                }}
+              >
+                {enterpriseBeliefState.severity.label}
+              </div>
+
+              <div
+                style={{
+                  fontSize: 13,
+                  lineHeight: 1.5,
+                }}
+              >
+                {enterpriseBeliefState.summary}
               </div>
             </div>
 
