@@ -193,10 +193,12 @@ export function RuntimeMutationPreview() {
   return (
     <main
       style={{
-        minHeight: "100vh",
+        height: "100vh",
+        overflow: "hidden",
         background:
           "radial-gradient(circle at top, #0f172a 0%, #020617 60%)",
         padding: 32,
+        boxSizing: "border-box",
       }}
     >
       <div
@@ -204,14 +206,15 @@ export function RuntimeMutationPreview() {
           display: "grid",
           gridTemplateColumns: "minmax(0, 1fr) 420px",
           gap: 28,
-          alignItems: "start",
+          alignItems: "stretch",
           maxWidth: 1500,
+          height: "100%",
           margin: "0 auto",
         }}
       >
         <section
           style={{
-            minHeight: "calc(100vh - 64px)",
+            height: "100%",
             display: "flex",
             alignItems: "stretch",
             justifyContent: "stretch",
@@ -250,13 +253,19 @@ export function RuntimeMutationPreview() {
 
         <aside
           style={{
-            maxHeight: "calc(100vh - 64px)",
-            overflowY: "auto",
-            paddingRight: 6,
+            height: "100%",
+            overflow: "hidden",
+            borderRadius: 24,
+            border: "1px solid rgba(96,165,250,0.10)",
+            background: "rgba(2,6,23,0.28)",
           }}
         >
           <div
             style={{
+             height: "100%",
+              overflowY: "auto",
+              paddingRight: 10,
+              paddingBottom: 32,
               display: "flex",
               flexDirection: "column",
               gap: 16,

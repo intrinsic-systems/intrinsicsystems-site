@@ -51,8 +51,9 @@ export function RadialRuntimeCanvas({
   relatedCapabilityIds = [],
   onCapabilityFocus,
 }: Props) {
-  const size = 900;
-  const center = size / 2;
+  const size = 1000;
+  const centerX = size / 2;
+  const centerY = size / 2 - 40;
   const radius = 340;
   const calculatedEnterpriseScore =
     enterpriseScore ??
@@ -73,10 +74,10 @@ export function RadialRuntimeCanvas({
     "gov-decision-rights": 280,
     "gov-escalation-governance": 280,
 
-    "info-asset-information-strategy": 360,
+    "info-asset-information-strategy": 350,
 
-    "lifecycle-planning": 430,
-    "risk-ownership": 430,
+    "lifecycle-planning": 400,
+    "risk-ownership": 400,
   };
 
   const positioned = nodes.map((node, index) => {
@@ -89,8 +90,8 @@ export function RadialRuntimeCanvas({
     return {
       ...node,
       orbitRadius,
-      x: center + orbitRadius * Math.cos(angle),
-      y: center + orbitRadius * Math.sin(angle),
+      x: centerX + orbitRadius * Math.cos(angle),
+      y: centerY + orbitRadius * Math.sin(angle),
     };
   });
 
@@ -122,7 +123,7 @@ export function RadialRuntimeCanvas({
       style={{
         width: "100%",
         height: "100%",
-        minHeight: 760,
+        minHeight: 0,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -133,18 +134,19 @@ export function RadialRuntimeCanvas({
     >
       <svg
         viewBox={`0 0 ${size} ${size}`}
+        preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label="Radial runtime capability view"
         style={{
           width: "100%",
           height: "100%",
-          minHeight: 760,
+          maxHeight: "100%",
           overflow: "visible",
         }}
       >
         <circle
-          cx={center}
-          cy={center}
+          cx={centerX}
+          cy={centerY}
           r={radius}
           fill="none"
           stroke="rgba(59,130,246,0.35)"
@@ -156,27 +158,27 @@ export function RadialRuntimeCanvas({
         />
 
         <circle
-          cx={center}
-          cy={center}
-          r={250}
+          cx={centerX}
+          cy={centerY}
+          r={280}
           fill="none"
           stroke="rgba(59,130,246,0.10)"
           strokeWidth={1}
         />
 
         <circle
-          cx={center}
-          cy={center}
-          r={320}
+          cx={centerX}
+          cy={centerY}
+          r={350}
           fill="none"
           stroke="rgba(59,130,246,0.08)"
           strokeWidth={1}
         />
 
         <circle
-          cx={center}
-          cy={center}
-          r={380}
+          cx={centerX}
+          cy={centerY}
+          r={400}
           fill="none"
           stroke="rgba(59,130,246,0.06)"
           strokeWidth={1}
@@ -198,21 +200,24 @@ export function RadialRuntimeCanvas({
           const thickness = getConfidenceThickness(node.confidence);
 
           const isRelated = isCapabilityRelated(node.id);
-          const isActive = node.id === activeCapabilityId;
 
           return (
             <path
               key={`${node.id}-arc`}
               d={buildArcPath({
-                cx: center,
-                cy: center,
+                cx: centerX,
+                cy: centerY,
                 innerRadius: node.orbitRadius - thickness / 2,
                 outerRadius: node.orbitRadius + thickness / 2,
                 startAngle,
                 endAngle,
               })}
               fill={getScoreColor(node.score)}
-              fillOpacity={getConfidenceOpacity(node.confidence)}
+              fillOpacity={
+                isRelated
+                  ? getConfidenceOpacity(node.confidence)
+                  : 0.06
+              }
               stroke={getScoreColor(node.score)}
               strokeWidth={1}
               style={{
@@ -315,8 +320,8 @@ export function RadialRuntimeCanvas({
         })}
         <g>
           <circle
-            cx={center}
-            cy={center}
+            cx={centerX}
+            cy={centerY}
             r={82}
             fill="rgba(15,23,42,0.92)"
             stroke="rgba(96,165,250,0.28)"
@@ -331,8 +336,8 @@ export function RadialRuntimeCanvas({
           />
 
           <text
-            x={center}
-            y={center - 20}
+            x={centerX}
+            y={centerY - 20}
             textAnchor="middle"
             fontSize="11"
             fontWeight="700"
@@ -342,8 +347,8 @@ export function RadialRuntimeCanvas({
           </text>
 
           <text
-            x={center}
-            y={center + 8}
+            x={centerX}
+            y={centerY + 8}
             textAnchor="middle"
             fontSize="30"
             fontWeight="800"
@@ -353,8 +358,8 @@ export function RadialRuntimeCanvas({
           </text>
 
           <text
-            x={center}
-            y={center + 32}
+            x={centerX}
+            y={centerY + 32}
             textAnchor="middle"
             fontSize="11"
             fill="#94a3b8"
