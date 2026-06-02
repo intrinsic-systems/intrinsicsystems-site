@@ -3,7 +3,7 @@ import { PROBE_LIBRARY } from "./probeLibrary";
 import type { AdaptiveProbe } from "./probeTypes";
 import type { CapabilityRuntimeState } from "./runtimeEngine";
 
-export function buildAdaptiveProbes(
+export function buildCapabilityAdaptiveProbes(
   capabilities: Record<string, CapabilityRuntimeState>,
 ): AdaptiveProbe[] {
   const probeMap = new Map<string, AdaptiveProbe>();
