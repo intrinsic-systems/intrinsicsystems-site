@@ -1,4 +1,5 @@
 import { buildArcPath } from "./buildArcPath";
+import type { RuntimeHeatmapNode } from "../../runtime/runtimeHeatmap";
 
 type RadialNode = {
   id: string;
@@ -20,6 +21,7 @@ type Props = {
   activeCapabilityId?: string | null;
   relatedCapabilityIds?: string[];
   onCapabilityFocus?: (capabilityId: string | null) => void;
+  heatmap?: RuntimeHeatmapNode[];
 };
 
 function getConfidenceOpacity(confidence: number) {
@@ -50,6 +52,7 @@ export function RadialRuntimeCanvas({
   activeCapabilityId,
   relatedCapabilityIds = [],
   onCapabilityFocus,
+  heatmap = [],
 }: Props) {
   const size = 1000;
   const centerX = size / 2;
@@ -96,6 +99,42 @@ export function RadialRuntimeCanvas({
   });
 
   const byId = new Map(positioned.map((node) => [node.id, node]));
+
+  const heatByCapability = new Map(
+    heatmap.map((item) => [item.capabilityId, item]),
+  );
+
+  function getHeatOpacity(capabilityId: string) {
+    const heat = heatByCapability.get(capabilityId);
+
+    if (!heat) {
+      return 0;
+    }
+
+    return Math.min(0.42, heat.heat / 240);
+  }
+
+  function getHeatStroke(capabilityId: string) {
+    const heat = heatByCapability.get(capabilityId);
+
+    if (!heat) {
+      return "rgba(96,165,250,0)";
+    }
+
+    if (heat.level === "critical") {
+      return "rgba(239,68,68,0.62)";
+    }
+
+    if (heat.level === "high") {
+      return "rgba(249,115,22,0.56)";
+    }
+
+    if (heat.level === "medium") {
+      return "rgba(245,158,11,0.46)";
+    }
+
+    return "rgba(59,130,246,0.30)";
+  }
 
   const hasActiveFocus = Boolean(activeCapabilityId);
 
@@ -273,6 +312,19 @@ export function RadialRuntimeCanvas({
               onMouseEnter={() => onCapabilityFocus?.(node.id)}
               onClick={() => onCapabilityFocus?.(node.id)}
             >
+            <circle
+              cx={node.x}
+              cy={node.y}
+              r={46 + node.score * 0.22}
+              fill={getScoreColor(node.score)}
+              opacity={getHeatOpacity(node.id)}
+              stroke={getHeatStroke(node.id)}
+              strokeWidth={isActive ? 4 : 2}
+              style={{
+                transition:
+                  "all 520ms cubic-bezier(0.22, 1, 0.36, 1)",
+              }}
+            />
             <circle
               cx={node.x}
               cy={node.y}
