@@ -1,18 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-
-import { buildCapabilityInfluenceMap }
-  from "./buildCapabilityInfluenceMap";
-
-import { buildRuntimeNarrative }
-  from "./runtimeNarrative";
-
-import { buildEnterpriseAdaptiveProbe }
-  from "./buildEnterpriseAdaptiveProbe";
-
+import { buildCapabilityInfluenceMap } from "./buildCapabilityInfluenceMap";
+import { buildRuntimeNarrative } from "./runtimeNarrative";
+import { buildEnterpriseAdaptiveProbe } from "./buildEnterpriseAdaptiveProbe";
+import { FounderBackLink } from "../founder/FounderBackLink";
 import { RadialRuntimeCanvas } from "../results/components/RadialRuntimeCanvas";
-
 import { RuntimeActionQueuePanel } from "./RuntimeActionQueuePanel";
-
 import { buildCollectionWorkflow } from "./buildCollectionWorkflow";
 import { buildEnterpriseBeliefState } from "./buildEnterpriseBeliefState";
 import { buildEvidenceRequirements } from "./buildEvidenceRequirements";
@@ -251,7 +243,7 @@ export function ExecutiveRuntimeDashboard() {
   ).length;
 
   const runtimeNarrative =
-  buildRuntimeNarrative(influenceMap);
+    buildRuntimeNarrative(influenceMap);
 
   const enterpriseProbe =
     buildEnterpriseAdaptiveProbe(
@@ -274,6 +266,8 @@ export function ExecutiveRuntimeDashboard() {
           margin: "0 auto",
         }}
       >
+        <FounderBackLink />
+
         <header
           style={{
             marginBottom: 28,
@@ -287,7 +281,7 @@ export function ExecutiveRuntimeDashboard() {
               marginBottom: 8,
             }}
           >
-            OASIS CORE™
+            OASIS Runtime Intelligence™
           </div>
 
           <h1
@@ -310,9 +304,8 @@ export function ExecutiveRuntimeDashboard() {
               marginTop: 12,
             }}
           >
-            A simplified executive view of enterprise capability,
-            operational strain, information trust, and recommended
-            action priorities.
+            A founder-facing runtime intelligence view showing capability health,
+            operational strain, evidence confidence, and recommended action priorities.
           </p>
         </header>
 
@@ -377,15 +370,13 @@ export function ExecutiveRuntimeDashboard() {
             }}
           >
             <RadialRuntimeCanvas
-                nodes={nodes}
-                links={links}
-                enterpriseScore={enterpriseScore}
-                activeCapabilityId={activeCapabilityId}
-                relatedCapabilityIds={
-                    influenceMap?.related ?? []
-                }
-                onCapabilityFocus={setActiveCapabilityId}
-                />
+              nodes={nodes}
+              links={links}
+              enterpriseScore={enterpriseScore}
+              activeCapabilityId={activeCapabilityId}
+              relatedCapabilityIds={influenceMap?.related ?? []}
+              onCapabilityFocus={setActiveCapabilityId}
+            />
           </div>
 
           <div

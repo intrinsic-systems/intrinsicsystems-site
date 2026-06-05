@@ -1,7 +1,7 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { WelcomeScreen } from "../../WelcomeScreen";
 import type { CoreFlowContextValue } from "../CoreFlowShell";
-
+  
 export function CoreStartRoute() {
   const ctx = useOutletContext<CoreFlowContextValue>();
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ export function CoreStartRoute() {
   return (
     <WelcomeScreen
       hasPrevious={hasPrevious}
+      showFounderNavigation
       onStartNew={() => {
         ctx.clearAllAnswers();
         ctx.goOnboarding();

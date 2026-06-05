@@ -1,5 +1,6 @@
 // src/WelcomeScreen.tsx
 import React from "react";
+import { Link } from "react-router-dom";
 import { OASIS_CONFIG } from "./config/oasisConfig";
 import { PageIntro } from "./core/PageIntro";
 import { ContextAside } from "./core/ContextAside";
@@ -9,6 +10,7 @@ type Props = {
   onContinueExisting: () => void;
   onBackToSuite: () => void;
   hasPrevious?: boolean;
+  showFounderNavigation?: boolean;
 };
 
 export const WelcomeScreen: React.FC<Props> = ({
@@ -16,12 +18,35 @@ export const WelcomeScreen: React.FC<Props> = ({
   onContinueExisting,
   onBackToSuite,
   hasPrevious = false,
+  showFounderNavigation = false,
 }) => {
   const year = new Date().getFullYear();
 
   return (
     <div className="o-page">
       <header className="o-page-header" style={{ marginBottom: 28 }}>
+        
+        {showFounderNavigation ? (
+          <Link
+            to="/founder"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              marginBottom: 16,
+              padding: "8px 12px",
+              borderRadius: 999,
+              border: "1px solid rgba(14,118,168,0.18)",
+              background: "#f4f9fc",
+              color: "#0b78b6",
+              fontSize: 13,
+              fontWeight: 700,
+              textDecoration: "none",
+            }}
+          >
+            ← Back to Founder Sandbox
+          </Link>
+        ) : null}
+
         <div className="o-page-header-main">
           <h1 className="o-page-title">{OASIS_CONFIG.core.name}</h1>
           <div className="o-page-tagline">
