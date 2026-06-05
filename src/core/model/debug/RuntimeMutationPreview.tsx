@@ -25,6 +25,7 @@ import type { RuntimeAttributeValue } from "../../runtime/buildTrustScores";
 
 import { buildCapabilityInfluenceMap } from "../../runtime/buildCapabilityInfluenceMap";
 import { buildRuntimeNarrative } from "../../runtime/runtimeNarrative";
+import { buildRuntimeHeatmap } from "../../runtime/runtimeHeatmap";
 
 import { buildEnterpriseBeliefState } from "../../runtime/buildEnterpriseBeliefState";
 
@@ -192,6 +193,29 @@ export function RuntimeMutationPreview() {
     confidence: capability.confidence,
   }));
 
+  const capabilityScores = Object.fromEntries(
+    nodes.map((node) => [node.id, node.score]),
+  );
+
+  const lowConfidenceIds = nodes
+    .filter((node) => node.confidence < 0.45)
+    .map((node) => node.id);
+
+  const evidenceGapIds = Object.values(
+    propagatedRuntime.capabilities,
+  )
+    .filter((capability) => capability.evidenceCoverage < 50)
+    .map((capability) => capability.capabilityId);
+
+  const conflictRelatedIds = ["risk-ownership"];
+
+  const heatmap = buildRuntimeHeatmap({
+    capabilityScores,
+    lowConfidenceIds,
+    evidenceGapIds,
+    conflictRelatedIds,
+  });
+
   const alerts = buildRuntimeAlerts(
     propagatedRuntime.triggers,
   );
@@ -216,6 +240,7 @@ export function RuntimeMutationPreview() {
           activeCapabilityId={activeCapabilityId}
           relatedCapabilityIds={influenceMap?.related ?? []}
           onCapabilityFocus={setActiveCapabilityId}
+          heatmap={heatmap}
         />
       </RuntimePrimaryPanel>
 
