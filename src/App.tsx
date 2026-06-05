@@ -21,6 +21,8 @@ import { RadialRuntimePreview } from "./core/model/debug";
 import { RuntimeMutationPreview } from "./core/model/debug/RuntimeMutationPreview";
 import { ExecutiveRuntimeDashboard } from "./core/runtime/ExecutiveRuntimeDashboard";
 
+import { FounderSandbox } from "./core/founder/FounderSandbox";
+
 function SiteFrame({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
@@ -93,6 +95,7 @@ export default function App() {
             </SiteFrame>
           }
         />
+        <Route path="/founder" element={<FounderSandbox />} />
         <Route
           path="/core/access"
           element={
@@ -105,12 +108,10 @@ export default function App() {
           path="/core/executive"
           element={<ExecutiveRuntimeDashboard />}
         />
-        <Route path="/core/debug/radial-runtime" element={<RadialRuntimePreview />} />
         <Route
           path="/core/debug/runtime-mutation"
           element={<RuntimeMutationPreview />}
         />
-
         <Route path="/core" element={<CoreFlowShell />}>
           <Route index element={<CoreStartRoute />} />
           <Route path="start" element={<CoreStartRoute />} />
