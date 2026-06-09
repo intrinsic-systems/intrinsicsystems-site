@@ -343,6 +343,58 @@ export function FounderSandbox() {
 
         <section
           style={{
+           padding: 24,
+            borderRadius: 22,
+            border: "1px solid rgba(14,118,168,0.14)",
+            background: "#ffffff",
+            boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
+            marginBottom: 24,
+          }}
+        >
+          <div
+            style={{
+              color: "#0f172a",
+              fontSize: 18,
+              fontWeight: 850,
+              marginBottom: 12,
+            }}
+          >
+            What Are You Reviewing?
+          </div>
+
+          <div
+            style={{
+              color: "#486581",
+              fontSize: 14,
+              lineHeight: 1.8,
+            }}
+          >
+            ✓ OASIS CORE MVP+ capability assessment workflow<br />
+            ✓ Capability scoring and traceability model<br />
+            ✓ Improvement pathway generation<br />
+            ✓ Runtime Intelligence concepts and visualisations<br />
+            ✓ Enterprise Belief State and Action Queue<br />
+            ✓ Evidence-driven operational decision support
+          </div>
+
+          <div
+            style={{
+              marginTop: 16,
+              padding: 12,
+              borderRadius: 12,
+              background: "#f8fafc",
+              color: "#64748b",
+              fontSize: 13,
+            }}
+          >
+            This environment is an internal preview release intended to validate
+            product direction, user experience, and enterprise value. It is not yet a
+            production release.
+          </div>
+        </section>
+
+        <section
+          style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
             gap: 24,
@@ -511,7 +563,7 @@ export function FounderSandbox() {
              marginBottom: 12,
             }}
           >
-            Founder Feedback
+            Feedback & Suggestions
           </div>
 
           <div
@@ -521,11 +573,24 @@ export function FounderSandbox() {
               lineHeight: 1.8,
             }}
           >
-            • What impressed you most?<br />
-            • What confused you?<br />
-            • What should we prioritise next?<br />
-            • Does this help explain the OASIS vision?<br />
-            • Would this solve a real organisational problem?
+            We welcome observations, questions, defects, improvement ideas, and
+            feature suggestions.
+          </div>
+          <div
+            style={{
+              marginTop: 16,
+            }}
+          >
+            <a
+              href="mailto:feedback@intrinsicsystems.com.au"
+              style={{
+                color: "#0b78b6",
+                fontWeight: 800,
+                textDecoration: "none",
+              }}
+            >
+              feedback@intrinsicsystems.com.au
+            </a>
           </div>
         </section>
       </div>

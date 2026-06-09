@@ -28,7 +28,7 @@ export const WelcomeScreen: React.FC<Props> = ({
         
         {showFounderNavigation ? (
           <Link
-            to="/founder"
+            to="/oasis/founder"
             style={{
               display: "inline-flex",
               alignItems: "center",

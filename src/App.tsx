@@ -1,5 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HomePage } from "./site/pages/HomePage";
 import { WhatWeDoPage } from "./site/pages/WhatWeDoPage";
 import { PlatformApproachPage } from "./site/pages/PlatformApproachPage";
@@ -31,14 +30,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <SiteFrame>
-              <HomePage />
-            </SiteFrame>
-          }
-        />
+        <Route path="/" element={<Navigate to="/founder" replace />} />
         <Route
           path="/what-we-do"
           element={
@@ -95,7 +87,7 @@ export default function App() {
             </SiteFrame>
           }
         />
-        <Route path="/founder" element={<FounderSandbox />} />
+        <Route path="/oasis/founder" element={<FounderSandbox />} />
         <Route
           path="/core/access"
           element={

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function FounderBackLink() {
   return (
     <Link
-      to="/founder"
+      to="/oasis/founder"
       style={{
         display: "inline-flex",
         alignItems: "center",
