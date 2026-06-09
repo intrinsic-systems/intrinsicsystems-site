@@ -7,7 +7,7 @@ import { MvpStatusPage } from "./site/pages/MvpStatusPage";
 import { AboutPage } from "./site/pages/AboutPage";
 import { ContactPage } from "./site/pages/ContactPage";
 import { OasisModulePage } from "./site/pages/OasisModulePage";
-
+import { FounderAccessGate } from "./core/founder/FounderAccessGate";
 import { CoreFlowShell } from "./core/CoreFlowShell";
 import { CoreStartRoute } from "./core/routes/CoreStartRoute";
 import { CoreOnboardingRoute } from "./core/routes/CoreOnboardingRoute";
@@ -56,7 +56,14 @@ export default function App() {
           }
         />
 
-        <Route path="/oasis/founder" element={<FounderSandbox />} />
+        <Route
+          path="/oasis/founder"
+          element={
+            <FounderAccessGate>
+              <FounderSandbox />
+            </FounderAccessGate>
+          }
+        />
 
         <Route
           path="/oasis/:moduleId"
