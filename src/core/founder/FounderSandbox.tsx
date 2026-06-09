@@ -227,6 +227,57 @@ function Checklist({
   );
 }
 
+function FeatureList({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) {
+  return (
+    <div
+      style={{
+        padding: 24,
+        borderRadius: 22,
+        border: "1px solid rgba(14,118,168,0.14)",
+        background: "#ffffff",
+        boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
+      }}
+    >
+      <div
+        style={{
+          color: "#0f172a",
+          fontSize: 16,
+          fontWeight: 850,
+          marginBottom: 14,
+        }}
+      >
+        {title}
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gap: 10,
+        }}
+      >
+        {items.map((item) => (
+          <div
+            key={item}
+            style={{
+              color: "#486581",
+              fontSize: 14,
+              lineHeight: 1.5,
+            }}
+          >
+            • {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function FounderSandbox() {
   return (
     <main
@@ -348,6 +399,19 @@ export function FounderSandbox() {
               "Runtime Digital Twin",
             ]}
           />
+
+          <FeatureList
+            title="Release Notes"
+            items={[
+              "CORE MVP+",
+              "Executive Runtime Dashboard",
+              "Enterprise Belief State",
+              "Runtime Action Queue",
+              "Runtime Evidence Workflow",
+              "Capability Influence Mapping",
+              "Founder Sandbox",
+            ]}
+          />
         </section>
 
         <section
@@ -428,6 +492,40 @@ export function FounderSandbox() {
               title="Runtime Evidence Workflow"
               body="Review how evidence requirements, collection activities, and assurance needs can be linked directly to capability confidence and recommended action."
             />
+          </div>
+        </section>
+        <section
+          style={{
+            padding: 24,
+            borderRadius: 22,
+            border: "1px solid rgba(14,118,168,0.14)",
+            background: "#ffffff",
+            boxShadow: "0 12px 32px rgba(15,23,42,0.06)",
+          }}
+        >
+          <div
+            style={{
+              color: "#0f172a",
+              fontSize: 18,
+              fontWeight: 850,
+             marginBottom: 12,
+            }}
+          >
+            Founder Feedback
+          </div>
+
+          <div
+            style={{
+              color: "#486581",
+              fontSize: 14,
+              lineHeight: 1.8,
+            }}
+          >
+            • What impressed you most?<br />
+            • What confused you?<br />
+            • What should we prioritise next?<br />
+            • Does this help explain the OASIS vision?<br />
+            • Would this solve a real organisational problem?
           </div>
         </section>
       </div>
