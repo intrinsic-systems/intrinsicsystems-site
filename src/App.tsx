@@ -30,7 +30,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/founder" replace />} />
+        <Route path="/" element={<Navigate to="/oasis/founder" replace />} />
         <Route
           path="/what-we-do"
           element={
@@ -55,6 +55,9 @@ export default function App() {
             </SiteFrame>
           }
         />
+
+        <Route path="/oasis/founder" element={<FounderSandbox />} />
+
         <Route
           path="/oasis/:moduleId"
           element={
@@ -87,7 +90,6 @@ export default function App() {
             </SiteFrame>
           }
         />
-        <Route path="/oasis/founder" element={<FounderSandbox />} />
         <Route
           path="/core/access"
           element={

@@ -63,7 +63,7 @@ function GuideCard({
         style={{
           color: "#0f172a",
           fontSize: 15,
-         fontWeight: 850,
+          fontWeight: 850,
           marginBottom: 8,
         }}
       >
@@ -343,7 +343,7 @@ export function FounderSandbox() {
 
         <section
           style={{
-           padding: 24,
+            padding: 24,
             borderRadius: 22,
             border: "1px solid rgba(14,118,168,0.14)",
             background: "#ffffff",
@@ -423,7 +423,7 @@ export function FounderSandbox() {
         <section
           style={{
             display: "grid",
-            gridTemplateColumns: "1.1fr 0.9fr",
+            gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
             gap: 24,
             marginBottom: 24,
           }}
@@ -560,7 +560,7 @@ export function FounderSandbox() {
               color: "#0f172a",
               fontSize: 18,
               fontWeight: 850,
-             marginBottom: 12,
+              marginBottom: 12,
             }}
           >
             Feedback & Suggestions
