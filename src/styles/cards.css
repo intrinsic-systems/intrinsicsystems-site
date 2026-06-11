@@ -113,6 +113,141 @@
   margin: 0;
 }
 
+/* Founder sandbox narrative sections */
+
+.founder-section {
+  padding: 28px;
+  border-radius: 24px;
+  border: 1px solid rgba(14, 118, 168, 0.14);
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  margin-bottom: 24px;
+}
+
+.founder-section-header {
+  max-width: 780px;
+  margin-bottom: 22px;
+}
+
+.founder-section-kicker {
+  color: #0b78b6;
+  font-size: 12px;
+  font-weight: 850;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.founder-section h2 {
+  color: #0f172a;
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+
+.founder-section p {
+  color: #486581;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.timeline-item {
+  padding: 20px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(14, 118, 168, 0.12);
+}
+
+.timeline-year {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eaf6fd;
+  color: #0b78b6;
+  font-size: 12px;
+  font-weight: 850;
+  margin-bottom: 12px;
+}
+
+.timeline-item h3 {
+  color: #0f172a;
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+
+.timeline-item strong {
+  display: block;
+  color: #0f172a;
+  font-size: 12px;
+  margin: 14px 0 4px;
+}
+
+.founder-realisation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.realisation-card {
+  padding: 18px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(14, 118, 168, 0.12);
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.realisation-card.emphasis {
+  background: #eaf6fd;
+  color: #0b78b6;
+  border-color: rgba(14, 118, 168, 0.22);
+}
+
+.runtime-flow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.runtime-step {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #0b78b6;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.runtime-arrow {
+  color: #94a3b8;
+  font-weight: 900;
+}
+
+.runtime-summary {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid rgba(14, 118, 168, 0.12);
+}
+
+.runtime-summary strong {
+  display: block;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
 /* -------------------------------------------------
    Buttons
 ------------------------------------------------- */

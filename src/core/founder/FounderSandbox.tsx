@@ -393,6 +393,201 @@ export function FounderSandbox() {
           </div>
         </section>
 
+        <section className="founder-section">
+          <div className="founder-section-header">
+            <div className="founder-section-kicker">
+              OASIS Evolution
+            </div>
+
+            <h2>From Assessment to Runtime Intelligence</h2>
+
+            <p>
+              OASIS did not begin as a software platform. It began with a simple
+              question: how can organisations better understand themselves?
+            </p>
+          </div>
+
+          <div className="timeline">
+            <div className="timeline-item">
+              <div className="timeline-year">2018</div>
+              <h3>The Question</h3>
+              <p>
+                How can organisations better understand capability?
+             </p>
+              <strong>Key Insight</strong>
+              <p>
+               Understanding capability is more important than measuring maturity.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-year">2020</div>
+              <h3>Assessment</h3>
+              <p>
+                Structured maturity assessments and organisational benchmarking.
+              </p>
+             <strong>Key Insight</strong>
+              <p>
+                Assessment identifies issues but does not explain them.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-year">2023</div>
+              <h3>Traceability</h3>
+              <p>
+                Connecting capability scores to evidence, rationale and relationships.
+              </p>
+              <strong>Key Insight</strong>
+              <p>
+                Capability must be explainable.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-year">2025</div>
+              <h3>Improvement</h3>
+              <p>
+                Improvement pathways and prioritised uplift actions.
+              </p>
+              <strong>Key Insight</strong>
+              <p>
+                Organisations need direction, not just diagnosis.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-year">2026</div>
+              <h3>Runtime Intelligence</h3>
+              <p>
+                Evidence confidence, adaptive probes and enterprise belief states.
+              </p>
+              <strong>Key Insight</strong>
+              <p>
+                Capability should be continuously interpreted.
+              </p>
+            </div>
+
+            <div className="timeline-item">
+              <div className="timeline-year">Future</div>
+              <h3>Digital Twin</h3>
+              <p>
+                Continuous enterprise capability intelligence.
+              </p>
+              <strong>Vision</strong>
+              <p>
+                Help organisations understand themselves continuously.
+              </p>
+            </div>
+          </div>
+        </section>        
+
+        <section className="founder-section">
+          <div className="founder-section-header">
+            <div className="founder-section-kicker">
+              Product Learnings
+            </div>
+
+            <h2>What We've Realised</h2>
+          </div>
+
+          <div className="founder-realisation-grid">
+
+            <div className="realisation-card">
+              Organisations do not need another assessment tool.
+            </div>
+
+            <div className="realisation-card">
+              They need a way to understand capability.
+            </div>
+
+            <div className="realisation-card">
+              Capability is not static.
+            </div>
+
+            <div className="realisation-card">
+              Capability changes as evidence changes.
+            </div>
+
+            <div className="realisation-card">
+              Confidence matters as much as score.
+            </div>
+
+            <div className="realisation-card">
+              Evidence quality influences decision quality.
+            </div>
+
+            <div className="realisation-card">
+              Improvement is more valuable than diagnosis.
+            </div>
+
+            <div className="realisation-card emphasis">
+              Runtime Intelligence emerged from these observations.
+            </div>
+
+          </div>
+        </section>
+
+        <section className="founder-section founder-runtime-story">
+
+          <div className="founder-section-header">
+            <div className="founder-section-kicker">
+              Runtime Intelligence
+            </div>
+
+            <h2>From 130 Questions to Targeted Intelligence</h2>
+
+            <p>
+              Traditional assessments require users to answer every question.
+              OASIS Runtime Intelligence takes a different approach.
+            </p>
+          </div>
+
+          <div className="runtime-flow">
+
+            <div className="runtime-step">
+              Capability Weakness
+            </div>
+
+            <div className="runtime-arrow">→</div>
+
+            <div className="runtime-step">
+              Evidence Gap
+            </div>
+
+            <div className="runtime-arrow">→</div>
+
+            <div className="runtime-step">
+              Targeted Probe
+            </div>
+
+            <div className="runtime-arrow">→</div>
+
+            <div className="runtime-step">
+              Increased Confidence
+            </div>
+
+            <div className="runtime-arrow">→</div>
+
+            <div className="runtime-step">
+              Recommended Action
+            </div>
+
+          </div>
+
+          <div className="runtime-summary">
+
+            <strong>Objective</strong>
+
+            <p>
+              Reduce assessment effort while increasing confidence,
+              evidence quality and decision support.
+            </p>
+
+          </div>
+
+        </section>
+
         <section
           style={{
             display: "grid",
