@@ -1,4 +1,5 @@
 import { propagateInfluence } from "./propagateInfluence";
+import { buildRuntimeConfidenceArchitecture } from "./runtimeConfidenceArchitecture";
 
 import type {
   CapabilityRuntimeState,
@@ -36,6 +37,13 @@ export function propagateRuntimeInfluence(
       ...target,
       score: result.adjustedScore,
       confidence: result.adjustedConfidence,
+      confidenceArchitecture: buildRuntimeConfidenceArchitecture({
+        confidence: result.adjustedConfidence,
+        evidenceCoverage: target.evidenceCoverage,
+        hasEvidence: target.hasEvidence,
+        controlConditions:
+          target.confidenceArchitecture.controlConditions,
+      }),
       triggers: [
         ...target.triggers,
         result.pressure > 35 ? "dependency-pressure" : "",

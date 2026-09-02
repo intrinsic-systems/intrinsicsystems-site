@@ -14,6 +14,7 @@ import { runtimeInformationGraph } from "./runtimeInformationGraph";
 import { useRuntimeState } from "./useRuntimeState";
 import { RuntimeEvidencePanel } from "./RuntimeEvidencePanel";
 import { RuntimeCollectionWorkflowPanel } from "./RuntimeCollectionWorkflowPanel";
+import { RuntimeConfidenceArchitecturePanel } from "./RuntimeConfidenceArchitecturePanel";
 
 import type { RuntimeAttributeValue } from "./buildTrustScores";
 
@@ -160,6 +161,7 @@ export function ExecutiveRuntimeDashboard() {
       score: 35,
       confidence: 0.55,
       hasEvidence: true,
+      controlConditions: ["contested"],
     });
 
     mutate({
@@ -244,6 +246,11 @@ export function ExecutiveRuntimeDashboard() {
 
   const runtimeNarrative =
     buildRuntimeNarrative(influenceMap);
+
+  const activeConfidenceArchitecture = activeCapabilityId
+    ? propagatedRuntime.capabilities[activeCapabilityId]
+        ?.confidenceArchitecture
+    : undefined;
 
   const enterpriseProbe =
     buildEnterpriseAdaptiveProbe(
@@ -432,6 +439,11 @@ export function ExecutiveRuntimeDashboard() {
             <RuntimeActionQueuePanel
               queue={enterpriseBeliefState.actionQueue}
             />
+            {activeConfidenceArchitecture ? (
+              <RuntimeConfidenceArchitecturePanel
+                architecture={activeConfidenceArchitecture}
+              />
+            ) : null}
             {/* Runtime Focus card */}
             <div
                 style={{

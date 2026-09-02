@@ -5,6 +5,10 @@ import { evaluateTriggers } from "./evaluateTriggers";
 import { buildRuntimeTriggers } from "./runtimeTriggers";
 
 import type { RuntimeTrigger } from "./runtimeTriggers";
+import type {
+  RuntimeConfidenceArchitecture,
+  RuntimeControlCondition,
+} from "./runtimeConfidenceArchitecture";
 
 export type RuntimeAnswerMutation = {
   capabilityId: string;
@@ -14,6 +18,7 @@ export type RuntimeAnswerMutation = {
   confidence: number;
 
   hasEvidence: boolean;
+  controlConditions?: RuntimeControlCondition[];
 };
 
 export type CapabilityRuntimeState = {
@@ -21,6 +26,7 @@ export type CapabilityRuntimeState = {
 
   score: number;
   confidence: number;
+  confidenceArchitecture: RuntimeConfidenceArchitecture;
 
   hasEvidence: boolean;
 
@@ -45,6 +51,11 @@ export function applyRuntimeMutation(
       capabilityId: mutation.capabilityId,
       score: 0,
       confidence: 0,
+      confidenceArchitecture: {
+        supportState: "unsupported",
+        controlConditions: [],
+        nextAction: "collect-evidence",
+      },
 
       hasEvidence: false,
 
