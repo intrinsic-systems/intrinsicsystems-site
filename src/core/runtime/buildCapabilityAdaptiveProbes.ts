@@ -1,4 +1,5 @@
 import { PROBE_LIBRARY } from "./probeLibrary";
+import { runtimeConfidenceProbeQuestions } from "./runtimeConfidenceArchitecture";
 
 import type { AdaptiveProbe } from "./probeTypes";
 import type { CapabilityRuntimeState } from "./runtimeEngine";
@@ -15,7 +16,11 @@ export function buildCapabilityAdaptiveProbes(
           (probe) =>
             probe.capabilityId === capabilityId,
         ).forEach((probe) => {
-          probeMap.set(probe.id, probe);
+          probeMap.set(probe.id, {
+            ...probe,
+            confidenceArchitecture:
+              capability.confidenceArchitecture,
+          });
         });
       }
 
@@ -30,8 +35,32 @@ export function buildCapabilityAdaptiveProbes(
               ...probe,
               id: `${capabilityId}-${probe.id}`,
               capabilityId,
+              confidenceArchitecture:
+                capability.confidenceArchitecture,
             },
           );
+        });
+      }
+
+      if (
+        capability.confidenceArchitecture.nextAction !== "monitor"
+      ) {
+        const { confidenceArchitecture } = capability;
+
+        probeMap.set(`${capabilityId}-confidence-policy`, {
+          id: `${capabilityId}-confidence-policy`,
+          capabilityId,
+          type: "confidence",
+          severity: confidenceArchitecture.controlConditions.length
+            ? "high"
+            : "medium",
+          question:
+            runtimeConfidenceProbeQuestions[
+              confidenceArchitecture.nextAction
+            ],
+          rationale:
+            "Probe selected from the capability's explicit support state, control condition, and next action.",
+          confidenceArchitecture,
         });
       }
     },

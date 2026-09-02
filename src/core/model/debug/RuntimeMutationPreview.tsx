@@ -218,6 +218,7 @@ export function RuntimeMutationPreview() {
 
   const alerts = buildRuntimeAlerts(
     propagatedRuntime.triggers,
+    propagatedRuntime.capabilities,
   );
 
   const enterpriseBeliefState =
@@ -225,6 +226,7 @@ export function RuntimeMutationPreview() {
       enterpriseScore,
       alerts,
       informationGraph,
+      capabilities: propagatedRuntime.capabilities,
     });
 
   const questionRouting =

@@ -1,4 +1,5 @@
 import type { RuntimeAlert } from "./buildRuntimeAlerts";
+import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 
 type Props = {
   alerts: RuntimeAlert[];
@@ -64,6 +65,11 @@ export function RuntimeAlertsPanel({
           >
             {alert.message}
           </div>
+          {alert.confidenceArchitecture ? (
+            <RuntimeConfidenceContext
+              architecture={alert.confidenceArchitecture}
+            />
+          ) : null}
         </div>
       ))}
     </div>

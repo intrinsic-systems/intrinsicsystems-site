@@ -7,6 +7,34 @@ type Props = {
   architecture: RuntimeConfidenceArchitecture;
 };
 
+export function RuntimeConfidenceContext({
+  architecture,
+}: Props) {
+  const controls = architecture.controlConditions.length
+    ? architecture.controlConditions
+        .map(
+          (condition) =>
+            runtimeConfidenceLabels.controlCondition[condition],
+        )
+        .join(", ")
+    : "None active";
+
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        color: "#94a3b8",
+        fontSize: 11,
+        lineHeight: 1.5,
+      }}
+    >
+      Support: {runtimeConfidenceLabels.supportState[architecture.supportState]}
+      {" · "}Control: {controls}
+      {" · "}Action: {runtimeConfidenceLabels.nextAction[architecture.nextAction]}
+    </div>
+  );
+}
+
 function Dimension({
   label,
   value,

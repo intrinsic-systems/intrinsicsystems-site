@@ -11,4 +11,5 @@ export type AdaptiveProbe = {
   severity: "low" | "medium" | "high";
   question: string;
   rationale: string;
+  confidenceArchitecture?: import("./runtimeConfidenceArchitecture").RuntimeConfidenceArchitecture;
 };

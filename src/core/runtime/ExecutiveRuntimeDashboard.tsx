@@ -15,6 +15,7 @@ import { useRuntimeState } from "./useRuntimeState";
 import { RuntimeEvidencePanel } from "./RuntimeEvidencePanel";
 import { RuntimeCollectionWorkflowPanel } from "./RuntimeCollectionWorkflowPanel";
 import { RuntimeConfidenceArchitecturePanel } from "./RuntimeConfidenceArchitecturePanel";
+import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 
 import type { RuntimeAttributeValue } from "./buildTrustScores";
 
@@ -25,12 +26,6 @@ const runtimeContext = {
   lifecyclePhase: "handover" as const,
   geography: "western-region",
 };
-
-const evidenceRequirements =
-  buildEvidenceRequirements(runtimeContext);
-
-const collectionWorkflow =
-  buildCollectionWorkflow(runtimeContext, evidenceRequirements);
 
 const runtimeAttributes: RuntimeAttributeValue[] = [
   {
@@ -223,6 +218,7 @@ export function ExecutiveRuntimeDashboard() {
 
   const alerts = buildRuntimeAlerts(
     propagatedRuntime.triggers,
+    propagatedRuntime.capabilities,
   );
 
   const enterpriseBeliefState =
@@ -230,6 +226,7 @@ export function ExecutiveRuntimeDashboard() {
       enterpriseScore,
       alerts,
       informationGraph,
+      capabilities: propagatedRuntime.capabilities,
     });
 
   const influenceMap = useMemo(() => {
@@ -251,6 +248,22 @@ export function ExecutiveRuntimeDashboard() {
     ? propagatedRuntime.capabilities[activeCapabilityId]
         ?.confidenceArchitecture
     : undefined;
+
+  const decisionArchitecture =
+    activeConfidenceArchitecture ??
+    enterpriseBeliefState.actionQueue.actions.find(
+      (action) => action.confidenceArchitecture,
+    )?.confidenceArchitecture;
+
+  const evidenceRequirements = buildEvidenceRequirements(
+    runtimeContext,
+    decisionArchitecture,
+  );
+
+  const collectionWorkflow = buildCollectionWorkflow(
+    runtimeContext,
+    evidenceRequirements,
+  );
 
   const enterpriseProbe =
     buildEnterpriseAdaptiveProbe(
@@ -517,6 +530,13 @@ export function ExecutiveRuntimeDashboard() {
                     >
                     {enterpriseProbe.question}
                     </div>
+                    {enterpriseProbe.confidenceArchitecture ? (
+                      <RuntimeConfidenceContext
+                        architecture={
+                          enterpriseProbe.confidenceArchitecture
+                        }
+                      />
+                    ) : null}
                 </div>
             ) : null}
             <RuntimeEvidencePanel

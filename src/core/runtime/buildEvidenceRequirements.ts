@@ -1,4 +1,5 @@
 import type { RuntimeContext } from "./runtimeContext";
+import type { RuntimeConfidenceArchitecture } from "./runtimeConfidenceArchitecture";
 
 export type EvidenceRequirement = {
   id: string;
@@ -6,10 +7,12 @@ export type EvidenceRequirement = {
   description: string;
   requiredFor: string;
   confidenceImpact: number;
+  confidenceArchitecture?: RuntimeConfidenceArchitecture;
 };
 
 export function buildEvidenceRequirements(
   context: RuntimeContext,
+  confidenceArchitecture?: RuntimeConfidenceArchitecture,
 ): EvidenceRequirement[] {
   const requirements: EvidenceRequirement[] = [];
 
@@ -21,6 +24,7 @@ export function buildEvidenceRequirements(
         "Validated as-built asset information aligned to operational and authority handover requirements.",
       requiredFor: "handover readiness",
       confidenceImpact: 0.25,
+      confidenceArchitecture,
     });
   }
 
@@ -35,6 +39,7 @@ export function buildEvidenceRequirements(
         "Current condition evidence suitable for lifecycle planning and risk-based decision making.",
       requiredFor: "lifecycle planning",
       confidenceImpact: 0.2,
+      confidenceArchitecture,
     });
   }
 
@@ -46,6 +51,7 @@ export function buildEvidenceRequirements(
         "Evidence confirming the asset information is sufficient for high-consequence operational decisions.",
       requiredFor: "critical asset governance",
       confidenceImpact: 0.3,
+      confidenceArchitecture,
     });
   }
 

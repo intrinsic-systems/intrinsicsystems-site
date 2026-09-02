@@ -123,3 +123,31 @@ export const runtimeConfidenceLabels = {
     monitor: "Monitor",
   },
 } as const;
+
+export const runtimeConfidenceProbeQuestions: Record<
+  RuntimeNextAction,
+  string
+> = {
+  "collect-evidence":
+    "What evidence can establish an initial basis for this capability claim?",
+  "strengthen-evidence":
+    "What additional evidence would strengthen the current capability claim?",
+  "resolve-contestation":
+    "Which material conflict must be resolved, and which source is authoritative?",
+  "refresh-evidence":
+    "Which affected evidence must be refreshed before this claim is relied upon?",
+  "substantiate-limitation":
+    "What evidence substantiates the claimed applicability limitation?",
+  "run-change-detection":
+    "What changed, which claims are affected, and what targeted evidence is needed to revalidate them?",
+  monitor:
+    "What signal would indicate that this supported claim requires renewed attention?",
+};
+
+export function getRuntimeConfidenceActionPriority(
+  architecture: RuntimeConfidenceArchitecture,
+): number {
+  if (architecture.controlConditions.length) return 88;
+  if (architecture.supportState === "unsupported") return 78;
+  return architecture.nextAction === "monitor" ? 20 : 58;
+}

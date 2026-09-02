@@ -1,10 +1,13 @@
 import type { RuntimeAction } from "./buildRuntimeActions";
+import type { RuntimeConfidenceArchitecture } from "./runtimeConfidenceArchitecture";
+import { runtimeConfidenceProbeQuestions } from "./runtimeConfidenceArchitecture";
 
 export type EnterpriseAdaptiveProbe = {
   id: string;
   priority: "low" | "medium" | "high";
   reason: string;
   question: string;
+  confidenceArchitecture?: RuntimeConfidenceArchitecture;
 };
 
 export function buildEnterpriseAdaptiveProbe(
@@ -14,6 +17,22 @@ export function buildEnterpriseAdaptiveProbe(
 
   if (!highest) {
     return null;
+  }
+
+  if (highest.confidenceArchitecture) {
+    const architecture = highest.confidenceArchitecture;
+    return {
+      id: `confidence-${architecture.nextAction}`,
+      priority: architecture.controlConditions.length
+        ? "high"
+        : "medium",
+      reason: highest.title,
+      question:
+        runtimeConfidenceProbeQuestions[
+          architecture.nextAction
+        ],
+      confidenceArchitecture: architecture,
+    };
   }
 
   switch (highest.source) {

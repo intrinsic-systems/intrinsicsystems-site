@@ -1,4 +1,5 @@
 import type { EvidenceRequirement } from "./buildEvidenceRequirements";
+import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 
 type Props = {
   requirements: EvidenceRequirement[];
@@ -76,6 +77,11 @@ export function RuntimeEvidencePanel({
             >
               Supports: {item.requiredFor}
             </div>
+            {item.confidenceArchitecture ? (
+              <RuntimeConfidenceContext
+                architecture={item.confidenceArchitecture}
+              />
+            ) : null}
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import type { CollectionWorkflow } from "./buildCollectionWorkflow";
+import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 
 type Props = {
   workflow: CollectionWorkflow;
@@ -77,6 +78,11 @@ export function RuntimeCollectionWorkflowPanel({
             >
               {step.description}
             </div>
+            {step.confidenceArchitecture ? (
+              <RuntimeConfidenceContext
+                architecture={step.confidenceArchitecture}
+              />
+            ) : null}
           </div>
         ))}
       </div>

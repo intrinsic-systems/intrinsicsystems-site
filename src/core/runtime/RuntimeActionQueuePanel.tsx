@@ -1,4 +1,5 @@
 import type { RuntimeActionQueue } from "./runtimeActionQueue";
+import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 
 type Props = {
   queue: RuntimeActionQueue;
@@ -92,6 +93,11 @@ export function RuntimeActionQueuePanel({ queue }: Props) {
             >
               {action.description}
             </div>
+            {action.confidenceArchitecture ? (
+              <RuntimeConfidenceContext
+                architecture={action.confidenceArchitecture}
+              />
+            ) : null}
           </div>
         ))}
       </div>
