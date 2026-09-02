@@ -169,7 +169,6 @@ export function RadialRuntimeCanvas({
         padding: 0,
         overflow: "visible",
       }}
-      onMouseLeave={() => onCapabilityFocus?.(null)}
     >
       <svg
         viewBox={`0 0 ${size} ${size}`}

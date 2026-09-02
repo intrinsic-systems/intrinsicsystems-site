@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "validate:runtime-confidence": "node --experimental-strip-types scripts/validate-runtime-confidence.ts",
+    "validate:runtime-claims": "node scripts/run-ts-validation.mjs scripts/validate-runtime-claims.ts",
     "preview": "vite preview"
   },
   "dependencies": {

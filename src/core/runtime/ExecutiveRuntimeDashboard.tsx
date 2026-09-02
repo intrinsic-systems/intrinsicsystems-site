@@ -16,6 +16,9 @@ import { RuntimeEvidencePanel } from "./RuntimeEvidencePanel";
 import { RuntimeCollectionWorkflowPanel } from "./RuntimeCollectionWorkflowPanel";
 import { RuntimeConfidenceArchitecturePanel } from "./RuntimeConfidenceArchitecturePanel";
 import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
+import { RuntimeClaimEvidenceWorkspace } from "./RuntimeClaimEvidenceWorkspace";
+import { useRuntimeClaimStore } from "./useRuntimeClaimStore";
+import { applyPersistedClaimDecisions } from "./runtimeClaimOrchestration";
 
 import type { RuntimeAttributeValue } from "./buildTrustScores";
 
@@ -206,6 +209,13 @@ export function ExecutiveRuntimeDashboard() {
     runtime,
     links,
   );
+  const claimWorkspace = useRuntimeClaimStore(
+    propagatedRuntime.capabilities,
+  );
+  const claimAwareCapabilities = applyPersistedClaimDecisions(
+    propagatedRuntime.capabilities,
+    claimWorkspace.store.claims,
+  );
 
   const nodes = Object.entries(
     propagatedRuntime.capabilities,
@@ -218,7 +228,7 @@ export function ExecutiveRuntimeDashboard() {
 
   const alerts = buildRuntimeAlerts(
     propagatedRuntime.triggers,
-    propagatedRuntime.capabilities,
+    claimAwareCapabilities,
   );
 
   const enterpriseBeliefState =
@@ -226,7 +236,7 @@ export function ExecutiveRuntimeDashboard() {
       enterpriseScore,
       alerts,
       informationGraph,
-      capabilities: propagatedRuntime.capabilities,
+      capabilities: claimAwareCapabilities,
     });
 
   const influenceMap = useMemo(() => {
@@ -245,7 +255,7 @@ export function ExecutiveRuntimeDashboard() {
     buildRuntimeNarrative(influenceMap);
 
   const activeConfidenceArchitecture = activeCapabilityId
-    ? propagatedRuntime.capabilities[activeCapabilityId]
+    ? claimAwareCapabilities[activeCapabilityId]
         ?.confidenceArchitecture
     : undefined;
 
@@ -457,6 +467,15 @@ export function ExecutiveRuntimeDashboard() {
                 architecture={activeConfidenceArchitecture}
               />
             ) : null}
+            <RuntimeClaimEvidenceWorkspace
+              activeCapabilityId={activeCapabilityId}
+              store={claimWorkspace.store}
+              onRequestEvidence={claimWorkspace.requestEvidence}
+              onSubmitEvidence={claimWorkspace.submitEvidence}
+              onVerifyEvidence={claimWorkspace.verifyEvidence}
+              onBeginEvidenceWork={claimWorkspace.beginEvidenceWork}
+              onRejectEvidence={claimWorkspace.rejectEvidence}
+            />
             {/* Runtime Focus card */}
             <div
                 style={{
