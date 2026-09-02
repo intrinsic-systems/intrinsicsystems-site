@@ -14,20 +14,35 @@ import {
 import type { CapabilityRuntimeState } from "./runtimeEngine";
 import type { RuntimeClaimStore } from "./claimEvidenceTypes";
 
-function createBrowserRepository() {
-  if (typeof window === "undefined") return null;
-  return createLocalRuntimeClaimRepository({
-    storage: window.localStorage,
-  });
-}
-
 export function useRuntimeClaimStore(
   capabilities: Record<string, CapabilityRuntimeState>,
+  options?: {
+    storageKey?: string;
+    initialStore?: RuntimeClaimStore;
+  },
 ) {
-  const repository = useMemo(createBrowserRepository, []);
-  const [store, setStore] = useState<RuntimeClaimStore>(() =>
-    repository?.load() ?? createEmptyRuntimeClaimStore(),
-  );
+  const repository = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return createLocalRuntimeClaimRepository({
+      storage: window.localStorage,
+      key: options?.storageKey,
+    });
+  }, [options?.storageKey]);
+  const [store, setStore] = useState<RuntimeClaimStore>(() => {
+    const persisted = repository?.load();
+    if (persisted && persisted.claims.length > 0) return persisted;
+    return options?.initialStore ?? persisted ?? createEmptyRuntimeClaimStore();
+  });
+
+  useEffect(() => {
+    const persisted = repository?.load();
+    const next =
+      persisted && persisted.claims.length > 0
+        ? persisted
+        : options?.initialStore ?? persisted ?? createEmptyRuntimeClaimStore();
+    if (next.claims.length > 0) repository?.save(next);
+    setStore(next);
+  }, [options?.initialStore, repository]);
 
   const commit = useCallback(
     (update: (current: RuntimeClaimStore) => RuntimeClaimStore) => {

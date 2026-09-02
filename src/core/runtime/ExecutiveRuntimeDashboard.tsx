@@ -19,6 +19,12 @@ import { RuntimeConfidenceContext } from "./RuntimeConfidenceArchitecturePanel";
 import { RuntimeClaimEvidenceWorkspace } from "./RuntimeClaimEvidenceWorkspace";
 import { useRuntimeClaimStore } from "./useRuntimeClaimStore";
 import { applyPersistedClaimDecisions } from "./runtimeClaimOrchestration";
+import {
+  buildFounderIntegratedAssessmentScenario,
+  FOUNDER_ASSESSMENT_SCENARIO_ID,
+  FOUNDER_ASSESSMENT_STORAGE_KEY,
+  founderAssessmentScenario,
+} from "./founderIntegratedAssessmentScenario";
 
 import type { RuntimeAttributeValue } from "./buildTrustScores";
 
@@ -148,11 +154,27 @@ function SummaryCard({
 
 export function ExecutiveRuntimeDashboard() {
   const { runtime, mutate, enterpriseScore } = useRuntimeState();
+  const integratedAssessmentMode =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("scenario") ===
+      FOUNDER_ASSESSMENT_SCENARIO_ID;
+  const integratedAssessment = useMemo(
+    () =>
+      integratedAssessmentMode
+        ? buildFounderIntegratedAssessmentScenario()
+        : undefined,
+    [integratedAssessmentMode],
+  );
 
   const [activeCapabilityId, setActiveCapabilityId] =
     useState<string | null>(null);
 
   useEffect(() => {
+    if (integratedAssessmentMode) {
+      founderAssessmentScenario.assessmentInputs.forEach(mutate);
+      return;
+    }
+
     mutate({
       capabilityId: "gov-role-clarity",
       answerId: "role-clarity-1",
@@ -203,7 +225,7 @@ export function ExecutiveRuntimeDashboard() {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [integratedAssessmentMode]);
 
   const propagatedRuntime = propagateRuntimeInfluence(
     runtime,
@@ -211,6 +233,12 @@ export function ExecutiveRuntimeDashboard() {
   );
   const claimWorkspace = useRuntimeClaimStore(
     propagatedRuntime.capabilities,
+    integratedAssessmentMode
+      ? {
+          storageKey: FOUNDER_ASSESSMENT_STORAGE_KEY,
+          initialStore: integratedAssessment?.store,
+        }
+      : undefined,
   );
   const claimAwareCapabilities = applyPersistedClaimDecisions(
     propagatedRuntime.capabilities,
@@ -337,6 +365,26 @@ export function ExecutiveRuntimeDashboard() {
             A founder-facing runtime intelligence view showing capability health,
             operational strain, evidence confidence, and recommended action priorities.
           </p>
+
+          {integratedAssessmentMode && (
+            <div
+              style={{
+                maxWidth: 900,
+                marginTop: 16,
+                padding: "14px 16px",
+                borderRadius: 14,
+                border: "1px solid rgba(56,189,248,0.3)",
+                background: "rgba(8,47,73,0.34)",
+                color: "#bae6fd",
+                fontSize: 13,
+                lineHeight: 1.55,
+              }}
+            >
+              <strong>Integrated founder sandpit · {founderAssessmentScenario.organisation}</strong>
+              <br />
+              {founderAssessmentScenario.situation}
+            </div>
+          )}
         </header>
 
         <section
