@@ -1,8 +1,10 @@
 # OASIS Product Architecture Reconciliation
 
-**Status:** Evolving decision record for Founder review
+**Status:** Founder-approved controlled decision record
 
 **Date:** 5 September 2026
+
+**Founder approval:** 6 September 2026
 
 **Scope:** CORE, PULSE, PATHWAYS, HORIZON, NEXUS and ATLAS; their descriptions, logos, graphics and public presentation
 
@@ -10,7 +12,7 @@
 
 ## Executive outcome
 
-The six OASIS names should be retained as controlled product vocabulary, but they should not currently be presented as six independently available applications or as a conventional software suite.
+The six OASIS names are retained as controlled product vocabulary, but they must not currently be presented as six independently available applications or as a conventional software suite.
 
 The enduring architecture is one integrated OASIS platform ecosystem:
 
@@ -19,12 +21,12 @@ The enduring architecture is one integrated OASIS platform ecosystem:
 Within that architecture:
 
 - **CORE** is the initial governed experience through which an organisation establishes context and a useful capability baseline.
-- **PULSE, PATHWAYS and HORIZON** are candidate lifecycle services over the shared organisational model.
+- **PULSE, PATHWAYS and HORIZON** are lifecycle services over the shared organisational model.
 - **NEXUS and ATLAS** are cross-cutting intelligence dimensions, not isolated applications.
 
 All six depend on the same ECF, Runtime, capability claims, evidence, provenance, confidence controls and human decision authority. None should establish a separate organisational truth.
 
-The new public website should therefore remain unchanged for External Preview v1. It correctly presents the integrated platform before the service family. A revised service-family treatment should be introduced only after Founder confirmation and explicit availability classification.
+The public website remains unchanged for External Preview v1. It correctly presents the integrated platform before the service family. A revised service-family treatment should be introduced only when its content has explicit Delivery and Access states and adds value for an external visitor.
 
 ## 1. Governing decisions
 
@@ -38,13 +40,18 @@ The new public website should therefore remain unchanged for External Preview v1
 - Assessment is an acquisition method, not the product.
 - Services must operate over one shared organisational model.
 - Operational systems remain authoritative; OASIS connects their records to capability and decision context.
+- CORE is the initial governed experience rather than a standalone assessment product.
+- PULSE, PATHWAYS and HORIZON are lifecycle services.
+- NEXUS and ATLAS are cross-cutting intelligence dimensions rather than applications.
+- “OASIS service family” is the controlled internal architectural term; “OASIS Suite™” is retained as historical product-language provenance and withheld from current public positioning.
+- OASIS is the controlling parent identity. Service names use OASIS-endorsed labels rather than active standalone logos.
+- Delivery State and Access State are recorded separately.
 
 ### Evolving
 
 - Exact CORE scope and boundary.
-- Service-family boundaries and sequencing.
 - Public use of the six service names.
-- Availability, packaging and commercial model.
+- Detailed service packaging, entitlements and commercial model.
 - Final visual identity for the service family.
 
 ### Explicitly not supported
@@ -63,18 +70,37 @@ The controlled sources contain a useful but important tension:
 - Product & Technical State v0.1 says the service family is a governed vision and prohibits representing the full Suite as operational.
 - The legacy website presents each name with product-like descriptions, graphics and commercial activation language.
 
-**Resolution:** retain the names as controlled vocabulary because the later approved Foundation explicitly preserves them. Treat their boundaries, packaging and public expression as evolving. Treat the legacy website’s separate-product and activation implications as historical packaging, not current product truth.
+**Resolution:** the Founder has confirmed the names and architectural roles. Detailed packaging and public expression remain evolving. The legacy website’s separate-product and activation implications are historical packaging, not current product truth.
 
 ## 3. Service-family reconciliation
 
-| Name | Enduring purpose | Canonical architectural position | Evidence-bounded status | Disposition |
+| Name | Enduring purpose | Canonical architectural position | Delivery State | Access State |
 |---|---|---|---|---|
-| **CORE** | Establish organisational context, scope, participation and an initial governed capability view | Initial experience over the ECF and Runtime; not a standalone assessment product | **Emerging / controlled founder sandpit.** Architecture and selected Runtime flows are evidenced; commercial and production availability are not established | **Retain and reinterpret.** Confirm exact scope against the live product before public detail |
-| **PULSE** | Observe capability health, change, drift and emerging signals over time | Lifecycle service using shared claims, evidence and Runtime controls | **Proposed.** No production service evidence | **Retain as a service hypothesis.** Avoid monitoring or alerting availability claims |
-| **PATHWAYS** | Relate understanding to bounded improvement options, dependencies, readiness and outcomes | Lifecycle service translating governed understanding into possible action | **Proposed.** Action logic is partially reflected in Runtime work; a distinct service is not evidenced | **Retain and narrow.** Preserve human authority; do not imply automated programme planning |
-| **HORIZON** | Explore emerging change, future conditions and scenario-informed enquiry | Lifecycle service applying the shared model to foresight | **Proposed.** No production service evidence | **Retain as a service hypothesis.** Avoid predictive or simulation claims until validated |
-| **NEXUS** | Express relationships across capabilities, systems, evidence, actors and decisions | Cross-cutting relationship and network-intelligence dimension | **Exploratory / proposed.** Relationship structures exist conceptually and in bounded implementation work; a discrete application is not evidenced | **Retain as a dimension.** Do not package as an integration product or separate system of record |
-| **ATLAS** | Add spatial, asset and place-based context to capability understanding | Cross-cutting spatial intelligence dimension drawing on authoritative GIS and asset sources | **Exploratory / proposed.** No production service evidence | **Retain as a dimension.** Do not imply GIS replacement or deployed spatial analytics |
+| **CORE** | Establish organisational context, scope, participation and an initial governed capability view | Initial experience over the ECF and Runtime; not a standalone assessment product | **Demonstrated** in a bounded Founder environment | **Internal Evaluation** |
+| **PULSE** | Observe capability health, change, drift and emerging signals over time | Lifecycle service using shared claims, evidence and Runtime controls | **Architecturally Defined** | **Not Externally Available** |
+| **PATHWAYS** | Relate understanding to bounded improvement options, dependencies, readiness and outcomes | Lifecycle service translating governed understanding into possible action | **Architecturally Defined**; selected supporting Runtime mechanisms are demonstrated | **Not Externally Available** as a distinct service |
+| **HORIZON** | Explore emerging change, future conditions and scenario-informed enquiry | Lifecycle service applying the shared model to foresight | **Architecturally Defined** | **Not Externally Available** |
+| **NEXUS** | Express relationships across capabilities, systems, evidence, actors and decisions | Cross-cutting relationship and network-intelligence dimension | **Exploratory** | **Not Externally Available** |
+| **ATLAS** | Add spatial, asset and place-based context to capability understanding | Cross-cutting spatial intelligence dimension drawing on authoritative GIS and asset sources | **Exploratory** | **Not Externally Available** |
+
+### Controlled status vocabulary
+
+**Delivery State** records what has been built and evidenced:
+
+- **Operationally Evidenced** — operating in its intended environment with defined acceptance, operational and assurance evidence.
+- **Demonstrated** — functioning in a named, bounded environment with recorded validation.
+- **In Development** — actively being implemented or integrated, but not yet demonstrated against its acceptance boundary.
+- **Architecturally Defined** — purpose, boundaries and relationships are documented; implementation is not yet evidenced.
+- **Exploratory** — an active hypothesis whose architecture, value or feasibility remains open.
+
+**Access State** records who may use it:
+
+- **Generally Available** — offered for its defined intended use under standard commercial arrangements.
+- **Controlled Pilot** — accessible to approved participants within a bounded pilot and explicit operating conditions.
+- **Internal Evaluation** — accessible only for Intrinsic Systems development, testing and Founder review.
+- **Not Externally Available** — no customer or partner access is currently offered.
+
+Public communications use only **Available**, **Pilot Access** and **In Development**, unless a controlled roadmap is deliberately disclosed. “Pilot-ready” and “production-ready” are evidence-based readiness judgements, not ordinary status labels.
 
 ## 4. Revised description principles
 
@@ -82,14 +108,14 @@ If the names are later used publicly, every description should:
 
 1. begin with the organisational purpose, not a feature catalogue;
 2. identify the experience as part of one integrated OASIS platform;
-3. state whether it is current, emerging, proposed or exploratory;
+3. state its Delivery State and Access State wherever availability may otherwise be inferred;
 4. refer to shared ECF and Runtime foundations where useful;
 5. preserve evidence provenance, uncertainty and human authority;
 6. avoid implying autonomous decisions, guaranteed outcomes or product availability.
 
 ### Controlled working descriptions
 
-These are architecture descriptions for review, not approved marketing copy.
+These are controlled architecture descriptions, not approved marketing copy.
 
 **CORE — Initial capability understanding**
 
@@ -144,8 +170,8 @@ However, the existing family is not ready to return to the public site:
 - **Preserve:** retain every original asset as provenance and concept reference.
 - **Do not republish unchanged:** keep all legacy module graphics and logos out of External Preview v1.
 - **Do not delete:** no destructive asset cleanup is required.
-- **Redraw later:** if the service family is confirmed, create one coherent diagram showing a shared ECF and Runtime with lifecycle services and cross-cutting dimensions in their correct relationships.
-- **Logo decision later:** determine whether services need individual marks at all. A strong OASIS parent identity with restrained service labels may better express integration.
+- **Redraw later:** create one coherent diagram showing a shared ECF and Runtime with lifecycle services and cross-cutting dimensions in their correct relationships.
+- **Parent identity:** use OASIS as the controlling masterbrand. Service names may use restrained OASIS-endorsed labels or a coherent icon family, but not active standalone product logos.
 
 ## 6. Public website implication
 
@@ -153,35 +179,34 @@ No immediate public-site change is recommended.
 
 The live site now makes the correct first-order claim: OASIS is an integrated enterprise intelligence platform. Introducing six names before their status and relationship are settled would add explanatory burden and recreate the catalogue-first framing that Foundation v0.2 explicitly rejects.
 
-After Founder confirmation, a restrained future section could present:
+When its public value and status treatment are ready, a restrained future section could present:
 
 - **Begin:** CORE as the initial experience;
 - **Develop over time:** PULSE, PATHWAYS and HORIZON as lifecycle services;
 - **Connect across the model:** NEXUS and ATLAS as cross-cutting dimensions.
 
-That section should use a single integrated diagram, not six equal product cards. Proposed and exploratory status should be visible in plain language.
+That section should use a single integrated diagram, not six equal product cards. Relevant Delivery and Access states should be visible in plain language.
 
-## 7. Founder decisions required
+## 7. Founder decisions — approved 6 September 2026
 
-1. Confirm that all six names remain part of the controlled OASIS vocabulary.
-2. Confirm CORE as the initial experience rather than a standalone assessment product.
-3. Confirm PULSE, PATHWAYS and HORIZON as lifecycle services.
-4. Confirm NEXUS and ATLAS as cross-cutting dimensions rather than applications.
-5. Confirm whether “OASIS Suite” remains useful internally, should become “OASIS service family,” or should be withheld until multiple services are evidenced.
-6. Confirm whether individual service logos remain strategically useful or should give way to one OASIS parent identity.
-7. Approve the availability vocabulary: current, emerging, proposed and exploratory.
+1. All six names remain part of the controlled OASIS vocabulary.
+2. CORE is the initial experience rather than a standalone assessment product.
+3. PULSE, PATHWAYS and HORIZON are lifecycle services.
+4. NEXUS and ATLAS are cross-cutting dimensions rather than applications.
+5. “OASIS service family” is the controlled internal architectural term. “OASIS Suite™” is retained as historical product-language provenance and withheld from public use until multiple services are evidenced and commercial packaging is confirmed.
+6. OASIS is the controlling parent identity. Existing individual marks remain historical design assets rather than active standalone product logos. Any future service labels or icons must be OASIS-endorsed and visually coherent.
+7. Delivery State and Access State replace the single current/emerging/proposed/exploratory ladder, using the controlled vocabulary defined in Section 3.
 
 Trademark registration, classes and jurisdictional protection are separate legal questions and are not established by use of the ™ symbol in historical material.
 
 ## 8. Recommended next sequence
 
-1. Founder reviews the seven decisions above.
-2. Update Product Architecture to v0.2 with the confirmed service-family model.
-3. Update Product & Technical State with evidence-based availability for each service.
-4. Reconcile the controlled lexicon and commercial packaging.
-5. Develop one integrated service-family visual system.
-6. Decide whether a concise service-family section adds value to the public site.
-7. Introduce public content only when copy, status and visual relationships are mutually consistent.
+1. Update Product Architecture to v0.2 with the confirmed service-family model.
+2. Update Product & Technical State with separate Delivery and Access states for each service.
+3. Reconcile the controlled lexicon, licensing architecture and commercial packaging.
+4. Develop one integrated service-family visual system.
+5. Decide whether a concise service-family section adds value to the public site.
+6. Introduce public content only when copy, status and visual relationships are mutually consistent.
 
 ## 9. Evidence and provenance
 
@@ -201,4 +226,4 @@ Live repository material inspected:
 - individual and composite suite illustrations;
 - current External Preview v1 architecture and public narrative.
 
-This record does not itself approve the service family, change product availability or authorise new public claims. It provides a controlled basis for Founder resolution.
+This record captures Founder approval of the service-family architecture, masterbrand direction and status vocabulary. It does not change product availability or independently authorise new public claims.
