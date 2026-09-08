@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 const facets = [
-  { id: "people", label: "People & knowledge", short: "People", x: 23, y: 25, detail: "Experience, judgement and organisational knowledge give evidence its operating context." },
-  { id: "systems", label: "Systems & standards", short: "Systems", x: 77, y: 25, detail: "Authoritative systems and governed standards remain connected without being replaced." },
-  { id: "evidence", label: "Claims & evidence", short: "Evidence", x: 23, y: 75, detail: "Traceable claims make support, uncertainty and limitations visible around the question." },
-  { id: "decisions", label: "Decisions & outcomes", short: "Decisions", x: 77, y: 75, detail: "Accountable decisions and observed outcomes feed learning back into the shared view." },
+  { id: "people", label: "People & knowledge", short: "People", x: 23, y: 25, detail: "Experience and judgement explain how the organisation works in practice." },
+  { id: "systems", label: "Systems & standards", short: "Systems", x: 77, y: 25, detail: "Trusted systems and standards provide records, rules and shared reference points." },
+  { id: "evidence", label: "Ideas & evidence", short: "Evidence", x: 23, y: 75, detail: "Evidence shows what supports an idea, where uncertainty remains and what needs another look." },
+  { id: "decisions", label: "Decisions & learning", short: "Decisions", x: 77, y: 75, detail: "Decisions and their results add to what the organisation knows over time." },
 ] as const;
 
 export function CapabilityRadial() {
@@ -19,12 +19,12 @@ export function CapabilityRadial() {
         <g className="radial-orbit radial-orbit--inner"><circle cx="400" cy="400" r="164"/></g>
         {facets.map((facet)=><path key={facet.id} className={`radial-link ${active===facet.id?"is-active":""}`} d={`M400 400 L${facet.x*8} ${facet.y*8}`}/>)}
         <circle className="radial-core-halo" cx="400" cy="400" r="118"/><circle className="radial-core" cx="400" cy="400" r="92" fill="url(#radial-core)" filter="url(#radial-shadow)"/>
-        <text className="radial-core__small" x="400" y="376" textAnchor="middle">BOUNDED</text><text className="radial-core__title" x="400" y="406" textAnchor="middle">CAPABILITY</text><text className="radial-core__title" x="400" y="433" textAnchor="middle">QUESTION</text>
-        <text className="radial-ring-label" x="400" y="210" textAnchor="middle">CAPABILITY CONTEXT</text><text className="radial-ring-label" x="400" y="126" textAnchor="middle">CONNECTED RELATIONSHIPS</text>
+        <text className="radial-core__small" x="400" y="376" textAnchor="middle">A QUESTION</text><text className="radial-core__title" x="400" y="406" textAnchor="middle">THAT</text><text className="radial-core__title" x="400" y="433" textAnchor="middle">MATTERS</text>
+        <text className="radial-ring-label" x="400" y="210" textAnchor="middle">ORGANISATIONAL CONTEXT</text><text className="radial-ring-label" x="400" y="126" textAnchor="middle">CONNECTED VIEW</text>
       </svg>
       {facets.map((facet)=><button key={facet.id} type="button" className={`radial-facet radial-facet--${facet.id} ${active===facet.id?"is-active":""}`} aria-pressed={active===facet.id} onMouseEnter={()=>setActive(facet.id)} onFocus={()=>setActive(facet.id)} onClick={()=>setActive(facet.id)}><span>{facet.short}</span><small>{facet.label}</small></button>)}
       <div className="capability-radial__flow" aria-hidden="true"><span>Understand</span><i>→</i><span>Decide</span><i>→</i><span>Act</span><i>→</i><span>Learn</span></div>
     </div>
-    <figcaption className="capability-radial__caption"><div><span>Conceptual model</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p></div><p>OASIS develops a connected view around the purpose at hand. The diagram explains the intended information relationships; it is not a representation of a live automated decision.</p></figcaption>
+    <figcaption className="capability-radial__caption"><div><span>How the view forms</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p></div><p>Each real view begins with the organisation’s purpose and draws together the information that matters to that question.</p></figcaption>
   </figure>;
 }

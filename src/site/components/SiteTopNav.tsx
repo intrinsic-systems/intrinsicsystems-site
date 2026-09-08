@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { OasisLogo } from "../../components/OasisLogo";
 
-const NAV_ITEMS = [{to:"/",label:"Home"},{to:"/oasis",label:"OASIS"},{to:"/about",label:"About"},{to:"/contact",label:"Contact"}] as const;
+const NAV_ITEMS = [{to:"/",label:"Home"},{to:"/framework",label:"Framework"},{to:"/about",label:"About"},{to:"/contact",label:"Contact"}] as const;
 
 export function SiteTopNav() {
   const [open,setOpen]=useState(false);

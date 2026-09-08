@@ -7,7 +7,8 @@ import { ContactPage } from "./site/pages/ContactPage";
 export default function App() {
   return <BrowserRouter><Routes>
     <Route path="/" element={<HomePage />} />
-    <Route path="/oasis" element={<OasisSuitePage />} />
+    <Route path="/framework" element={<OasisSuitePage />} />
+    <Route path="/oasis" element={<Navigate to="/framework" replace />} />
     <Route path="/about" element={<AboutPage />} />
     <Route path="/contact" element={<ContactPage />} />
     <Route path="*" element={<Navigate to="/" replace />} />
