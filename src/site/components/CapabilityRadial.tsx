@@ -11,6 +11,7 @@ export function CapabilityRadial() {
   const [active, setActive] = useState<(typeof facets)[number]["id"]>("people");
   const selected = facets.find((facet) => facet.id === active)!;
   return <figure className="capability-radial">
+    <div className="radial-reading-guide"><strong>How to read this</strong><span>Begin at the centre with a question your organisation needs to answer. Then look outward to the four fields that help form the answer. Select a field to explore it.</span></div>
     <div className="capability-radial__stage">
       <svg viewBox="0 0 800 800" aria-hidden="true" focusable="false">
         <defs><radialGradient id="radial-core"><stop offset="0" stopColor="#2282b8"/><stop offset="1" stopColor="#123b55"/></radialGradient><filter id="radial-shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#123b55" floodOpacity=".2"/></filter></defs>
@@ -25,6 +26,6 @@ export function CapabilityRadial() {
       {facets.map((facet)=><button key={facet.id} type="button" className={`radial-facet radial-facet--${facet.id} ${active===facet.id?"is-active":""}`} aria-pressed={active===facet.id} onMouseEnter={()=>setActive(facet.id)} onFocus={()=>setActive(facet.id)} onClick={()=>setActive(facet.id)}><span>{facet.short}</span><small>{facet.label}</small></button>)}
       <div className="capability-radial__flow" aria-hidden="true"><span>Understand</span><i>→</i><span>Decide</span><i>→</i><span>Act</span><i>→</i><span>Learn</span></div>
     </div>
-    <figcaption className="capability-radial__caption"><div><span>How the view forms</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p></div><p>Each real view begins with the organisation’s purpose and draws together the information that matters to that question.</p></figcaption>
+    <figcaption className="capability-radial__caption"><div><span>The selected field</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p></div><p><strong>How to read this:</strong> begin at the centre with a question your organisation needs to answer. The four surrounding fields contribute context. Together they form a connected view that people can examine, use and improve over time.</p></figcaption>
   </figure>;
 }
