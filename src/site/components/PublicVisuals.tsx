@@ -17,6 +17,25 @@ export function ArchitectureStack() {
 }
 export function EvidenceLoop() { const items=["Context","Ideas","Evidence","Confidence","Action","Learning"]; return <div className="evidence-loop" aria-label="Continuous organisational understanding loop">{items.map((item,index)=><div key={item}><span>{String(index+1).padStart(2,"0")}</span><strong>{item}</strong></div>)}</div>; }
 
+const understandingJourney = [
+  { number: "01", label: "Baseline", title: "See where things stand", body: "Create a useful point-in-time picture of organisational capability." },
+  { number: "02", label: "Focus", title: "Ask what matters next", body: "Direct attention towards the questions most likely to improve understanding." },
+  { number: "03", label: "Evidence", title: "Test the picture", body: "Connect claims with relevant evidence, context and informed judgement." },
+  { number: "04", label: "Understanding", title: "Make the reasoning visible", body: "Show what is supported, what remains uncertain and why it matters." },
+  { number: "05", label: "Action", title: "Choose the next step", body: "Help accountable people decide what to clarify, monitor or improve." },
+  { number: "06", label: "Learning", title: "Keep the picture current", body: "Use outcomes and changing conditions to shape the next question." },
+] as const;
+
+export function UnderstandingJourney() {
+  return <div className="understanding-journey" role="img" aria-label="A capability baseline develops through focus, evidence, supported understanding, action and learning">
+    <div className="understanding-journey__track" aria-hidden="true"><span/><i>Understanding develops</i></div>
+    <div className="understanding-journey__steps">{understandingJourney.map((item,index)=><article className={index===0?"is-baseline":index===understandingJourney.length-1?"is-learning":""} key={item.number}>
+      <div><span>{item.number}</span><small>{item.label}</small></div><strong>{item.title}</strong><p>{item.body}</p>
+    </article>)}</div>
+    <div className="understanding-journey__return"><span aria-hidden="true">↶</span><strong>Learning shapes the next question.</strong></div>
+  </div>;
+}
+
 const journey = [
   { number: "01", title: "CORE input", body: "Your organisation establishes an initial capability baseline." },
   { number: "02", title: "Runtime enquiry and evidence", body: "The Runtime identifies what to examine next and what evidence may strengthen the picture." },
