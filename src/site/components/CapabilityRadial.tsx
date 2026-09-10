@@ -38,7 +38,6 @@ export function CapabilityRadial() {
     window.requestAnimationFrame(() => detailRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" }));
   };
   return <figure className="capability-radial">
-    <div className="radial-reading-guide"><strong>How to read this</strong><span>Begin at the centre with a question your organisation needs to answer. Then select one of the four lenses. The illustrative domain profile changes with the view, and its explanation appears below in the same colour.</span></div>
     <div className="capability-radial__stage" style={{ "--radial-accent": selected.accent } as CSSProperties}>
       <svg viewBox="0 0 800 800" aria-hidden="true" focusable="false">
         <defs><radialGradient id="radial-core"><stop offset="0" stopColor="#2282b8"/><stop offset="1" stopColor="#123b55"/></radialGradient><filter id="radial-shadow"><feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="#123b55" floodOpacity=".2"/></filter></defs>
@@ -59,6 +58,9 @@ export function CapabilityRadial() {
       {facets.map((facet)=><button key={facet.id} type="button" style={{ "--radial-accent": facet.accent } as CSSProperties} className={`radial-facet radial-facet--${facet.id} ${active===facet.id?"is-active":""}`} aria-pressed={active===facet.id} onFocus={()=>setActive(facet.id)} onClick={()=>selectAndReveal(facet.id)}><span>{facet.short}</span><small>{facet.label}</small></button>)}
       <div className="capability-radial__flow" aria-hidden="true"><span>Understand</span><i>→</i><span>Decide</span><i>→</i><span>Act</span><i>→</i><span>Learn</span></div>
     </div>
-    <figcaption ref={detailRef} className="capability-radial__caption" style={{ "--radial-accent": selected.accent } as CSSProperties}><div key={selected.id}><span>{active === "question" ? "The starting point" : "The selected field"}</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p></div></figcaption>
+    <figcaption ref={detailRef} className="capability-radial__caption" style={{ "--radial-accent": selected.accent } as CSSProperties}>
+      <div key={selected.id}><span>{active === "question" ? "The starting point" : "The selected field"}</span><strong>{selected.label}</strong><p aria-live="polite">{selected.detail}</p><small>Illustrative profile across capability domains</small></div>
+      <aside className="radial-reading-guide"><strong>How to read this</strong><span>Begin with the question at the centre. Then select a lens to see how it changes the view across the organisation’s capability domains.</span></aside>
+    </figcaption>
   </figure>;
 }
