@@ -7,7 +7,7 @@ const NAV_ITEMS = [{to:"/",label:"Home"},{to:"/framework",label:"CORE"},{to:"/ab
 export function SiteTopNav() {
   const [open,setOpen]=useState(false);
   return <header className="site-header">
-    <NavLink to="/" aria-label="Intrinsic Systems home" className="site-brand"><OasisLogo variant="horizontal" height={42}/></NavLink>
+    <NavLink to="/" aria-label="Intrinsic Systems home" className="site-brand"><OasisLogo variant="mark" size={42} alt=""/><span className="site-brand__wordmark"><strong>Intrinsic</strong><strong>Systems</strong></span></NavLink>
     <button className="site-menu" aria-expanded={open} aria-controls="site-nav" onClick={()=>setOpen(!open)}><span/><span/><span/><b className="sr-only">Menu</b></button>
     <nav id="site-nav" className={open?"site-nav is-open":"site-nav"} aria-label="Primary">
       {NAV_ITEMS.map(item=><NavLink key={item.to} to={item.to} end={item.to==="/"} onClick={()=>setOpen(false)} className={({isActive})=>isActive?"site-nav__link is-active":"site-nav__link"}>{item.label}</NavLink>)}
