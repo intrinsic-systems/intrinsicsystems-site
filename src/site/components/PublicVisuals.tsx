@@ -9,30 +9,50 @@ function Node({label,detail}:{label:string;detail:string}) { return <div classNa
 
 export function ArchitectureStack() {
   return <><div className="architecture-stack" role="img" aria-label="Intrinsic Systems framework from enterprise systems through a shared capability model and evolving understanding to organisational intelligence">
-    <div className="architecture-stack__row architecture-stack__row--outcome"><small>What it supports</small><strong>Enterprise Intelligence</strong><span>Clearer decisions that people can explain and learn from</span></div><div className="architecture-stack__connector"/>
-    <div className="architecture-stack__row architecture-stack__row--runtime"><small>How the picture develops</small><strong>Runtime</strong><span>Chooses what to examine next and updates the picture as evidence and conditions change</span></div><div className="architecture-stack__connector"/>
-    <div className="architecture-stack__row architecture-stack__row--foundation"><small>Shared structure</small><strong>Enterprise Capability Framework</strong><span>Organises capability and shows how its parts are connected</span></div>
+    <div className="architecture-stack__row architecture-stack__row--outcome"><small>What it supports</small><strong>Organisation-owned improvement</strong><span>Decisions and plans that people can explain, govern and learn from</span></div><div className="architecture-stack__connector"/>
+    <div className="architecture-stack__row architecture-stack__row--runtime"><small>How the picture develops</small><strong>Runtime guidance</strong><span>Examines what matters next and updates the picture as evidence and conditions change</span></div><div className="architecture-stack__connector"/>
+    <div className="architecture-stack__row architecture-stack__row--foundation"><small>Shared structure</small><strong>Asset-management capability model</strong><span>Organises capability, standards alignment and the relationships between them</span></div>
     <div className="architecture-stack__systems"><span>ERP</span><span>EAM</span><span>BIM</span><span>BI</span><span>People</span><span>Standards</span></div><p>The framework works alongside these trusted sources and helps people understand them together.</p>
   </div><div className="journey-intro"><span>From input to action</span><strong>CORE starts the picture. Runtime helps it develop.</strong><p>CORE provides the initial input experience and capability baseline. The Runtime works behind and alongside it: choosing what needs another look, connecting relevant evidence and showing why a finding or next action follows.</p></div><ExperienceJourney /></>;
 }
 export function EvidenceLoop() { const items=["Context","Ideas","Evidence","Confidence","Action","Learning"]; return <div className="evidence-loop" aria-label="Continuous organisational understanding loop">{items.map((item,index)=><div key={item}><span>{String(index+1).padStart(2,"0")}</span><strong>{item}</strong></div>)}</div>; }
 
+export function RetainedUnderstandingPath() {
+  return <div className="retained-path" role="img" aria-label="A repeated assessment can lose context between engagements, while CORE retains evidence, reasoning, decisions and results as organisational understanding">
+    <div className="retained-path__lane retained-path__lane--episodic">
+      <div className="retained-path__label"><span>Point-in-time cycle</span><strong>Understanding is reconstructed</strong></div>
+      <div className="retained-path__steps"><PathStep title="Assessment"/><PathArrow/><PathStep title="Report"/><PathArrow/><PathStep title="Project"/><PathBreak/><PathStep title="Reassess"/></div>
+      <p>Context and reasoning can disperse as reports are filed, projects end and people change.</p>
+    </div>
+    <div className="retained-path__lane retained-path__lane--core">
+      <div className="retained-path__label"><span>CORE</span><strong>Understanding remains with the organisation</strong></div>
+      <div className="retained-path__core-flow"><div className="retained-path__inputs"><small>Knowledge</small><small>Evidence</small><small>Objectives</small><small>Constraints</small></div><div className="retained-path__hub"><span>CORE</span><strong>Retained organisational understanding</strong></div><div className="retained-path__outputs"><small>Decide</small><small>Plan</small><small>Deliver</small><small>Measure</small></div></div>
+      <div className="retained-path__return"><span>Measured change updates the maintained capability position</span></div>
+      <p>Specialists contribute where needed. Their evidence and reasoning become part of the organisation’s maintained understanding.</p>
+    </div>
+  </div>;
+}
+
+function PathStep({title}:{title:string}) { return <span className="retained-path__step">{title}</span>; }
+function PathArrow() { return <i className="retained-path__arrow" aria-hidden="true">→</i>; }
+function PathBreak() { return <i className="retained-path__break" aria-hidden="true"><b>knowledge fades</b></i>; }
+
 const understandingJourney = [
-  { number: "01", label: "Baseline", title: "See where things stand", body: "Create a useful point-in-time picture of organisational capability." },
-  { number: "02", label: "Focus", title: "Ask what matters next", body: "Direct attention towards the questions most likely to improve understanding." },
-  { number: "03", label: "Evidence", title: "Test the picture", body: "Connect claims with relevant evidence, context and informed judgement." },
-  { number: "04", label: "Understanding", title: "Make the reasoning visible", body: "Show what is supported, what remains uncertain and why it matters." },
-  { number: "05", label: "Action", title: "Choose the next step", body: "Help accountable people decide what to clarify, monitor or improve." },
-  { number: "06", label: "Learning", title: "Keep the picture current", body: "Use outcomes and changing conditions to shape the next question." },
+  { number: "01", label: "Scope", title: "Define the outcome", body: "Agree what the organisation needs to understand and the decisions the work must support." },
+  { number: "02", label: "Baseline", title: "Establish the position", body: "Bring relevant people, operational context and existing information into the starting view." },
+  { number: "03", label: "Evidence", title: "Test what is understood", body: "Connect material findings with evidence, informed judgement and uncertainty." },
+  { number: "04", label: "Decision", title: "Determine what matters", body: "Consider capability constraints alongside risk, value, capacity and organisational goals." },
+  { number: "05", label: "Plan", title: "Govern the way forward", body: "Define actions, responsibilities, dependencies, intended benefits and the support required." },
+  { number: "06", label: "Measure", title: "Retain what is learned", body: "Use delivery results and changing conditions to update the maintained capability position." },
 ] as const;
 
 export function UnderstandingJourney() {
-  return <div className="understanding-journey" role="img" aria-label="A capability baseline develops through focus, evidence, supported understanding, action and learning">
+  return <div className="understanding-journey" role="img" aria-label="A CORE engagement moves from defining the outcome through baseline, evidence, decisions and planning to measured organisational learning">
     <div className="understanding-journey__track" aria-hidden="true"><span/><i>Understanding develops</i></div>
     <div className="understanding-journey__steps">{understandingJourney.map((item,index)=><article className={index===0?"is-baseline":index===understandingJourney.length-1?"is-learning":""} key={item.number}>
       <div><span>{item.number}</span><small>{item.label}</small></div><strong>{item.title}</strong><p>{item.body}</p>
     </article>)}</div>
-    <div className="understanding-journey__return"><span aria-hidden="true">↶</span><strong>Learning shapes the next question.</strong></div>
+    <div className="understanding-journey__return"><span aria-hidden="true">↶</span><strong>Measured change becomes part of the organisation’s retained understanding.</strong></div>
   </div>;
 }
 
