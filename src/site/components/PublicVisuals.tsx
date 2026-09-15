@@ -7,6 +7,35 @@ export function UnderstandingSystem({compact=false}:{compact?:boolean}) {
 }
 function Node({label,detail}:{label:string;detail:string}) { return <div className="system-node"><i aria-hidden="true"/><strong>{label}</strong><span>{detail}</span></div>; }
 
+const coreInputs = [
+  { label: "People & experience", className: "core-intake__source--people" },
+  { label: "Systems & data", className: "core-intake__source--systems" },
+  { label: "Operational evidence", className: "core-intake__source--evidence" },
+  { label: "Standards & obligations", className: "core-intake__source--standards" },
+  { label: "Strategy & priorities", className: "core-intake__source--strategy" },
+  { label: "Risk & constraints", className: "core-intake__source--risk" },
+] as const;
+
+export function CoreInformationIntake() {
+  return <figure className="core-intake" role="img" aria-label="CORE brings together people and experience, systems and data, operational evidence, standards and obligations, strategy and priorities, and risk and constraints into one maintained capability position">
+    <div className="core-intake__stage">
+      <svg viewBox="0 0 600 520" aria-hidden="true">
+        <circle className="core-intake__orbit core-intake__orbit--outer" cx="300" cy="260" r="186" />
+        <circle className="core-intake__orbit core-intake__orbit--inner" cx="300" cy="260" r="130" />
+        <path className="core-intake__flow core-intake__flow--one" d="M110 118 C185 120 206 176 256 222" />
+        <path className="core-intake__flow core-intake__flow--two" d="M490 118 C415 120 394 176 344 222" />
+        <path className="core-intake__flow core-intake__flow--three" d="M82 260 C164 260 202 260 242 260" />
+        <path className="core-intake__flow core-intake__flow--four" d="M518 260 C436 260 398 260 358 260" />
+        <path className="core-intake__flow core-intake__flow--five" d="M110 402 C185 400 206 344 256 298" />
+        <path className="core-intake__flow core-intake__flow--six" d="M490 402 C415 400 394 344 344 298" />
+      </svg>
+      {coreInputs.map(item=><span className={`core-intake__source ${item.className}`} key={item.label}>{item.label}</span>)}
+      <div className="core-intake__core"><span>CORE</span><strong>Maintained capability position</strong></div>
+    </div>
+    <figcaption>Relevant organisational knowledge is brought together, tested and retained—not left scattered across reports and systems.</figcaption>
+  </figure>;
+}
+
 export function ArchitectureStack() {
   return <><div className="architecture-stack" role="img" aria-label="Intrinsic Systems framework from enterprise systems through a shared capability model and evolving understanding to organisational intelligence">
     <div className="architecture-stack__row architecture-stack__row--outcome"><small>What it supports</small><strong>Organisation-owned improvement</strong><span>Decisions and plans that people can explain, govern and learn from</span></div><div className="architecture-stack__connector"/>

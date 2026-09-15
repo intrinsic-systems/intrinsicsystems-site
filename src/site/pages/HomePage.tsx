@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { SiteFrame } from "../components/SiteFrame";
-import { RetainedUnderstandingPath, UnderstandingJourney, UnderstandingSystem } from "../components/PublicVisuals";
+import { CoreInformationIntake, RetainedUnderstandingPath, UnderstandingJourney, UnderstandingSystem } from "../components/PublicVisuals";
 
 export function HomePage() {
   return <SiteFrame pageTitle="Organisational intelligence">
@@ -11,16 +11,9 @@ export function HomePage() {
         <p className="lede">CORE is being developed as a SaaS platform for asset-intensive organisations. It brings assessments, operational knowledge, evidence and organisational priorities into one maintained capability position, then helps accountable people determine and govern what happens next.</p>
         <div className="actions"><NavLink className="button" to="/framework">Explore CORE <span>→</span></NavLink><NavLink className="text-link" to="/contact">Discuss a pilot <span>↗</span></NavLink></div>
       </div>
-      <aside className="hero-definition" aria-label="CORE product summary">
-        <p className="eyebrow">A practical starting point</p>
-        <dl>
-          <div><dt>What</dt><dd>Asset-management capability and improvement software.</dd></div>
-          <div><dt>Who</dt><dd>Organisations responsible for infrastructure, operations and long-life assets.</dd></div>
-          <div><dt>How</dt><dd>Guided assessment, organisational evidence and adaptive analysis.</dd></div>
-          <div><dt>Outcome</dt><dd>Supported findings, visible priorities and a governed improvement plan.</dd></div>
-        </dl>
-      </aside>
+      <CoreInformationIntake />
     </section>
+    <section className="product-summary" aria-label="CORE product summary"><div><span>What</span><strong>Asset-management capability and improvement software.</strong></div><div><span>Who</span><strong>Organisations responsible for infrastructure, operations and long-life assets.</strong></div><div><span>How</span><strong>Guided assessment, organisational evidence and adaptive analysis.</strong></div><div><span>Outcome</span><strong>Supported findings, visible priorities and a governed improvement plan.</strong></div></section>
     <section className="statement-band"><p>Asset managers already have systems, reports, standards and expert advice.</p><h2>What they often lack is one maintained understanding of how those elements work together.</h2><span>When that understanding is fragmented, improvement is harder to prioritise, difficult to govern and vulnerable to being lost when projects end or people leave.</span></section>
     <section className="content-section section-grid section-grid--middle connected-understanding"><UnderstandingSystem /><div><p className="eyebrow">Connected organisational understanding</p><h2>Embed the understanding required to improve.</h2><p className="body-large">CORE connects what your people know with the evidence available, the outcomes the organisation needs and the decisions it must make. The result is a capability position that can be examined, maintained and used as improvement proceeds.</p></div></section>
     <section className="content-section"><div className="section-heading"><p className="eyebrow">What gets lost</p><h2>The records remain.<br />The reasoning can fade.</h2><p>Context changes. Projects end. People move on. Unless the links between evidence, judgement and action are kept, valuable understanding gradually disappears.</p></div><div className="principle-grid"><article><b>01</b><h3>Bring the picture together</h3><p>Connect people’s knowledge with evidence and information from the systems they already use.</p></article><article><b>02</b><h3>Understand what matters</h3><p>Show strengths, constraints and uncertainty so the organisation can define what good means in its circumstances.</p></article><article><b>03</b><h3>Retain what is learned</h3><p>Keep the reasoning behind findings, decisions and actions available for the next review.</p></article></div></section>
