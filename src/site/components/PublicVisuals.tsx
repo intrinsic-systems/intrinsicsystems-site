@@ -136,4 +136,18 @@ export function ExperienceJourney() {
     </div>)}
   </div>;
 }
+
+export function ExecutiveViewTeaser() {
+  const views = [
+    {label:"Capability position",title:"Where do we stand?",body:"A connected view across the capabilities in scope."},
+    {label:"Priority constraint",title:"What is limiting the outcome?",body:"Material constraints considered against risk, value and organisational purpose."},
+    {label:"Evidence confidence",title:"What can we rely on?",body:"Visible support, uncertainty and matters requiring attention."},
+    {label:"Governed action",title:"What happens next?",body:"A clear enquiry, decision or improvement action with accountable ownership."},
+  ] as const;
+  return <figure className="executive-teaser" role="img" aria-label="Illustrative executive capability view showing capability position, priority constraints, evidence confidence and governed next action">
+    <div className="executive-teaser__bar"><div><span>Illustrative executive capability view</span><strong>Experience under development</strong></div><i aria-hidden="true"/><i aria-hidden="true"/><i aria-hidden="true"/></div>
+    <div className="executive-teaser__body"><div className="executive-teaser__profile"><span>Maintained capability position</span><svg viewBox="0 0 300 300" aria-hidden="true"><g className="executive-teaser__grid"><polygon points="150,32 252,91 252,209 150,268 48,209 48,91"/><polygon points="150,72 217,111 217,189 150,228 83,189 83,111"/><line x1="150" y1="32" x2="150" y2="268"/><line x1="48" y1="91" x2="252" y2="209"/><line x1="252" y1="91" x2="48" y2="209"/></g><polygon className="executive-teaser__profile-shape" points="150,62 221,109 204,183 150,232 91,184 73,105"/></svg><strong>See the whole position—and what shapes it.</strong></div><div className="executive-teaser__views">{views.map((view,index)=><article key={view.label}><b>{String(index+1).padStart(2,"0")}</b><div><span>{view.label}</span><strong>{view.title}</strong><p>{view.body}</p></div></article>)}</div></div>
+    <figcaption>The executive view is intended to expose the evidence and reasoning behind the picture, not simply report a score.</figcaption>
+  </figure>;
+}
 import { useState } from "react";
