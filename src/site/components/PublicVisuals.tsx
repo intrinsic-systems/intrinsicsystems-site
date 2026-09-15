@@ -1,5 +1,13 @@
 export function UnderstandingSystem({compact=false}:{compact?:boolean}) {
   return <div className={compact?"system-map system-map--compact":"system-map"} role="img" aria-label="Knowledge and evidence become connected organisational understanding">
+    <svg className="system-map__flow" viewBox="0 0 600 500" aria-hidden="true">
+      <path d="M108 150 C194 150 218 206 260 236"/><path d="M108 250 C182 250 214 250 252 250"/><path d="M108 350 C194 350 218 294 260 264"/>
+      <path d="M340 236 C382 206 406 150 492 150"/><path d="M348 250 C386 250 418 250 492 250"/><path d="M340 264 C382 294 406 350 492 350"/>
+      <g className="system-map__signals">
+        <circle r="4"><animateMotion dur="5.8s" repeatCount="indefinite" path="M108 150 C194 150 218 206 260 236"/></circle><circle r="4"><animateMotion begin="-1.9s" dur="5.8s" repeatCount="indefinite" path="M108 250 C182 250 214 250 252 250"/></circle><circle r="4"><animateMotion begin="-3.8s" dur="5.8s" repeatCount="indefinite" path="M108 350 C194 350 218 294 260 264"/></circle>
+        <circle r="4"><animateMotion begin="-2.9s" dur="5.8s" repeatCount="indefinite" path="M340 236 C382 206 406 150 492 150"/></circle><circle r="4"><animateMotion begin="-1s" dur="5.8s" repeatCount="indefinite" path="M348 250 C386 250 418 250 492 250"/></circle><circle r="4"><animateMotion begin="-4.8s" dur="5.8s" repeatCount="indefinite" path="M340 264 C382 294 406 350 492 350"/></circle>
+      </g>
+    </svg>
     <div className="system-map__orbit" aria-hidden="true"/><div className="system-map__sources"><Node label="People" detail="Judgement"/><Node label="Knowledge" detail="Context"/><Node label="Evidence" detail="Support"/></div>
     <div className="system-map__core"><span>INTRINSIC</span><strong>Connected understanding</strong></div>
     <div className="system-map__outcomes"><Node label="Decisions" detail="Clearer"/><Node label="Capability" detail="Stronger"/><Node label="Learning" detail="Continuous"/></div>
@@ -28,6 +36,14 @@ export function CoreInformationIntake() {
         <path className="core-intake__flow core-intake__flow--four" d="M518 260 C436 260 398 260 358 260" />
         <path className="core-intake__flow core-intake__flow--five" d="M110 402 C185 400 206 344 256 298" />
         <path className="core-intake__flow core-intake__flow--six" d="M490 402 C415 400 394 344 344 298" />
+        <g className="core-intake__signals">
+          <circle r="4"><animateMotion dur="5.4s" repeatCount="indefinite" path="M110 118 C185 120 206 176 256 222" /></circle>
+          <circle r="4"><animateMotion begin="-1.8s" dur="5.4s" repeatCount="indefinite" path="M490 118 C415 120 394 176 344 222" /></circle>
+          <circle r="4"><animateMotion begin="-3.6s" dur="5.4s" repeatCount="indefinite" path="M82 260 C164 260 202 260 242 260" /></circle>
+          <circle r="4"><animateMotion begin="-2.7s" dur="5.4s" repeatCount="indefinite" path="M518 260 C436 260 398 260 358 260" /></circle>
+          <circle r="4"><animateMotion begin="-.9s" dur="5.4s" repeatCount="indefinite" path="M110 402 C185 400 206 344 256 298" /></circle>
+          <circle r="4"><animateMotion begin="-4.5s" dur="5.4s" repeatCount="indefinite" path="M490 402 C415 400 394 344 344 298" /></circle>
+        </g>
       </svg>
       {coreInputs.map(item=><span className={`core-intake__source ${item.className}`} key={item.label}>{item.label}</span>)}
       <div className="core-intake__core"><span>CORE</span><strong>Maintained capability position</strong></div>
