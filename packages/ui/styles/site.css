@@ -46,3 +46,4 @@ h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:"Manrope",sans-serif}h1{max-width:8
 @media(max-width:560px){.retained-path__detail{padding:24px 56px 24px 20px}}
 @media(prefers-reduced-motion:reduce){.retained-path__detail{animation:none}}
 .retained-path__step{background:transparent}
+.connected-understanding .system-map,.system-map{border:0;background:transparent;box-shadow:none}.system-map__core span{font-size:24px;letter-spacing:-.035em}
