@@ -63,22 +63,43 @@ export function ArchitectureStack() {
 export function EvidenceLoop() { const items=["Context","Ideas","Evidence","Confidence","Action","Learning"]; return <div className="evidence-loop" aria-label="Continuous organisational understanding loop">{items.map((item,index)=><div key={item}><span>{String(index+1).padStart(2,"0")}</span><strong>{item}</strong></div>)}</div>; }
 
 export function RetainedUnderstandingPath() {
-  return <div className="retained-path" role="img" aria-label="A repeated assessment can lose context between engagements, while CORE retains evidence, reasoning, decisions and results as organisational understanding">
+  const [selected,setSelected] = useState<string | null>(null);
+  const detail = selected ? retainedPathDetails[selected] : null;
+  const choose = (key:string) => setSelected(current=>current===key?null:key);
+  return <div className="retained-path" aria-label="A repeated assessment can lose context between engagements, while CORE retains evidence, reasoning, decisions and results as organisational understanding">
     <div className="retained-path__lane retained-path__lane--episodic">
       <div className="retained-path__label"><span>Point-in-time cycle</span><strong>Understanding is reconstructed</strong></div>
-      <div className="retained-path__steps"><PathStep title="Assessment"/><PathArrow/><PathStep title="Report"/><PathArrow/><PathStep title="Project"/><PathBreak/><PathStep title="Reassess"/></div>
+      <div className="retained-path__steps"><PathStep title="Assessment" itemKey="assessment" selected={selected} onChoose={choose}/><PathArrow/><PathStep title="Report" itemKey="report" selected={selected} onChoose={choose}/><PathArrow/><PathStep title="Project" itemKey="project" selected={selected} onChoose={choose}/><PathBreak/><PathStep title="Reassess" itemKey="reassess" selected={selected} onChoose={choose}/></div>
       <p>Context and reasoning can disperse as reports are filed, projects end and people change.</p>
     </div>
     <div className="retained-path__lane retained-path__lane--core">
       <div className="retained-path__label"><span>CORE</span><strong>Understanding remains with the organisation</strong></div>
-      <div className="retained-path__core-flow"><div className="retained-path__inputs"><small>Knowledge</small><small>Evidence</small><small>Objectives</small><small>Constraints</small></div><div className="retained-path__hub"><span>CORE</span><strong>Retained organisational understanding</strong></div><div className="retained-path__outputs"><small>Decide</small><small>Plan</small><small>Deliver</small><small>Measure</small></div></div>
+      <div className="retained-path__core-flow"><div className="retained-path__inputs">{["Knowledge","Evidence","Objectives","Constraints"].map(label=><PathToken key={label} label={label} selected={selected} onChoose={choose}/>)}</div><button type="button" className={selected==="core"?"retained-path__hub is-active":"retained-path__hub"} aria-pressed={selected==="core"} onClick={()=>choose("core")}><span>CORE</span><strong>Retained organisational understanding</strong></button><div className="retained-path__outputs">{["Decide","Plan","Deliver","Measure"].map(label=><PathToken key={label} label={label} selected={selected} onChoose={choose}/>)}</div></div>
       <div className="retained-path__return"><span>Measured change updates the maintained capability position</span></div>
       <p>Specialists contribute where needed. Their evidence and reasoning become part of the organisation’s maintained understanding.</p>
     </div>
+    {detail?<div className="retained-path__detail" id="retained-path-detail" aria-live="polite"><span>{detail.group}</span><strong>{detail.title}</strong><p>{detail.body}</p><button type="button" onClick={()=>setSelected(null)} aria-label="Close explanation">×</button></div>:null}
   </div>;
 }
 
-function PathStep({title}:{title:string}) { return <span className="retained-path__step">{title}</span>; }
+const retainedPathDetails:Record<string,{group:string;title:string;body:string}> = {
+  assessment:{group:"Point-in-time cycle",title:"Assessment",body:"A defined set of questions establishes a view at one moment. The answers may be valuable, but the reasoning and operational context are often held outside the assessment itself."},
+  report:{group:"Point-in-time cycle",title:"Report",body:"Findings are summarised for decision-makers. Once separated from the people, evidence and assumptions behind them, those findings become harder to revisit or update."},
+  project:{group:"Point-in-time cycle",title:"Project",body:"Improvement activity begins from selected findings. Delivery knowledge can develop separately from the original assessment, weakening the connection between diagnosis, action and measured result."},
+  reassess:{group:"Point-in-time cycle",title:"Reassess",body:"A later review may repeat questions and reconstruct context because the prior evidence, reasoning and delivery learning were not maintained as one organisational record."},
+  knowledge:{group:"What CORE brings together",title:"Knowledge",body:"The practical experience and informed judgement held by the people who understand how the organisation and its assets actually operate."},
+  evidence:{group:"What CORE brings together",title:"Evidence",body:"Documents, records, observations and system information that support, qualify or challenge the organisation’s current understanding."},
+  objectives:{group:"What CORE brings together",title:"Objectives",body:"The operational, service, financial and organisational outcomes that determine what improvement should achieve in this organisation."},
+  constraints:{group:"What CORE brings together",title:"Constraints",body:"Risk, capacity, dependencies, obligations and practical limits that shape which actions are viable, valuable and appropriately timed."},
+  core:{group:"Maintained understanding",title:"CORE",body:"CORE keeps capability findings connected to their evidence, context, confidence, decisions and subsequent results so the organisation can extend its understanding instead of rebuilding it."},
+  decide:{group:"What CORE supports",title:"Decide",body:"Accountable people can see what is supported, what remains uncertain and which capability constraints matter before choosing a course of action."},
+  plan:{group:"What CORE supports",title:"Plan",body:"Priorities become a governed improvement path with intended outcomes, responsibilities, dependencies and a clear basis for specialist support."},
+  deliver:{group:"What CORE supports",title:"Deliver",body:"Internal teams or external specialists act against a better-defined scope while the organisation retains the reasoning behind the work."},
+  measure:{group:"What CORE supports",title:"Measure",body:"Delivery evidence and changing conditions update the maintained capability position, making the next review a continuation rather than a restart."},
+};
+
+function PathStep({title,itemKey,selected,onChoose}:{title:string;itemKey:string;selected:string|null;onChoose:(key:string)=>void}) { return <button type="button" className={selected===itemKey?"retained-path__step is-active":"retained-path__step"} aria-pressed={selected===itemKey} aria-controls="retained-path-detail" onClick={()=>onChoose(itemKey)}>{title}<i aria-hidden="true">+</i></button>; }
+function PathToken({label,selected,onChoose}:{label:string;selected:string|null;onChoose:(key:string)=>void}) { const key=label.toLowerCase(); return <button type="button" className={selected===key?"retained-path__token is-active":"retained-path__token"} aria-pressed={selected===key} aria-controls="retained-path-detail" onClick={()=>onChoose(key)}>{label}<i aria-hidden="true">+</i></button>; }
 function PathArrow() { return <i className="retained-path__arrow" aria-hidden="true">→</i>; }
 function PathBreak() { return <i className="retained-path__break" aria-hidden="true"><b>knowledge fades</b></i>; }
 
@@ -115,3 +136,4 @@ export function ExperienceJourney() {
     </div>)}
   </div>;
 }
+import { useState } from "react";
